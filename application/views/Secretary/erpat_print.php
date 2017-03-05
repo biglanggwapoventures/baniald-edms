@@ -2,12 +2,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box-footer">
-            	<div class="input-group">
-                	<center>
-                		<h4><label>EMPOWERMENT AND REAFFIRMATION OF PATERNAL ABILITIES 
-                			<br/><br/>REGISTRATION FORM</label></h4>
-             		</center>
-					<div class="row padding-top-20">
+            	<center>
+            		<h4>
+            			<label>EMPOWERMENT AND REAFFIRMATION OF PATERNAL ABILITIES 
+            				<br/><br/>REGISTRATION FORM
+            			</label>
+            		</h4>
+         		</center>
+					<div class="row">
 						<div class="col-md-4 padding-top-10">
 							<div class="form-group">
 								<h4><label for="lastname">IDENTIFYING DATA</label></h4>

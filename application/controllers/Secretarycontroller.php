@@ -28,6 +28,26 @@ class Secretarycontroller extends CI_Controller {
 		$this->load->view('secretary/view_pending_request', $data);
 		$this->load->view('Footer/secretary_footer');
 	}	
+	public function updateAdminaccount(){
+		
+		$header_data['page_name'] = 'Update Account';
+        
+        $data = array(
+        	'firstname'		=> $this->input->post('firstname'),
+        	'lastname'		=> $this->input->post('lastname'),
+        	'username'		=> $this->input->post('username'),
+        	'password'		=> $this->input->post('password'),
+        	'email_address'	=> $this->input->post('email_address'),
+        	);
+
+		$this->Secretarymodel->updateAdmin($data);
+		
+
+
+		$this->session->set_flashdata('feedback_sent', 1);
+		$this->output->set_content_type('json')
+			->set_output(json_encode(['result'=> true]));
+	}
 
 	//this function is for displaying the brgyclearance layout with data inputted from the resident
 	//responsible for dsiplaying the brgy form data and its brgy business line
@@ -75,6 +95,14 @@ class Secretarycontroller extends CI_Controller {
 		redirect('secretarycontroller');
 	}
 
+	public function cancel($id)
+	{
+		$this->Secretarymodel->cancel_request($id);
+	
+		redirect('secretarycontroller');
+	}
+
+
 	// this function is responsible for changing to reviewed  and calling the model for setting its status
 	public function review($id)
 	{
@@ -98,8 +126,10 @@ class Secretarycontroller extends CI_Controller {
 
 		$this->form_validation->set_rules('sent_to', 'Recipient', 'required|integer');
 		$this->form_validation->set_rules('message', 'Message', 'required');
+		$this->form_validation->set_rules('requests_forms_id', 'Form ID', 'required');
+
 		if($this->form_validation->run()){
-			$input = elements(['sent_to', 'message'], $this->input->post());
+			$input = elements(['sent_to', 'message', 'requests_forms_id'], $this->input->post());
 			// die()
 			$input['sent_from'] = $this->session->userdata('logged_in')['user_id'];
 

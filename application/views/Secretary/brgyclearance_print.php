@@ -11,23 +11,21 @@
                                      TO ENGAGE IN BUSINESS ACTIVITY
                                 </label>
                             </center>  
-                            <div class="row padding-top-20">
+                            <div class="row">
                                 <div class="col-md-8"></div>
-                                <div class="col-md-2"></div>  <br/>  <br/>
+                                <div class="col-md-2"></div><br/> 
                                 <div class="col-md-2">
-                                    <label style="float:right; padding-right:50px;">APPLICATION NO: </label>
-                                    <br/>
+                                    <label style="float:right; padding-right:60px;">APPLICATION NO: <?= str_pad($items['brgy_clearance_id'], 4, 0, STR_PAD_LEFT) ?> </label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-7"></div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2">
-                                    <label style="float:right;  padding-right:50px;">DATE: <?php echo date("F d, Y"); ?></label>  
+                                    <label style="float:right;  padding-right:70px;">DATE: <?php echo date("F d, Y"); ?></label>  
                                 </div>
                             </div>
-                            <br/>
-                            <div class="row padding-top-20">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label>THE PUNONG BARANGAY</label>
                                 </div>
@@ -38,8 +36,7 @@
                             <div class="row">
                                 <div class="col-md-4">Cebu City</div>    
                             </div>
-                            <br/><br/>
-                            <div class="row padding-top-20">
+                            <div class="row padding-top-10">
                                 <div class="col-md-12">
                                         Sir/Madame:
                                         <br/><br/>
@@ -56,11 +53,9 @@
                                     <label style="text-decoration: underline;">
                                     <?php echo number_format($items['capitalinvested'], 2); ?>
                                     </label>
-                                    
                                 </div>
                             </div>
-                            <br/>
-                            <div class="row padding-top-20" style="padding-left:50px;">
+                            <div class="row" style="padding-left:50px;">
                                 <div class="col-md-12">
                                     <label>
                                         Description of lines of business to be handled:
@@ -74,51 +69,50 @@
                                     <?php endforeach;?>
                                 </div>
                             </div>
-                            <br/><br>
-                            <div class="row padding-top-20">  
+                            <div class="row">  
                                 <div class="col-md-12">                        
-                                    <label>
-                                        The above declerations are subject to verificatioin by proper barangay authorities upon demand without objections, I promise to operate only in the lines of business as applied above after a Mayor's Permit has been dully granted.
-                                    </label>
+                                    <p style="text-indent: 50px;"> The above declerations are subject to verificatioin by proper barangay authorities upon demand without objections, I promise to operate only in the lines of business as applied above after a Mayor's Permit has been dully granted.</p>
                                 </div>
                             </div> 
-                            <div class="row padding-top-20">
+                            <div class="row">
                                 <div class="col-md-6"></div>
                                 <div class="col-md-3"></div><br/>
-                                <div class="col-md-3" style="float:right;  padding-right:50px;">
+                                <div class="col-md-3" style="float:right; padding-right:50px;">
                                                     ___________________<br>
                                                       Signature of Applicant
                                 </div>
                             </div>
-                            <br/><br/>
-                            <div class="row padding-top-20">
+                            <div class="row">
                                 <div class="col-md-12">  
-                                    <label>Republic of the Philippines</label><br>
-                                           CITY OF CEBU<br>
+                                    <label>Republic of the Philippines</label><br/>
+                                           CITY OF CEBU<br/>
                                            OFFICE OF THE BARANGAY CAPTAIN
                                            <br><br>
                                     <label>To Whom it may Concern:</label>
-                                     <br><br>
+                                    <br/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">  
                                     <p style="text-indent: 50px;">This is to certify that the above application for Barangay Clearance for Business Permit to operate in Banilad, Cebu City has been granted:</p>
                                 </div>
-                            </div><br/>  
-                            <div class="row padding-top-20">
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6"></div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3">
-                                    <label style="float:right;  padding-right:50px;">HON. NICOLAS B. LEYSON, JR.</label><br/>
-                                    <label style="float:right;  padding-right:100px;">Barangay Captain</label>
+                                    <label style="float:right;">
+                                        HON. NICOLAS B. LEYSON, JR.<br>
+                                        Barangay Captain
+                                    </label>
                                 </div>
-                            </div>  <br/> <br/> 
-                            <div class="row padding-top-20">
+                            </div>  
+                            <br/>
+                            <div class="row">
                                 <div class="col-md-6">
-                                    Paid under O.R No. _____________ <br>
-                                    Date: ________________________<br>
-                                    Amount: P<?php echo number_format($items['amount'], 2); ?>
+                                    Paid under O.R No. <?= $items['or_number']; ?> <br>
+                                    Date: <?= date_create($items['date_paid'])->format('F d, Y') ?><br>
+                                    Amount: P<?= number_format($items['amount'], 2); ?>
                                 </div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3"></div>

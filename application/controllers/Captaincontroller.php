@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Captaincontroller extends CI_Controller {
 
-
-
 	public function __construct() {
 
     	parent::__construct();
@@ -92,8 +90,22 @@ class Captaincontroller extends CI_Controller {
 		$this->load->view('Footer/mainfooter');
 	}
 
+	public function userlist(){
+		
+		$header_data['page_name'] = 'List of User';
+
+		$data['list_of_user'] = $this->cap->get_userslist();
+
+		$this->load->view('Header/mainheader',$header_data);
+		$this->load->view('Captain/list_of_resident', $data);
+		$this->load->view('Footer/mainfooter');
+	}
+
+
 	public function updateAdminaccount(){
 		
+
+
 		$header_data['page_name'] = 'Update Account';
         
         $data = array(
@@ -106,8 +118,7 @@ class Captaincontroller extends CI_Controller {
 
 		$this->cap->updateAdmin($data);
 		
-		$this->load->view('Header/mainheader',$header_data);
-		$this->load->view('Captain/nav_view', $data);
-		$this->load->view('Footer/mainfooter');
+		$this->output->set_content_type('json')
+			->set_output(json_encode(['result'=> true]));
 	}
 }

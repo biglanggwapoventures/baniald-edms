@@ -125,7 +125,7 @@
 											<h4><label for="family_composition">FAMILY COMPOSITION</label>	</h4>
 										</div>
 										<div class="col-md-12 padding-top-10">
-											<table class="table table-border not-datatable">
+											<table class="table table-border not-datatable" border="1">
 												<thead>
 						                			<th>NAME</th>
 							                        <th>RELATION</th>
@@ -178,51 +178,32 @@
 								</div>
       						</div>
       					</div>
-      				</div>
-      			</div>
+      			
 			        <?php if($formdata['request_status'] != 'approved' ): ?>
 
-			        <div class="row padding-top-20">
-				        <div class="col-md-12">
-				            
-				                      <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
-				                     <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
-				                     
-				                      <a href="#" class="btn btn-danger btn-flat btn-lg "> SEND FEEDBACK </a>
-				                       <a href="<?= base_url('captain_listing/view_pending?form_id=6')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
-				                </form>   
-				        </div>
-			        </div>
-			       	<?php endif;?> 
-      		</section>
-      	</div>
-    </div>
-</body>
-<!-- Modal -->
-    <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class="ajax" action="<?= base_url('secretarycontroller/sendFeedback')?>" method="POST">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel" style="color:red;"><i class="fa fa-feed"></i> SEND FEEDBACK</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger hidden warning"></div>
-                            <div class="form-group">
-                                <label> ENTER YOUR MESSAGE HERE: *</label>
-                                <textarea class="form-control" name="message"></textarea>
-                                <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>	
+	            	<div class="col-md-12">
+	            
+			          	<form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
+			            	
+			            	<?php if($formdata['request_status'] != 'pending' && $formdata['request_status'] != 'approved'): ?>
+			                    
+			                    <?php if($formdata['request_status'] != 'reviewed'): ?>
+			                        <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
+			                    <?php endif; ?>
+			                    <?php if($formdata['request_status'] != 'paid'): ?>
+			                        <a href="<?= base_url("captain_listing/disapprove/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" class="btn btn-danger btn-flat btn-lg " onclick="return confirm('ARE YOU SURE? PLEASE CONFIRM.')"> DISAPPROVED REQUEST</a>
+			                    <?php endif; ?>
 
+
+			                <?php endif; ?>
+			                <br/>
+			                        <a href="<?= base_url('captain_listing/view_pending?form_id=6')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
+		            	</form>   
+	            	</div>
+	      			<?php endif;?>
+      			</div>
+			</section>
+		</div>
+		</div>
+	</div>
+</body>

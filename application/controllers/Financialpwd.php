@@ -12,7 +12,7 @@ class Financialpwd extends My_FormsController
 	protected $rules = [
 
 		'pwd_id_card_no' => 'required|trim|integer',
-		'issued_at'		 => 'required|trim'
+		// 'issued_at'		 => 'required|trim'
 		
 	];
 

@@ -3,9 +3,7 @@
 		<!-- Heading -->	
 		<div class="panel-heading">
 			<h4><label><i class="fa fa-file"></i> &nbsp; REQUEST FOR SENIOR CITIZEN REGISTRATION FORM</label></h4>
-		</div> <!--Close Panel Heading -->
-
-		<!-- Body -->
+		</div>
 		<form action="<?= base_url('seniorcitizen/store') ?>" method="POST" class="ajax" data-next="<?= base_url('seniorcitizen/preview_form')?>">
 			<div class="panel-body">
 				<div class="alert alert-danger warning hidden"></div>
@@ -13,16 +11,14 @@
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
 							<label for="lastname"> NAME: </label>
-						 	<!-- <input type="text" class="form-control" name= "lastname" id="lastname" placeholder=""> -->
-						 	<div class="form-control-static"><?= $firstname?> <?= $middlename?> <?= $lastname?></div>
+						 	<div class="form-control-static"><?= $firstname .' '.  $middlename .' '. $lastname ?></div>
 						</div>
 					</div>
 					
 					<div class="col-md-2 padding-top-10">
 						<div class="form-group">
 							<label for="osca_id_no">OSCA ID NO:</label>
-						 	<input type="text" class="form-control" name= "osca_id_no" id="osca_id_no" placeholder="">
-						 	<!-- <div class="form-control-static"></div><?= $data['osca_id_no'] ?> -->
+						 	<input type="text" class="form-control" value="<?= element('osca_id_no', $data, null)?>" name= "osca_id_no" id="osca_id_no" placeholder="">
 						</div>
 					</div>
 				</div>
@@ -125,20 +121,24 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-							<div class="col-md-6 padding-top-10">
-	        					<div class="form-group">
-									<label for="name_of_spouse">NAME OF SPOUSE: </label>
-							  		<input type="text" class="form-control" name="name_of_spouse" id="name_of_spouse" placeholder="">
-								</div>
+					<!-- <div class="row">
+						<div class="col-md-6 padding-top-10">
+        					<div class="form-group">
+								<label for="spouse_name">NAME OF SPOUSE: </label>
+						  		<p class="form-control-static">
+						  			<?= $family_composition['spouse'] ?  $family_composition['spouse']['name'] : '' ?>
+						  		</p>
 							</div>
-							<div class="col-md-6 padding-top-10">
-	        					<div class="form-group">
-									<label for="spouse_income">MONTHLY SALARY/INCOME:</label>
-							  		<input type="text" class="form-control" name="spouse_income" id="spouse_income" placeholder="">
-								</div>
-							</div>		
-					</div>
+						</div> -->
+						<!-- <div class="col-md-6 padding-top-10">
+        					<div class="form-group">
+								<label for="spouse_income">MONTHLY SALARY/INCOME:</label>
+						  		<p class="form-control-static">
+						  			<?= $family_composition['spouse'] ? number_format( $family_composition['spouse']['monthly_salary'], 2) : '' ?>
+						  		</p>
+							</div>
+						</div>		
+					</div> -->
 					<hr style="border-top:2px solid #cccccc; padding: 0; "/>
 				
 					<div class="row padding-top-10">
@@ -146,7 +146,7 @@
 							<label for="familyinfo"><u>FAMILY  COMPOSITOON</u></label>
 						</div>
 							<div class="col-md-12 padding-top-10">
-								<table class="table table-border not-datatable">
+								<table class="table table-border not-datatable" border="1">
 									<thead>
 		                    			<th>NAME</th>
 				                        <th>RELATION</th>
@@ -195,16 +195,20 @@
 	                                <!-- <?php foreach ($variable as $row): ?>
 
 	                                <?php endforeach ?> -->
+	                                <?php $mem = json_decode(element('organizational_membership', $data,'{"name":[""]}'), true)?>
+
+                                	<?php foreach($mem['name'] As $i => $name):?>
 	                                <tr>
-	                                	<td>1</td>
-	                                    <td><input type="text" name="org[name][]" class="form-control"></td>
-	                                    <td><input type="text" name="org[position][]" class="form-control"></td>
-	                                    <td><input type="text" name="org[year_service][]" class="form-control"></td>
+	                                	<td><?= $i + 1?></td>
+	                                    <td><input type="text" name="org[name][]" class="form-control" value="<?=  $name?>"></td>
+	                                    <td><input type="text" name="org[position][]" class="form-control"  value="<?= isset($mem['position'][$i]) ? $mem['position'][$i] : ''?>"></td>
+	                                    <td><input type="text" name="org[year_service][]" class="form-control"  value="<?= isset($mem['position'][$i]) ? $mem['year_service'][$i] : ''?>"></td>
 	                                    
 	                                    <td>
 	                                        <a data-click="remove-line" class="btn btn-danger"><i class="fa fa-times"></i></a>
 	                                    </td> 
 	                                </tr>
+	                            	<?php endforeach;?>
 	                            </tbody>
 	                            <tfoot>
 	                                <tr>
@@ -242,3 +246,6 @@
 
 
 
+	<!-- <pre>
+		<?php print_r($data)?>
+	</pre>  -->

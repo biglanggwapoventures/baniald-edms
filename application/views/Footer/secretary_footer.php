@@ -9,9 +9,18 @@
 
 	<script src="<?= base_url('assets/datatables/dataTables.min.js')?>" rel="stylesheet"></script>
 
+	<script src="<?= base_url('assets/jquery/dataTables.buttons.min.js')?>" rel="stylesheet"></script>
+
+	<script  src="<?= base_url('assets/jquery/buttons.print.min.js')?>" rel="stylesheet"></script>
+
 	<script>
 	    
-	    $('table:not(.not-datatable)').dataTable();
+	    $('table:not(.not-datatable)').dataTable({
+	        	dom: 'Blfrtip',
+	       		buttons: [
+	            	'print'
+	        	],
+    		});
 
 	</script>
 
@@ -22,6 +31,8 @@
 
 	<!-- AdminLTE App -->
 	<script src="<?= base_url('assets/dist/js/app.min.js')?>"></script>
+
+	<script src="<?= base_url('assets/sweetalert/sweetalert.min.js')?>"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -71,8 +82,13 @@
 
 				$.post($(this).attr('action'), $(this).serialize())
 					.done(function(res){
-						if(res.result){
-							window.location.reload();
+						if(res.result === true){
+
+							swal('Feedback Sent',' Click Ok to Continue','success');
+							setTimeout(function(){
+								window.location.reload();	
+							},2000);
+							
 						}else{
 							warning.removeClass('hidden')
 								.html(function(){

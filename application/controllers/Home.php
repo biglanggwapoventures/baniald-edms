@@ -59,7 +59,7 @@ class Home extends CI_Controller {
 	 
 	public function viewRequestedHistory(){
 
-		$header_data['page_name'] = 'History';
+		$header_data['page_name'] = 'List of Approved and Disapproved Request';
 	 
 		$data = $this->user->find($this->user_id);
 				

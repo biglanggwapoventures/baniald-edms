@@ -47,7 +47,7 @@
       <![endif]-->
       
 </head>
-<body style="background-image:url('<?= base_url("assets/dist/img/bg3.jpg ")?>'); background-repeat:no-repeat;
+<body style="background-image:url('<?= base_url("assets/dist/img/bg1.jpg ")?>'); background-repeat:no-repeat;
              background-size:cover;">
 
 

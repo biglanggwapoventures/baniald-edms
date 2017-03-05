@@ -18,21 +18,19 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?= base_url('assets/dist/img/avatar3.png') ?>" class="user-image" alt="User Image">
-                <span class="hidden-xs">Secretary</span>
+                <span class="hidden-xs">Hello <?= $this->session->userdata('logged_in')['lastname'] ?>!</span>
               </a>
               <ul class="dropdown-menu">
-                <!-- User image -->
                 <li class="user-header">
                   <img src="<?= base_url('assets/dist/img/avatar3.png') ?>" class="img-circle" alt="User Image">
                   <p>
-                   Name of Secretary - Secretary
+                   <?= $this->session->userdata('logged_in')['firstname'].' '.$this->session->userdata('logged_in')['lastname'].' - '.ucfirst($this->session->userdata('logged_in')['user_type']); ?>
                   </p>
                 </li>
-                <!-- Menu Body -->
-                
-                <!-- Menu Footer-->
                 <li class="user-footer">
-                 
+                  <div class="pull-left">
+                    <a href="" class="btn btn-info btn-flat" data-target="#manageaccount" data-toggle="modal">UPDATE PROFILE</a>
+                  </div>
                   <div class="pull-right">
                     <a href="<?= base_url('logout/logout')?>" class="btn btn-danger btn-flat">Log out</a>
                   </div>
@@ -55,7 +53,7 @@
             <img src="<?= base_url('assets/dist/img/avatar3.png')?>"  alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>SECRETARY</p>
+            <p> <?= $this->session->userdata('logged_in')['lastname'].', '.$this->session->userdata('logged_in')['firstname'] ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -71,6 +69,15 @@
             </a>
           </li>
           -->
+            <li class="treeview">
+            <a href="<?= base_url('secretary_listing/listofallRequests') ?>">
+              <i class="fa fa-list"></i>
+              <span>List of All Request </span>
+                <span class="pull-right-container">
+              <!-- <i class="fa fa-angle-right pull-right"></i> -->
+            </span>
+            </a>
+            </li>
           <?php $pending = pending_count() ?>
           <?php $types = [ 
             1   => 'Business Clearance', 
@@ -86,7 +93,8 @@
           ]?>
 
 
-          <li class="treeview">
+          <?php $openPending = $this->uri->segment(2) === 'index';?>
+          <li class="treeview  <?= $openPending ? 'active' : ''?>">
             <a href="#">
               <i class="fa fa-hourglass"></i>
               <span>List of Pending Request </span>
@@ -95,10 +103,11 @@
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            
+            <ul class="treeview-menu   <?= $openPending ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
-                    <a href="<?php echo base_url("secretary_listing?form_id={$id}") ?>">
+                    <a href="<?php echo base_url("secretary_listing/index?form_id={$id}") ?>">
                       <i class="fa fa-pencil-square-o"></i> <?= $label ?>
                        <?php if(isset($pending[$id])): ?>
                          <span class="pull-right-container">
@@ -114,7 +123,7 @@
           </li>
 
           <?php $reviewed = reviewed_count() ?>
-          <?php $types = [ 
+           <?php $types = [ 
             1   => 'Business Clearance', 
             2   => 'Senior Citizen', 
             3   => 'Kalipi Federation',  
@@ -127,8 +136,8 @@
             10  => 'Complaint Form'
           ]?>
 
-
-          <li class="treeview">
+          <?php $openReviewed = $this->uri->segment(2) === 'view_reviewed';?>
+          <li class="treeview <?= $openReviewed ? 'active' : ''?>">
             <a href="#">
               <i class="fa fa-bookmark"></i>
               <span>List of Reviewed Request </span>
@@ -137,7 +146,7 @@
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu <?= $openReviewed ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
                     <a href="<?php echo base_url("secretary_listing/view_reviewed?form_id={$id}") ?>">
@@ -169,8 +178,8 @@
             10  => 'Complaint Form'
           ]?>
 
-
-          <li class="treeview">
+          <?php $openPaid = $this->uri->segment(2) === 'view_paid';?>
+          <li class="treeview <?= $openPaid ? 'active' : ''?>">
             <a href="#">
               <i class="fa fa-check-square"></i>
             <span>List of Paid Request </span>
@@ -179,7 +188,7 @@
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu <?= $openPaid ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
                     <a href="<?php echo base_url("secretary_listing/view_paid?form_id={$id}") ?>">
@@ -212,8 +221,8 @@
             10  => 'Complaint Form'
           ]?>
 
-
-          <li class="treeview">
+          <?php $openApproved = $this->uri->segment(2) === 'view_approve';?>
+          <li class="treeview <?= $openApproved ? 'active' : ''?>">
             <a href="#">
               <i class="fa fa-thumbs-up"></i>
             <span>List of Approved Request </span>
@@ -222,7 +231,7 @@
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu <?= $openApproved ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
                     <a href="<?php echo base_url("secretary_listing/view_approve?form_id={$id}") ?>">
@@ -249,3 +258,111 @@
       </section>
       <!-- /.sidebar -->
     </aside>
+     <div class="modal fade" id="manageaccount" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+            <h4 class="modal-title" style="color:red"><i class="fa fa-user-o"></i> UPDATE ACCOUNT</h4>
+          </div>
+          <form action="<?= base_url('Secretarycontroller/updateAdminaccount') ?>" method="POST" class="ajax">
+            <div class="modal-body">
+              <div class="alert alert-danger warning hidden"></div> 
+                <div class="row">
+                  <div class="col-md-6">
+                    <label  style="color:#000;">FIRST NAME: *</label>
+                      <div class="form-group <?= form_error('firstname') ? 'has-error' : ''?>">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">
+                              <span class="fa fa-user"></span>
+                          </span> 
+                            <!--   <div data-tip="Enter your First Name?"> -->
+                              <input class="form-control" name="firstname" placeholder="First Name" 
+                              value="<?= $this->session->userdata('logged_in')['firstname'];?>" readonly="readonly">
+                             <!--  </div> -->
+                          </div>
+                          <?= form_error('firstname', '<span class="help-block text-center">', '</span>') ?>  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label  style="color:#000;">LAST NAME: *</label>
+                    <div class="form-group  <?= form_error('lastname') ? 'has-error' : ''?>">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                            <span class="fa fa-user"></span>
+                        </span>
+                        <div data-tip="Enter your Last Name?">
+                          <input class="form-control" name="lastname" placeholder="Last Name" aria-describedby="basic-addon1" value="<?= $this->session->userdata('logged_in')['lastname'];?>">
+                        </div>
+                      </div>  
+                        <?= form_error('lastname', '<span class="help-block text-center">', '</span>') ?>     
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-top-10">
+                  <div class="col-md-6">
+                    <label style="color:#000;">USERNAME: *</label>  
+                    <div class="form-group <?= form_error('username') ? 'has-error' : ''?>">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                            <span class="fa fa-user"></span>
+                        </span>
+                        <div data-tip="Enter a Username">
+                          <input class="form-control " name="username" placeholder="Username" value="<?= $this->session->userdata('logged_in')['username'];?>">
+                        </div>
+                      </div>
+                      <?= form_error('username', '<span class="help-block text-center">', '</span>') ?>  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <label style="color:#000;">PASSWORD: *</label>  
+                      <div class="form-group  <?= form_error('password') ? 'has-error' : ''?>">
+                          <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">
+                                  <span class="fa fa-key"></span>
+                              </span>
+                              <div data-tip="Enter a Password">
+                                  <input type="password" class="form-control" name="password" placeholder="Password"  value="<?= $this->session->userdata('logged_in')['password'];?>">
+                              </div>
+                          </div>   
+                          <?= form_error('password', '<span class="help-block text-center">', '</span>') ?>  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <label style="color:#000;">EMAIL ADDRESS: *</label>
+                      <div class="form-group  <?= form_error('email_address') ? 'has-error' : ''?>">
+                          <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">
+                                  <span class="fa fa-user"></span>
+                              </span>
+                              <div data-tip="Enter your Email Address?">
+                                  <input type="email" class="form-control" name="email_address" placeholder="Email Address" value="<?= $this->session->userdata('logged_in')['email_address'];?>">
+                              </div>
+                          </div>   
+                          <?= form_error('email_address', '<span class="help-block text-center">', '</span>') ?> 
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <label style="color:#000;">CONFIRM PASSWORD: *</label>
+                      <div class="form-group <?= form_error('confirm_password') ? 'has-error' : ''?>">
+                          <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="fa fa-key"></span></span>
+                              <div data-tip="Confirm your Password">
+                                  <input class="form-control"  name="confirm_password" type="password" placeholder="Confirm Password" value="<?= $this->session->userdata('logged_in')['password'];?>">
+                              </div>
+                          </div>
+                          <?= form_error('confirm_password', '<span class="help-block text-center">', '</span>') ?>  
+                      </div>
+                  </div>
+                </div> 
+            </div>
+            <div class="modal-footer">
+                <button type="submit" v class="btn btn-info">UPDATE</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

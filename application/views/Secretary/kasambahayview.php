@@ -54,7 +54,7 @@
 										<div class="col-md-4">
 											<label>SUBDIVISION/ BARANGAY: </label> 
 											<div class="form-control-static"> 
-												<?= $formdata['employers_barangay'] ?>
+												<?= ucfirst($formdata['employers_barangay']) ?>
 											</div>
 										</div>
 									</div>
@@ -88,7 +88,7 @@
 										<div class="col-md-6">
 											<label>SUBDIVISION/ BARANGAY: </label> 
 											<div class="form-control-static">  
-												<?= $formdata['barangay'] ?>
+												Banilad
 											</div>
 										</div>
 									</div>
@@ -96,7 +96,7 @@
 										<div class="col-md-4">
 											<label>CITY OR MUNICPALITY: </label> 
 											<div class="form-control-static">  
-												<?= $formdata['municipality'] ?>
+												Cebu
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -166,7 +166,7 @@
 											<label for="familyinfo"><u>FAMILY COMPOSITION</u></label>
 										</div>
 										<div class="col-md-12 padding-top-10">
-											<table class="table table-border not-datatable">
+											<table class="table table-border not-datatable" border="1">
 												<thead>
 						                			<th>NAME</th>
 							                        <th>RELATION</th>
@@ -183,7 +183,7 @@
 							                            <td><?= ucfirst($row['relationship'])?></td>
 							                            <td><?= $row['family_age']?></td>
 							                            <td><?= ucfirst($row['family_occupation']) ?></td>
-							                            <td><?= $row['monthly_salary']?></td>
+							                            <td><?= number_format($row['monthly_salary'],2)?></td>
 							                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 							                            
 							                        </tr>
@@ -230,16 +230,16 @@
 									<br/>
 									<div class="row">
 										<div class="col-md-6">
-											<label>MONTHLY SALARY:</label><?= $formdata['monthly_salary'] ?>
+											<label>MONTHLY SALARY:</label> <?= number_format($formdata['monthly_salary']) ?>
 										</div>
 										<div class="col-md-6">
-											<label>NATURE OF WORK:</label> <?= $formdata['nature_of_work'] ?>
+											<label>NATURE OF WORK:</label> <?= ucfirst($formdata['nature_of_work']) ?>
 										</div>
 									</div>
 									<br/>
 									<div class="row">
 										<div class="col-md-6">
-											<label>EMPLOYMENT ARRANGEMENT:</label> <?= $formdata['employment_arrangement'] ?>
+											<label>EMPLOYMENT ARRANGEMENT:</label> <?= employment_arrangement($formdata['employment_arrangement']) ?>
 										</div>
 										<div class="col-md-6">
 											<label>NAME OF EMPLOYER:</label> <?= $formdata['name_of_employer'] ?>
@@ -281,7 +281,7 @@
                 </div>
             	<div class="row padding-top-20">
                     <div class="col-md-12">
-                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
+                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
                             <button type="submit" class="btn btn-success btn-flat btn-lg">
                             	<label>REVIEWED</label>
                             </button>
@@ -294,3 +294,32 @@
          </div>
      </div>
  </body>
+ 
+<!-- Modal -->
+<div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="ajax" action="<?= base_url('secretarycontroller/sendFeedback')?>" method="POST">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="color:red;"><i class="fa fa-feed"></i> SEND FEEDBACK</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger hidden warning"></div>
+                        <div class="form-group">
+                            <label> ENTER YOUR MESSAGE HERE: *</label>
+                            <textarea class="form-control" name="message"></textarea>
+                            <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
+                            <input type="hidden" name="requests_forms_id" value="<?= $formdata['requests_forms_id']?>">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

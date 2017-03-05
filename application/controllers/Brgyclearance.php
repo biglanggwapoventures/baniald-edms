@@ -12,9 +12,9 @@ class Brgyclearance extends My_FormsController {
 	protected $rules = [
 
 		'businessname' 	  => 'required|trim',
-		'businessaddress' => 'required',
+		'businessaddress' => 'required|trim',
 		'capitalinvested' => 'required|trim',
-		'amount'   		  => 'required|trim',
+		// 'amount'   	  => 'required|trim',
 		'business_line[]' => 'required|trim'
 
 	];
@@ -37,16 +37,19 @@ class Brgyclearance extends My_FormsController {
 
 			$data =  $this->extract_input('-');
 			$data['business_line'] = json_encode($this->input->post('business_line'));
+
 			unset($data['business_line[]']);
 
 			// die(json_encode($data));
 			
 			$id = $this->resident->insert($this->table, $rqData, $data);
+
 			$this->json_response([
 				'result' => true,
 				'data' => $id
 			]);
 		}
+
 		else{
 
 			$this->json_error_array();

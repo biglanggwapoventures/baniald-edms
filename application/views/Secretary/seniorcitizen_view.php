@@ -20,9 +20,7 @@
 									<div class="form-group">
 										<label for="lastname"> NAME: </label>
 									 	<div class="form-control-static">
-									 		<?= $formdata['firstname']?> 
-									 		<?=  $formdata['middlename'] ?> 
-									 		<?= $formdata['lastname']?>
+									 		<?= $formdata['firstname'] .' '. $formdata['middlename'] .' '.  $formdata['lastname'] ?> 
 									 	</div>
 									</div>
 								</div>
@@ -125,35 +123,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6 padding-top-10">
-		        					<div class="form-group">
-										<label for="name_of_spouse">NAME OF SPOUSE: </label>
-								  		<div class="form-control-static">
-								  			<?= ucfirst($formdata['name_of_spouse']) ?>
-								  		</div>
-									</div>
-								</div>
-								<div class="col-md-6 padding-top-10">
-		        					<div class="form-group">
-										<label for="spouse_income">MONTHLY SALARY/INCOME:</label>
-								  		<div class="form-control-static">
-								  			<?= $formdata['spouse_income'] ?>
-								  		</div>
-									</div>
-								</div>		
-							</div>
-							
-
 							<hr style="border-top:2px solid #cccccc; padding: 0; "/>
-					
 							<div class="row padding-top-10">
 								<div class="text-center">
 									<label for="familyinfo"><u>FAMILY COMPOSITION</u></label>
 								</div>
 								<div class="col-md-12 padding-top-10">
 
-									<table class="table table-border not-datatable">
+									<table class="table table-border not-datatable" border="1">
 										<thead>
 				                			<th>NAME</th>
 					                        <th>RELATION</th>
@@ -192,15 +169,13 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-			                        <table class="table table-border not-datatable">
+			                        <table class="table table-border not-datatable" border="1">
 			                            <thead>
 			                            	<th>#</th>
 			                                <th>NAME OF ORGANIZATION</th>
 			                                <th>POSTION</th>
 			                                <th>YEAR OF SERVICE</th>
-			                                
-			                                <th></th>
-			                            </thead>
+			                     		</thead>
 			                            <tbody>
 			                            	<?php $org = json_decode($formdata['organizational_membership'], true);?>
 			                               	<?php foreach ($org['name']  as $i => $name) : ?> 
@@ -239,7 +214,7 @@
 
 				<div class="row padding-top-20">
                     <div class="col-md-12">
-                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
+                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
                             <button type="submit" class="btn btn-success btn-flat btn-lg"><label>REVIEWED</label></button>
                             <a data-toggle="modal"  data-target="#feedback" class="btn btn-danger  btn-flat btn-lg"> <label>SEND FEEDBACK</label></a>
                             <a href="<?= base_url('secretary_listing/?form_id=2')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="fa fa-arrow-circle-o-left fa-arrow-circle-o-left fa-lg"></i> <label>BACK</label></a>
@@ -268,6 +243,7 @@
                                 <label> ENTER YOUR MESSAGE HERE: *</label>
                                 <textarea class="form-control" name="message"></textarea>
                                 <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
+                                <input type="hidden" name="requests_forms_id" value="<?= $formdata['requests_forms_id']?>">
                             </div>
                     </div>
                     <div class="modal-footer">

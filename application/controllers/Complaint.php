@@ -10,7 +10,7 @@ class Complaint extends My_FormsController
 
 
 	protected $rules = [
-		'complainant_name' => 'required|trim',
+		// 'complainant_name' => 'required|trim',
 		'respondent_name' => 'required|trim',
 		'complaint_desc' => 'required|trim'		
 	

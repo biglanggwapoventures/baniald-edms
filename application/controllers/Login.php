@@ -28,8 +28,8 @@ class Login extends CI_Controller {
 	}
 
 	public function index() {
-		
-		$header_data['page_name'] = 'Sign In';
+		  
+      $header_data['page_name'] = 'Sign In';
     	
     	$this->load->view('Header/login_header',$header_data);
     	$this->load->view('Login/login');
@@ -39,6 +39,7 @@ class Login extends CI_Controller {
   public function login_attempt(){
 
     $this->load->library('form_validation');
+    
     $this->form_validation->set_rules('username', 'Username', 'required');
     $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -65,12 +66,12 @@ class Login extends CI_Controller {
 
         if($result['user_type'] == 'captain') {
           
-          redirect('captain_listing/?form_id=1');
+          redirect('captain_listing/home');
         }
           
         else if($result['user_type'] == 'secretary') {
 
-           redirect('secretary_listing?form_id=1');
+           redirect('secretary_listing/listofallRequests');
 
         }
         else if($result['user_type'] == 'treasurer') {

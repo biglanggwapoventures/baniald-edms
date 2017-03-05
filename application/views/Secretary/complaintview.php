@@ -56,10 +56,10 @@
 											</div>
 											<div class="col-md-1"></div>
 											<div class="col-md-10">
-												<div class="form-control-static"> 
-													<p class="form-control-static" style=" word-break: break-word; text-decoration:underline;"></p>
-													<?= $formdata['complaint_desc'] ?>
-												</div>
+												<p class="form-control-static" style=" word-break: break-word; text-decoration:underline;"><?= $formdata['complaint_desc'] ?>
+												</p>
+													
+											
 											</div>
 									</div>
 									<div class="row">
@@ -80,7 +80,7 @@
 									</div>
 									<div class="row paddding-top-20">
 										<div class="col-md-1"></div>
-										<div class="col-md-10">Recieved and filed this______day of_____________________, 20___.</div>
+										<div class="col-md-10">Recieved and filed this <label style="text-decoration: underline;"> <?= date_create(null)->format('d \o\f F Y')?></label> </div>
 										<div class="col-md-1"></div>
 									</div>
 									<br/><br/>
@@ -97,7 +97,7 @@
 				
 				<div class="row padding-top-20">
                      <div class="col-md-12">
-                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
+                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
                         
                             <button type="submit" class="btn btn-success btn-flat btn-lg"><label>REVIEWED</label></button>
                             <a data-toggle="modal"  data-target="#feedback" class="btn btn-danger  btn-flat btn-lg"> <label>SEND FEEDBACK</label></a>
@@ -126,6 +126,7 @@
                                 <label> ENTER YOUR MESSAGE HERE: *</label>
                                 <textarea class="form-control" name="message"></textarea>
                                 <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
+                                 <input type="hidden" name="requests_forms_id" value="<?= $formdata['requests_forms_id']?>">
                             </div>
                     </div>
                     <div class="modal-footer">

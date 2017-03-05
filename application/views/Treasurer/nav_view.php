@@ -19,13 +19,13 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?= base_url('assets/dist/img/avatar2.png') ?>" class="user-image" alt="User Image">
-                <span class="hidden-xs">Treasurer</span>
+                <span class="hidden-xs">Hello <?= $this->session->userdata('logged_in')['lastname'] ?>!</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?= base_url('assets/dist/img/avatar2.png') ?>" class="img-circle" alt="User Image">
-                  <p>Name of Treasurer - Treasurer</p>
+                  <p> <?= $this->session->userdata('logged_in')['firstname'].' '.$this->session->userdata('logged_in')['lastname'].' - '.ucfirst($this->session->userdata('logged_in')['user_type']); ?></p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">    
@@ -50,7 +50,7 @@
         <img src="<?= base_url('assets/dist/img/avatar2.png')?>"  alt="User Image">
       </div>
       <div class="pull-left info">
-          <p>Treasurer</p>
+          <p><?= $this->session->userdata('logged_in')['lastname'].', '.$this->session->userdata('logged_in')['firstname'] ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -72,19 +72,20 @@
             10=> 'Complaint Form'
           ]?>
 
-          <li class="treeview">
+          <?php $openReviewed = $this->uri->segment(2) === 'index';?>
+          <li class="treeview <?= $openReviewed ? 'active' : ''?>">
             <a href="#">
-              <i class="fa fa-bookmark  "></i>
+              <i class="fa fa-bookmark " ></i>
               <span>List of Reviewed Request </span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu   <?= $openReviewed   ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
-                    <a href="<?php echo base_url("treasurer_listing?form_id={$id}") ?>">
+                    <a href="<?php echo base_url("treasurer_listing/index?form_id={$id}") ?>">
                       <i class="fa fa-pencil-square-o"></i> <?= $label ?>
                        <?php if(isset($reviewed[$id])): ?>
                          <span class="pull-right-container">
@@ -115,7 +116,8 @@
             10=> 'Complaint Form'
           ]?>
 
-          <li class="treeview">
+          <?php $openPaid = $this->uri->segment(2) === 'view_paid';?>
+          <li class="treeview <?= $openPaid ? 'active' : ''?>">
             <a href="#">
               <i class="fa fa-check-square"></i>
               <span>List of Paid Request </span>
@@ -124,7 +126,7 @@
             </span>
             
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu <?= $openReviewed ? 'menu-open' : ''?>">
               <?php foreach( $types as $id => $label):?>
                    <li>
                     <a href="<?php echo base_url("treasurer_listing/view_paid?form_id={$id}") ?>">

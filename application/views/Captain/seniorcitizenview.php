@@ -125,26 +125,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6 padding-top-10">
-		        					<div class="form-group">
-										<label for="name_of_spouse">NAME OF SPOUSE: </label>
-								  		<div class="form-control-static">
-								  			<?= ucfirst($formdata['name_of_spouse']) ?>
-								  		</div>
-									</div>
-								</div>
-								<div class="col-md-6 padding-top-10">
-		        					<div class="form-group">
-										<label for="spouse_income">MONTHLY SALARY/INCOME:</label>
-								  		<div class="form-control-static">
-								  			<?= $formdata['spouse_income'] ?>
-								  		</div>
-									</div>
-								</div>		
-							</div>
 							
-
 							<hr style="border-top:2px solid #cccccc; padding: 0; "/>
 					
 							<div class="row padding-top-10">
@@ -153,7 +134,7 @@
 								</div>
 								<div class="col-md-12 padding-top-10">
 
-									<table class="table table-border not-datatable">
+									<table class="table table-border not-datatable" border="1"> 
 										<thead>
 				                			<th>NAME</th>
 					                        <th>RELATION</th>
@@ -170,7 +151,7 @@
 					                            <td><?= ucfirst($row['relationship'])?></td>
 					                            <td><?= $row['family_age']?></td>
 					                            <td><?= ucfirst($row['family_occupation']) ?></td>
-					                            <td><?= $row['monthly_salary']?></td>
+					                            <td><?= number_format($row['monthly_salary'], 2)?></td>
 					                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 					                            
 					                        </tr>
@@ -192,14 +173,12 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-			                        <table class="table table-border not-datatable">
+			                        <table class="table table-border not-datatable" border="1"> 
 			                            <thead>
 			                            	<th>#</th>
 			                                <th>NAME OF ORGANIZATION</th>
 			                                <th>POSTION</th>
 			                                <th>YEAR OF SERVICE</th>
-			                                
-			                                <th></th>
 			                            </thead>
 			                            <tbody>
 			                            	<?php $org = json_decode($formdata['organizational_membership'], true);?>
@@ -231,51 +210,29 @@
 									<label style="margin-left:100px;">DATE ACCOMPLISHED</label>
 								</div>
 							</div>
-					</div>
-				</div> 
-			</div>
-		        <?php if($formdata['request_status'] != 'approved' ): ?>
-
-		        <div class="row padding-top-20">
-			        <div class="col-md-12">
-			            
-			                      <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
-			                     <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
-			                     
-			                      <a href="#" class="btn btn-danger btn-flat btn-lg "> SEND FEEDBACK </a>
-			                       <a href="<?= base_url('captain_listing/view_pending?form_id=2')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
-			                </form>   
-			        </div>
-		        </div>
-		       <?php endif;?>
+						</div>
+					</div> 
+			 		
+			 		<?php if($formdata['request_status'] != 'approved' ): ?>
+                        <div class="col-md-12">
+                            
+                            <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
+                            <?php if($formdata['request_status'] != 'pending' && $formdata['request_status'] != 'approved'): ?>
+                                    
+                                    <?php if($formdata['request_status'] != 'reviewed'): ?>
+                                        <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
+                                    <?php endif; ?>
+                                    <?php if($formdata['request_status'] != 'paid'): ?>
+                                        <a href="<?= base_url("captain_listing/disapprove/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" class="btn btn-danger btn-flat btn-lg " onclick="return confirm('ARE YOU SURE? PLEASE CONFIRM.')"> DISAPPROVED REQUEST</a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                        <a href="<?= base_url('captain_listing/view_paid?form_id=2')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
+                            </form>   
+                        </div>
+                    <?php endif;?>   
+                </div>
+              <!-- /.row -->
             </section>
         </div>
     </div>
 </body>
-<!-- Modal -->
-    <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class="ajax" action="<?= base_url('secretarycontroller/sendFeedback')?>" method="POST">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel" style="color:red;"><i class="fa fa-feed"></i> SEND FEEDBACK</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger hidden warning"></div>
-                            <div class="form-group">
-                                <label> ENTER YOUR MESSAGE HERE: *</label>
-                                <textarea class="form-control" name="message"></textarea>
-                                <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>

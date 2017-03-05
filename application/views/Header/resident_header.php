@@ -33,7 +33,7 @@
       <!-- iCheck -->
       <link rel="stylesheet" href="<?= base_url('assets/plugins/iCheck/flat/blue.css')?>">
 
-       <link rel="stylesheet" href="<?= base_url('assets/sweetalert/sweetalert.css')?>">
+      <link rel="stylesheet" href="<?= base_url('assets/sweetalert/sweetalert.css')?>">
 
       <script src="<?= base_url('assets/sweetalert/sweetalert.min.js')?>"></script>
 

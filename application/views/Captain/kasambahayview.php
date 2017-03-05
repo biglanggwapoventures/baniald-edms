@@ -166,7 +166,7 @@
 											<label for="familyinfo"><u>FAMILY COMPOSITION</u></label>
 										</div>
 										<div class="col-md-12 padding-top-10">
-											<table class="table table-border not-datatable">
+											<table class="table table-border not-datatable" border="1">
 												<thead>
 						                			<th>NAME</th>
 							                        <th>RELATION</th>
@@ -183,7 +183,7 @@
 							                            <td><?= ucfirst($row['relationship'])?></td>
 							                            <td><?= $row['family_age']?></td>
 							                            <td><?= ucfirst($row['family_occupation']) ?></td>
-							                            <td><?= $row['monthly_salary']?></td>
+							                            <td><?= number_format($row['monthly_salary'],2)?></td>
 							                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 							                            
 							                        </tr>
@@ -230,16 +230,16 @@
 									<br/>
 									<div class="row">
 										<div class="col-md-6">
-											<label>MONTHLY SALARY:</label><?= $formdata['monthly_salary'] ?>
+											<label>MONTHLY SALARY:</label><?= number_format($formdata['monthly_salary'],2) ?>
 										</div>
 										<div class="col-md-6">
-											<label>NATURE OF WORK:</label> <?= $formdata['nature_of_work'] ?>
+											<label>NATURE OF WORK:</label> <?= ucfirst($formdata['nature_of_work']) ?>
 										</div>
 									</div>
 									<br/>
 									<div class="row">
 										<div class="col-md-6">
-											<label>EMPLOYMENT ARRANGEMENT:</label> <?= $formdata['employment_arrangement'] ?>
+											<label>EMPLOYMENT ARRANGEMENT:</label> <?= employment_arrangement($formdata['employment_arrangement']) ?>
 										</div>
 										<div class="col-md-6">
 											<label>NAME OF EMPLOYER:</label> <?= $formdata['name_of_employer'] ?>
@@ -269,31 +269,33 @@
 										<div class="col-md-6">
 											<label>DATE:</label>
 												<div class="form-control-static">
-													<?= date('F d, Y') ?>
+													<?= date_create(null)->format('F d, Y') ?>
 												</div>
 										</div>
 									</div>
-									
 								</div>
                 			</div>
-                		</div> 
-                	</div>
-                </div> 
-			        <?php if($formdata['request_status'] != 'approved' ): ?>
-
-			        <div class="row padding-top-20">
-				        <div class="col-md-12">
-				            
-				                      <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
-				                     <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
-				                     
-				                      <a href="#" class="btn btn-danger btn-flat btn-lg "> SEND FEEDBACK </a>
-				                       <a href="<?= base_url('captain_listing/view_pending?form_id=5')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
-				                </form>   
-				        </div>
-			        </div>
-			       	<?php endif;?> 
-             </section>
-         </div>
-     </div>
- </body>
+                	
+                			 <?php if($formdata['request_status'] != 'approved' ): ?>
+                        <div class="col-md-12">
+                            
+                            <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
+                            <?php if($formdata['request_status'] != 'pending' && $formdata['request_status'] != 'approved'): ?>
+                                    
+                                    <?php if($formdata['request_status'] != 'reviewed'): ?>
+                                        <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
+                                    <?php endif; ?>
+                                    <?php if($formdata['request_status'] != 'paid'): ?>
+                                        <a href="<?= base_url("captain_listing/disapprove/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" class="btn btn-danger btn-flat btn-lg " onclick="return confirm('ARE YOU SURE? PLEASE CONFIRM.')"> DISAPPROVED REQUEST</a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                        <a href="<?= base_url('captain_listing/view_pending?form_id=1')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
+                            </form>   
+                        </div>
+                    <?php endif;?>   
+                </div>
+              <!-- /.row -->
+            </section>
+        </div>
+    </div>
+</body>

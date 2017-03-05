@@ -5,7 +5,8 @@
 			<p>Republic of the Philippines</p>
 			<p>Province of Cebu</p>
 			<p>City/Municipal of Barangay Banilad</p>
-			
+			<P>Social Welfare and Development Office</P>
+			<br/>
 			<h4><label>APPLICATION FORM FOR SOLO PARENTS</label></h4>
 			</center>
 			<br/><br/>
@@ -47,7 +48,7 @@
 			<div class="col-md-12">
 				<label>ADDRESS:</label>
 					<p class="form-control-static">
-						<?= $data['home_address'] ?>
+						<?= $data['home_address'] .', '. sitio_desc($data['sitio']) ?>, Barangay Banilad
 					</p>
 			</div>
 		</div>
@@ -70,13 +71,13 @@
 			<div class="col-md-4">
 				<label>MONTHLY INCOME</label>
 					<p class="form-control-static">
-						<?= $data['monthly_income'] ?>
+						<?= number_format($data['monthly_income']) ?>
 					</p>
 			</div>
 			<div class="col-md-4">
 				<label>TOTAl MONTHLY FAMILY INCOME:</label>
 					<p class="form-control-static">
-						<?= $data['total_family_income']	 ?>
+						<?= number_format($data['total_family_income'],2)?>
 					</p>	
 			</div>
 		
@@ -84,7 +85,7 @@
 		<div class="row padding-top-10">
 			<div class="col-md-12">
 				<h4><label>I.Family Composition</label></h4>
-				<table class="table table-border not-datatable">
+				<table class="table table-border not-datatable" border="1">
 					<thead>
 	        			<th>NAME</th>
 	                    <th>RELATION</th>
@@ -92,6 +93,7 @@
 	                    <th>OCCUPATION</th>
 	                    <th>INCOME</th>
 	                    <th>EDUCATIONAL ATTAINMENT</th>
+	                    <th>DATE OF BIRTH</th>
 	  			  	</thead>
 	    			<tbody>
 	                    <?php foreach ($family_composition as $row) : ?> 
@@ -101,8 +103,9 @@
 	                        <td><?= ucfirst($row['relationship'])?></td>
 	                        <td><?= $row['family_age']?></td>
 	                        <td><?= ucfirst($row['family_occupation'])?></td>
-	                        <td><?= $row['monthly_salary']?></td>
+	                        <td><?= number_format($row['monthly_salary'],2)?></td>
 	                        <td><?= edu_attainment_desc($row['family_educational_attainment'])?></td>
+	                        <td><?= date_create($row['dateofbirth'])->format('F d, Y') ?></td>
 	                        
 	                    </tr>
 	                    
@@ -150,7 +153,9 @@
 					<?= date('F d, Y')?>					
 			</div>
 			<div class="col-md-4"></div>
-			<div class="col-md-5">_______________________________<br> SIGNATURE/ THUMBMARK</div>
+			<div class="col-md-5">_______________________________<br> 
+				<label style="padding-left:30px;">SIGNATURE/ THUMBMARK</label>
+			</div>
 		</div>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2017 at 10:17 AM
+-- Generation Time: Mar 05, 2017 at 04:21 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -31,15 +31,16 @@ CREATE TABLE `amicable_settlement` (
   `requests_forms_id` int(11) NOT NULL,
   `complainant_name` varchar(100) DEFAULT NULL,
   `respondent_name` varchar(100) DEFAULT NULL,
-  `settlement` text
+  `settlement` text,
+  `complaints_report` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `amicable_settlement`
 --
 
-INSERT INTO `amicable_settlement` (`amicable_settlement_id`, `requests_forms_id`, `complainant_name`, `respondent_name`, `settlement`) VALUES
-(1, 12, 'Complaints Name', 'Respondents Name', 'Praesent rhoncus aliquam ante, sed eleifend elit tempus ac. Vivamus fringilla, libero at pharetra congue, magna orci fermentum justo, ac consequat mauris libero sed urna. Phasellus egestas facilisis faucibus. Donec imperdiet est est, vel vulputate ex interdum non. Quisque sed est gravida, aliquet tellus non, pellentesque urna. Nunc neque urna, blandit vitae lacus eu, volutpat commodo velit. Praesent eget maximus enim. Nam in malesuada tortor. Fusce aliquam lorem quis sem vulputate venenatis. Nam vitae purus ante. Aenean malesuada nibh sed massa aliquet interdum. Quisque scelerisque molestie mauris, at dictum nulla. Etiam eu lacus porttitor, egestas lacus at, commodo est. Sed semper sagittis dapibus.\n\nNam aliquam nisi id nisl egestas molestie. Nam a felis quis urna sodales tincidunt et eu leo. Nam lobortis efficitur mi, eget iaculis sem maximus ut. Etiam nec pretium nisl. Sed vitae dui sed leo interdum blandit sit amet sed eros. Ut viverra, felis ornare accumsan bibendum, felis eros porttitor magna, eu consequat leo dolor id ante. Pellentesque quis ipsum sit amet velit elementum volutpat. Curabitur vitae nunc sem. Mauris elementum nisl nibh, eu pellentesque leo sagittis at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor in nibh id lacinia. Proin pharetra bibendum tristique. Sed in mauris justo. Vestibulum purus odio, sagittis in cursus ut, condimentum lobortis erat.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut placerat a lacus nec ultrices. Sed imperdiet nulla gravida magna vestibulum, suscipit iaculis enim rutrum. Aenean quis ligula vitae mauris commodo luctus eu in elit. Quisque posuere at tortor eleifend egestas. Vestibulum ut aliquet nisi. In faucibus enim pellentesque, hendrerit diam at, tristique nunc. Maecenas sed volutpat ipsum. Cras pellentesque leo est, nec eleifend orci commodo a. Vivamus efficitur mauris sed commodo aliquet. Sed sagittis tincidunt neque efficitur ultricies. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dapibus vitae dui et facilisis. Nam in libero eu ipsum tempus pulvinar.');
+INSERT INTO `amicable_settlement` (`amicable_settlement_id`, `requests_forms_id`, `complainant_name`, `respondent_name`, `settlement`, `complaints_report`) VALUES
+(1, 7, NULL, 'Loenard', 'Nakabayad na', '6');
 
 -- --------------------------------------------------------
 
@@ -54,21 +55,18 @@ CREATE TABLE `barangay_clearance` (
   `businessname` varchar(255) DEFAULT NULL,
   `businessaddress` varchar(100) DEFAULT NULL,
   `business_line` text NOT NULL,
-  `capitalinvested` double DEFAULT NULL,
-  `amount` double NOT NULL
+  `capitalinvested` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `barangay_clearance`
 --
 
-INSERT INTO `barangay_clearance` (`brgy_clearance_id`, `resident_id`, `requests_forms_id`, `businessname`, `businessaddress`, `business_line`, `capitalinvested`, `amount`) VALUES
-(1, 0, 1, 'Just Business', 'Lapu Lapu', '["Business Descr 1","Business Descr 2","Business Descr 3","Business Descr 4","Business Descr 5"]', 1000000, 20000),
-(2, 0, 2, 'Just Business Again', 'Lapu Lapu', '["Business Descrp 1","Business Descrp 2","Business Descrp 3","Business Descrp 4","Business Descrp 5"]', 200000, 20000),
-(3, 0, 3, 'Business Name', 'Business Address', '["Desc 1","Desc 2","Desc 3","Desc 4"]', 150000, 20000),
-(4, 0, 13, 'Business Name', 'Business Address', '["Desc 1","Desc 2","Desc 3"]', 10000, 2222),
-(5, 0, 14, 'New', 'New', '["Desc1","Desc1"]', 100, 200),
-(6, 0, 15, 'new', 'new', '["llll","9999"]', 888, 999);
+INSERT INTO `barangay_clearance` (`brgy_clearance_id`, `resident_id`, `requests_forms_id`, `businessname`, `businessaddress`, `business_line`, `capitalinvested`) VALUES
+(1, 0, 1, 'Mike''s Sisigan', 'Banilad, Cebu', '["Spicy Sisig","itlogsilog with extra itlog"]', 500000),
+(2, 0, 8, 'Mike Sisigan', 'Banilad, Cebu', '["Sisig with Love"]', 2000),
+(3, 0, 9, 'Leonard Sisigan and friends', 'Banilad Cebu City', '["Sisigan with toppings","Porkchop with toppings","Sisig with pork and toppings","Special Iced tea with rice"]', 10000),
+(4, 0, 10, 'GuitarShoppe', 'Banilad Cebu City', '["Brand new Acoustic and Electric Guitars","HQ Speakers","HQ Amplifiers"]', 500000);
 
 -- --------------------------------------------------------
 
@@ -89,7 +87,7 @@ CREATE TABLE `complaint_form` (
 --
 
 INSERT INTO `complaint_form` (`complaint_form_id`, `requests_forms_id`, `complainant_name`, `respondent_name`, `complaint_desc`) VALUES
-(1, 10, 'Complaints NAME', 'Complaints Name', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper nisl ex. Morbi justo lacus, consectetur vel elit eget, accumsan semper neque. Aenean mi dolor, ultrices ut metus condimentum, lacinia rhoncus enim. Nam risus est, pharetra sed porta sit a');
+(1, 6, '', 'Leonard Collamat', 'He didn''t pay his utang');
 
 -- --------------------------------------------------------
 
@@ -101,13 +99,6 @@ CREATE TABLE `erpat` (
   `erpat_id` int(11) NOT NULL,
   `requests_forms_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `erpat`
---
-
-INSERT INTO `erpat` (`erpat_id`, `requests_forms_id`) VALUES
-(1, 11);
 
 -- --------------------------------------------------------
 
@@ -125,18 +116,31 @@ CREATE TABLE `family_composition` (
   `dateofbirth` date DEFAULT NULL,
   `family_educational_attainment` enum('elementarygraduate','elementaryundergraduate','highschoolgraduate','highschoolundergraduate','collegegraduate','collegeundergraduate','postgraduate','Vocational','None') DEFAULT NULL,
   `monthly_salary` float DEFAULT NULL,
-  `relationship` enum('father','mother','sister','brother','guardian','son','daughter','none') DEFAULT NULL,
-  `contact_number` varchar(11) DEFAULT NULL
+  `relationship` enum('father','mother','sister','brother','guardian','son','daughter','none','spouse') DEFAULT NULL,
+  `contact_number` varchar(11) DEFAULT NULL,
+  `spouse_name` varchar(100) DEFAULT NULL,
+  `spouse_age` int(11) DEFAULT NULL,
+  `spouse_address` varchar(100) DEFAULT NULL,
+  `spouse_dateofbirth` date DEFAULT NULL,
+  `spouse_income` float DEFAULT NULL,
+  `spouse_occupation` varchar(100) DEFAULT NULL,
+  `spouse_educational_attainment` enum('elementarygraduate','elementaryundergraduate','highschoolundergraduate','highschoolgraduate','collegegraduate','collegeundergraduate','postgraduate','Vocational','none') DEFAULT NULL,
+  `no_of_children` int(11) DEFAULT NULL,
+  `address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `family_composition`
 --
 
-INSERT INTO `family_composition` (`family_composition_id`, `user_id`, `name`, `family_status`, `family_age`, `family_occupation`, `dateofbirth`, `family_educational_attainment`, `monthly_salary`, `relationship`, `contact_number`) VALUES
-(3, 5, 'Adolfo Kinaadman', 'Married', 45, 'Pilot', '1976-12-18', 'collegegraduate', 5000000, 'father', '0912345678'),
-(4, 5, 'Maria Kinaadman', 'Married', 41, 'House Wife', '1977-11-12', 'collegegraduate', 0, 'mother', '098765431'),
-(6, 4, 'War', 'Married', 45, 'Cook', '1975-06-15', 'elementarygraduate', 11111100, 'father', '111111');
+INSERT INTO `family_composition` (`family_composition_id`, `user_id`, `name`, `family_status`, `family_age`, `family_occupation`, `dateofbirth`, `family_educational_attainment`, `monthly_salary`, `relationship`, `contact_number`, `spouse_name`, `spouse_age`, `spouse_address`, `spouse_dateofbirth`, `spouse_income`, `spouse_occupation`, `spouse_educational_attainment`, `no_of_children`, `address`) VALUES
+(1, 16, '', '', 0, '', '0000-00-00', '', 0, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(5, 5, 'Bernadette Cometa', 'soloparent', 18, '', '1998-12-12', 'collegeundergraduate', 50000, 'mother', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(12, 25, 'Leonito Collamat', 'married', 58, 'Seaman', '1958-08-18', 'postgraduate', 0, 'father', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(13, 25, 'Lily Collamat', 'married', 49, 'Business woman', '1967-10-13', 'postgraduate', 0, 'mother', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(14, 25, 'Lizle Kaye Collamat', 'single', 18, 'Student', '1998-10-05', 'collegeundergraduate', 0, 'sister', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(21, 20, 'Warren Flores', 'married', 46, 'Cook', '1970-06-15', 'collegeundergraduate', 0, 'father', '54321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(22, 20, 'Marseille Flores', '', 44, 'NA', '1972-09-26', 'collegegraduate', 0, 'mother', '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '');
 
 -- --------------------------------------------------------
 
@@ -146,6 +150,7 @@ INSERT INTO `family_composition` (`family_composition_id`, `user_id`, `name`, `f
 
 CREATE TABLE `feedback` (
   `id` int(11) UNSIGNED NOT NULL,
+  `requests_forms_id` int(11) DEFAULT NULL,
   `resident_id` int(11) DEFAULT NULL,
   `sent_to` int(11) DEFAULT NULL,
   `sent_from` int(11) DEFAULT NULL,
@@ -157,9 +162,9 @@ CREATE TABLE `feedback` (
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`id`, `resident_id`, `sent_to`, `sent_from`, `message`, `seen_at`) VALUES
-(1, NULL, 4, 2, 'THERE''S AN ERROR', '2017-02-16 06:11:09'),
-(2, NULL, 4, 2, 'no comment', '2017-02-16 08:21:08');
+INSERT INTO `feedback` (`id`, `requests_forms_id`, `resident_id`, `sent_to`, `sent_from`, `message`, `seen_at`) VALUES
+(1, 2, NULL, 5, 2, 'Please Update your Educational Attainment. ', '2017-03-03 05:07:40'),
+(2, 4, NULL, 5, 3, 'Add Affilation Company', '2017-03-05 15:00:05');
 
 -- --------------------------------------------------------
 
@@ -198,11 +203,11 @@ INSERT INTO `form_types` (`form_types_id`, `form_type`, `form_desc`, `date_creat
 
 CREATE TABLE `government` (
   `resident_id` int(11) NOT NULL,
-  `id_ref_no` int(11) DEFAULT NULL,
-  `sss_no` int(11) DEFAULT NULL,
-  `gsis_no` int(11) DEFAULT NULL,
-  `pag_ibig_no` int(11) DEFAULT NULL,
-  `philhealth_no` int(11) DEFAULT NULL,
+  `sss_no` varchar(13) DEFAULT NULL,
+  `gsis_no` varchar(11) DEFAULT NULL,
+  `tin_no` varchar(15) DEFAULT NULL,
+  `pag_ibig_no` varchar(14) DEFAULT NULL,
+  `philhealth_no` varchar(14) DEFAULT NULL,
   `philhealth_status` enum('member','member_dependent','','') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -210,9 +215,11 @@ CREATE TABLE `government` (
 -- Dumping data for table `government`
 --
 
-INSERT INTO `government` (`resident_id`, `id_ref_no`, `sss_no`, `gsis_no`, `pag_ibig_no`, `philhealth_no`, `philhealth_status`) VALUES
-(4, 123, 1111, 222, 333, 444, 'member_dependent'),
-(5, NULL, 111, 222, 333, 444, NULL);
+INSERT INTO `government` (`resident_id`, `sss_no`, `gsis_no`, `tin_no`, `pag_ibig_no`, `philhealth_no`, `philhealth_status`) VALUES
+(5, '', '', '', '', '', NULL),
+(16, '', '', '', '', '', NULL),
+(20, '', '', '', '', '', NULL),
+(25, '', '', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -243,7 +250,7 @@ CREATE TABLE `kalipi_federation` (
 --
 
 INSERT INTO `kalipi_federation` (`kalipi_federation_id`, `requests_forms_id`, `user_id`, `name_of_company`, `company_address`, `telephone_no_res`, `telephone_no_off`, `name_of_spouse`, `address_of_spouse`, `spouse_age`, `dateofbirth_of_spouse`, `highest_educational_attainment`, `occupation_of_spouse`, `seminars_attended`, `num_of_children`) VALUES
-(1, 8, 0, 'Name of Company', 'Company Address', '2221111', '2223333', 'Spouse', 'Adress', 20, '1997-11-11', 'College Graduate', 'House Wife', '{"title":["Seminar 1","Seminar 2"],"date":["2016-01-02","2015-01-04"]}', 2);
+(1, 15, 0, 'adsadssad', 'asdasadsas', '1234567', '1234567', '', '', NULL, '0000-00-00', '', '', '{"title":["asdasasd"],"date":["2017-03-16"]}', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,6 +262,7 @@ CREATE TABLE `kasambahay` (
   `kasambahay_id` int(11) NOT NULL,
   `requests_forms_id` int(11) NOT NULL,
   `nature_of_work` enum('general_househelp','cook','laundry_person','yaya','gardener','other') DEFAULT NULL,
+  `other` varchar(100) DEFAULT NULL,
   `employment_arrangement` enum('live_in','live-out','','') DEFAULT NULL,
   `name_of_employer` varchar(100) DEFAULT NULL,
   `employers_home_address` varchar(100) DEFAULT NULL,
@@ -271,8 +279,8 @@ CREATE TABLE `kasambahay` (
 -- Dumping data for table `kasambahay`
 --
 
-INSERT INTO `kasambahay` (`kasambahay_id`, `requests_forms_id`, `nature_of_work`, `employment_arrangement`, `name_of_employer`, `employers_home_address`, `employers_sitio`, `employers_barangay`, `employers_province`, `employers_municipality`, `incase_of_emergency`, `emergency_contact_no`, `monthly_salary`) VALUES
-(1, 7, 'gardener', 'live-out', 'Name of Employer', 'Home Address', 'Sitio', 'Barangay', 'Province', 'Municipality', 'WAR', '111111000', 12345);
+INSERT INTO `kasambahay` (`kasambahay_id`, `requests_forms_id`, `nature_of_work`, `other`, `employment_arrangement`, `name_of_employer`, `employers_home_address`, `employers_sitio`, `employers_barangay`, `employers_province`, `employers_municipality`, `incase_of_emergency`, `emergency_contact_no`, `monthly_salary`) VALUES
+(1, 14, 'general_househelp', '', 'live_in', 'asadf', 'b', 'b', 'b', 'a', 'a', 'a', '123456', 1234);
 
 -- --------------------------------------------------------
 
@@ -294,7 +302,8 @@ CREATE TABLE `pwd_financial` (
 --
 
 INSERT INTO `pwd_financial` (`pwd_financial_id`, `requests_forms_id`, `affiliated_org`, `pwd_id_card_no`, `issued_at`, `issued_on`) VALUES
-(1, 5, 'ngo', 123, 'Cebu City', '2017-02-16 03:51:11');
+(1, 4, '', 1, NULL, '2017-03-03 05:25:15'),
+(2, 12, 'ngo', 1234, NULL, '2017-03-05 15:03:26');
 
 -- --------------------------------------------------------
 
@@ -330,7 +339,9 @@ CREATE TABLE `pwd_registry` (
 --
 
 INSERT INTO `pwd_registry` (`pwd_registry_id`, `requests_forms_id`, `government_id`, `pwd_number`, `type_disability`, `telephone_no`, `causes_of_disability`, `nature_of_employment`, `employment_status`, `type_of_employment`, `occupation`, `blood_type`, `affilated_org`, `contact_person`, `office_address`, `office_telephone_no`, `accomplished_by`, `name_of_reporting_unit`, `registration_no`, `guardians_name`) VALUES
-(1, 4, 0, 1, 'multiple', '', 'congenital', NULL, 'unemployed', NULL, NULL, 'b+', 'ORGANIZATION AFFILIATED:', 'CONTACT PERSON:', 'OFFICE ADDRESS:', 'None', NULL, 'NAME OF REPORTING UNIT', 123, '');
+(1, 2, 0, 1, 'mental', '', 'illness', NULL, 'unemployed', NULL, NULL, 'b+', 'Dynacom', 'Charles Quintin', 'Talamban', '1234567', NULL, NULL, NULL, ''),
+(2, 3, 0, 1, 'mental', '', 'illness', NULL, 'unemployed', NULL, NULL, 'b+', 'Dynacom', 'Charles Quintin', 'Talamban', '1234567', NULL, NULL, NULL, ''),
+(3, 11, 0, 1, 'learning', '', 'illness', NULL, 'unemployed', NULL, NULL, 'b+', 'Dynacom', 'Charles Allaga', 'Consolacion', '12345', NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -343,32 +354,37 @@ CREATE TABLE `requests_forms` (
   `requests_forms_type` varchar(255) NOT NULL,
   `forms_id` int(11) NOT NULL,
   `resident_id` int(11) NOT NULL,
-  `request_status` enum('pending','approved','paid','reviewed') NOT NULL,
-  `requests_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `date_cleared` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  `sms_code` varchar(5) DEFAULT NULL
+  `request_status` enum('pending','approved','paid','reviewed','cancelled','disapproved') NOT NULL,
+  `requests_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_reviewed` timestamp NULL DEFAULT NULL,
+  `date_cleared` timestamp NULL DEFAULT NULL,
+  `sms_code` varchar(5) DEFAULT NULL,
+  `or_number` int(11) DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `date_paid` timestamp NULL DEFAULT NULL,
+  `reviewed_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requests_forms`
 --
 
-INSERT INTO `requests_forms` (`requests_forms_id`, `requests_forms_type`, `forms_id`, `resident_id`, `request_status`, `requests_created`, `date_cleared`, `sms_code`) VALUES
-(1, '', 1, 5, 'pending', '2017-02-16 05:37:26', '2017-02-15 20:41:23', 'raxy0'),
-(2, '', 1, 5, 'paid', '2017-02-16 08:47:58', '2017-02-15 20:41:09', 'eSI2h'),
-(3, '', 1, 4, 'pending', '2017-02-16 07:13:22', '0000-00-00 00:00:00', NULL),
-(4, '', 8, 4, 'pending', '2017-02-16 05:37:50', '0000-00-00 00:00:00', NULL),
-(5, '', 9, 4, 'pending', '2017-02-16 05:37:38', '0000-00-00 00:00:00', NULL),
-(6, '', 2, 4, 'pending', '2017-02-16 05:38:09', '0000-00-00 00:00:00', NULL),
-(7, '', 5, 4, 'pending', '2017-02-16 05:37:58', '0000-00-00 00:00:00', NULL),
-(8, '', 3, 4, 'pending', '2017-02-16 05:38:06', '0000-00-00 00:00:00', NULL),
-(9, '', 7, 4, 'pending', '2017-02-16 05:37:53', '0000-00-00 00:00:00', NULL),
-(10, '', 10, 4, 'pending', '2017-02-16 05:37:35', '0000-00-00 00:00:00', NULL),
-(11, '', 6, 4, 'pending', '2017-02-16 05:37:55', '0000-00-00 00:00:00', NULL),
-(12, '', 4, 4, 'pending', '2017-02-16 05:38:02', '0000-00-00 00:00:00', NULL),
-(13, '', 1, 7, 'pending', '2017-02-16 07:04:45', '2017-02-15 23:02:53', 'dDUHL'),
-(14, '', 1, 7, 'approved', '2017-02-16 08:50:35', '2017-02-16 01:50:35', 'Sn1Vz'),
-(15, '', 1, 4, 'pending', '2017-02-16 08:42:23', '2017-02-16 01:40:45', 'FsHdy');
+INSERT INTO `requests_forms` (`requests_forms_id`, `requests_forms_type`, `forms_id`, `resident_id`, `request_status`, `requests_created`, `date_reviewed`, `date_cleared`, `sms_code`, `or_number`, `amount`, `date_paid`, `reviewed_by`) VALUES
+(1, '', 1, 5, 'approved', '2017-03-03 05:01:56', '2017-03-03 05:02:59', '2017-03-03 05:10:38', 'komZn', 1, 5000, '2017-03-03 05:04:49', 2),
+(2, '', 8, 5, 'cancelled', '2017-03-03 05:06:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '', 8, 5, 'paid', '2017-03-03 05:08:46', '2017-03-03 05:09:00', NULL, '5htF0', 2, 12345, '2017-03-03 05:10:05', 2),
+(4, '', 9, 5, 'cancelled', '2017-03-03 05:25:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '', 7, 5, 'reviewed', '2017-03-03 05:28:38', '2017-03-03 15:54:12', NULL, NULL, NULL, NULL, NULL, 3),
+(6, '', 10, 5, 'approved', '2017-03-03 07:01:00', '2017-03-03 07:02:04', '2017-03-03 07:03:56', 'kJ2YB', 150, 3000, '2017-03-03 07:03:19', 3),
+(7, '', 4, 5, 'disapproved', '2017-03-03 07:04:30', '2017-03-03 07:05:58', '2017-03-03 07:06:46', NULL, NULL, NULL, NULL, 3),
+(8, '', 1, 5, 'paid', '2017-03-03 07:20:38', '2017-03-03 07:21:01', NULL, NULL, 150, 3000, '2017-03-03 07:21:12', 3),
+(9, '', 1, 25, 'approved', '2017-03-03 12:28:21', '2017-03-03 13:00:07', '2017-03-03 13:02:15', 'd3eb0', 1, 5000, '2017-03-03 13:01:15', 3),
+(10, '', 1, 20, 'approved', '2017-03-05 14:23:39', '2017-03-05 14:24:53', '2017-03-05 14:27:54', 'DL5ls', 1, 5000, '2017-03-05 14:27:13', 3),
+(11, '', 8, 20, 'approved', '2017-03-05 14:40:12', '2017-03-05 14:41:06', '2017-03-05 14:43:38', 'ChfAg', 123, 30000, '2017-03-05 14:42:20', 3),
+(12, '', 9, 20, 'approved', '2017-03-05 15:03:26', '2017-03-05 15:05:25', '2017-03-05 15:07:49', 'Xbkdp', 5, 123457000, '2017-03-05 15:06:44', 2),
+(13, '', 2, 20, 'approved', '2017-03-05 15:11:53', '2017-03-05 15:12:11', '2017-03-05 15:14:50', NULL, 123122, 55555, '2017-03-05 15:14:18', 3),
+(14, '', 5, 20, 'approved', '2017-03-05 15:15:47', '2017-03-05 15:16:01', '2017-03-05 15:16:36', NULL, 123, 55555, '2017-03-05 15:16:15', 3),
+(15, '', 3, 20, 'approved', '2017-03-05 15:17:58', '2017-03-05 15:18:19', '2017-03-05 15:19:15', NULL, 12313312, 5555, '2017-03-05 15:18:36', 3);
 
 -- --------------------------------------------------------
 
@@ -390,7 +406,7 @@ CREATE TABLE `senior_citizen` (
 --
 
 INSERT INTO `senior_citizen` (`senior_citizen_id`, `requests_forms_id`, `osca_id_no`, `organizational_membership`, `name_of_spouse`, `spouse_income`) VALUES
-(1, 6, 1, '{"name":["Name 1","Name 2","Name 3"],"position":["POSTION 1","POSTION 2","POSTION 3"],"year_service":["1","2","3"]}', 'Spouse', 2222);
+(1, 13, 1, '{"name":["LaravelTuts","BiglangGwapoVentures"],"position":["Trainee","Student"],"year_service":["2","1"]}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -412,7 +428,7 @@ CREATE TABLE `solo_parent` (
 --
 
 INSERT INTO `solo_parent` (`solo_parent_id`, `requests_forms_id`, `total_family_income`, `classifcation_desc`, `needs_problems`, `family_resources`) VALUES
-(1, 9, 22222, 'Class', 'Needs', 'Family Resource');
+(1, 5, 500000, 'Classification Description', 'Needs and Problems', 'Family Resource');
 
 -- --------------------------------------------------------
 
@@ -461,13 +477,27 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_type`, `username`, `password`, `email_address`, `lastname`, `firstname`, `middlename`, `nickname`, `home_address`, `prov_address`, `barangay`, `sitio`, `municipality`, `region`, `dateofbirth`, `placeofbirth`, `sex`, `civil_status`, `age`, `religion`, `citizenship`, `telephone_no`, `cellphone_no`, `educational_attainment`, `skills`, `other_skills`, `hobbies`, `talent`, `monthly_income`, `occupation`, `image_filename`, `flag`) VALUES
-(1, 'captain', 'captain', 'ab334feeb31c05124cb73fa12571c2f6', 'captain@gmail.com', 'Leyson, Jr.', 'Nicolas', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1978-02-09', NULL, 'Male', NULL, 39, NULL, NULL, '', '09153211234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'secretary', 'secretary', '889b2b111b4bc3adb722f0fcff480901', 'secretary@gmail.com', 'secretary', 'secretary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(3, 'treasurer', 'treasurer', '242fb277e2e5ebd600540af0c99edfb6', 'treasurer@gmail.com', 'treasurer', 'treasurer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(4, 'resident', 'm3flores', '4aa7acf1a7748675f7f0dc95f2b0a141', 'thirdeeme34@gmail.com', 'Flores III', 'Manuel', 'Duterte', 'M3', 'R Landon', 'Pagadian', 'Cogon Ramos', 'R Landon', 'Cebu', '7', '1996-11-03', 'Cebu City', 'Male', 'Single', 20, 'Catholic', 'Filipino', 'None', '09294805417', 'collegegraduate', 'Skills', 'Other Skills', 'Hobbies', 'Talent', 0, 'Student', '14199582_10202235298880459_8764049787278467576_n2.jpg', 1),
-(5, 'resident', 'kristian', 'f82b3a3f2786107859afbe386cca8255', 'kristiankinaadman@gmail.com', 'Kinaadman', 'Kristian', '', 'Master', 'Lapu Lapu City', 'Lapu Lapu City', 'Lapu Lapu City', 'Lapu Lapu City', 'Lapu Lapu City', 'Lapu Lapu City', '1996-10-09', 'Cebu City', 'Male', 'Single', 20, '', 'Filipino', 'None', '09228606249', 'collegeundergraduate', 'Skills', 'Other Skills', 'Hobbies', 'Talent', 0, 'Student', 'avatar5.png', 1),
-(6, 'resident', 'mikebryan', '18126e7bd3f84b3f3e4df094def5b7de', 'mikebryanseabrook@gmail.com', 'Seabrook', 'Mike Bryan', 'C', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-11-18', NULL, 'Male', NULL, 20, NULL, NULL, '', '09420291187', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(7, 'resident', 'angie', 'ca611ff5688d31eecbe58cd802d812d7', 'angieceniza@gmail.com', 'Ceniza', 'Angie', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1976-08-19', NULL, 'Female', NULL, 40, NULL, NULL, '', '09330608043', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+(1, 'captain', 'captain', 'ab334feeb31c05124cb73fa12571c2f6', 'nicolasleyson@gmail.com', 'Leyson, Jr.', 'Nicolas', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1967-04-15', NULL, 'Male', NULL, 49, NULL, NULL, '', '09123456789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(2, 'secretary', 'andrea', '1c42f9c1ca2f65441465b43cd9339d6c', 'andreahill@gmail.com', 'Hill', 'Andrea', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(3, 'secretary', 'annesimpson', 'ad7f3bdd6c6fc57b19a99637d23e338d', 'annesimpson@gmail.com', 'Simpson', 'Anne', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(4, 'treasurer', 'faith', 'ecee7df9bbac50b9b428483bfea1dd7c', 'faithcameron@gmail.com', 'Cameron', 'Faith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(5, 'resident', 'mikebryan', 'c8e130ffdd9ec728ee7eb48752e100b4', 'mikebryanseabrook@gmail.com', 'Seabrook', 'Mike Byran', 'Cometa', '', '123 Lahug', 'Bogo', NULL, 'bas', NULL, NULL, '1996-11-18', 'Cebu City', 'Male', 'Single', 20, 'Catholic', 'Filipino', '', '09420291187', 'collegeundergraduate', '', '', '', '', 0, 'Student', '15400904_1695969320693957_7310630843359616946_n.jpg', 1),
+(7, 'resident', 'ronjudah', '4c0253226a1bfeacec42d0342d3408a6', 'ronjudaht@gmail.com', 'Tamayo', 'Ron Judah', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1995-11-26', NULL, 'Male', NULL, 21, NULL, NULL, '', '09323711846', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(8, 'resident', 'kinjohn', 'eed71d859c2b48673fdf288e6be0ff25', 'kinjohnkiseo@gmail.com', 'Kiseo', 'Kin John', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1995-10-13', NULL, 'Male', NULL, 21, NULL, NULL, '', '09324574476', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(9, 'resident', 'paulpineda', 'dcd5531f62589abb873e14fbc11c77f0', 'paulpineda@gmail.com', 'Pineda', 'Paul Anthony', 'B', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-05-12', NULL, 'Male', NULL, 20, NULL, NULL, '', '09222822023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(10, 'resident', 'jaketuna', '3bc0449b26c98b16423a1335e5423df1', 'jaketunacao@gmail.com', 'Tunacao', 'Jake', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1997-12-12', NULL, 'Male', NULL, 19, NULL, NULL, '', '09994573422', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(11, 'resident', 'marwin', '38a5d9570abdc35a5cf3588a926130c6', 'marwinybanez@gmail.com', 'Ybanez', 'Marwin', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-11-10', NULL, 'Male', NULL, 20, NULL, NULL, '', '09770818598', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(12, 'resident', 'adrian', '8c4205ec33d8f6caeaaaa0c10a14138c', 'biglanggwapoventures@gmail.com', 'Natabio', 'Adrian', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1995-02-12', NULL, 'Male', NULL, 22, NULL, NULL, '', '09233887588', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(13, 'resident', 'valerieq', '32122ca1c64de1150d2e457abe7a1ae5', 'valeriequijano@gmail.com', 'Quijano', 'Valerie', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-02-12', NULL, 'Female', NULL, 21, NULL, NULL, '', '09335326821', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(14, 'resident', 'baxal', '0d9914881b62c8e12f3f13b995720b87', 'joenillebaxa@gmail.com', 'Baxal', 'Joenille', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-02-15', NULL, 'Male', NULL, 21, NULL, NULL, '', '09366358246', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(15, 'resident', 'eunice', 'ea6328863b3cd900ee932e58d1d10424', 'eunicemoradas@gmail.com', 'Moradas', 'Eunice Marie', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-04-16', NULL, 'Female', NULL, 20, NULL, NULL, '', '09223755657', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(16, 'resident', 'DanFebra', '31606c153209f40d282c418785181e3a', 'dan.febz08@gmail.com', 'Febra', 'Dan Christian', '', '', '1234 Liloan Street', 'Cebu', NULL, 'atis', NULL, NULL, '1996-08-22', 'Cebu City', 'Male', 'Single', 20, 'Catholic', 'Filipino', '', '09232139607', 'collegeundergraduate', '', '', '', '', 0, 'Student', NULL, 1),
+(17, 'resident', 'lianne', '8e9217bb7d907b9060664a1f5518dd9e', 'lianneestrella@gmail.com', 'Estrella', 'Lianne', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1996-06-01', NULL, 'Female', NULL, 20, NULL, NULL, '', '09236721207', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(18, 'resident', 'charles', 'a5410ee37744c574ba5790034ea08f79', 'distortion@gmail.com', 'Allaga', 'Charles Quintin', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1995-10-15', NULL, 'Male', NULL, 21, NULL, NULL, '', '09770182490', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(19, 'treasurer', 'diana', '3a23bb515e06d0e944ff916e79a7775c', 'diana@gmail.com', 'Gibson', 'Diana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(20, 'resident', 'm3flores', '4aa7acf1a7748675f7f0dc95f2b0a141', 'thirdeeme34@gmail.com', 'Flores III', 'Manuel', 'Duterte', 'M3', '0040 B Street', 'Pagadian ', NULL, 'baniladproper', NULL, NULL, '1996-11-03', 'Cebu City', 'Male', 'Single', 20, 'Catholic', 'Filipino', '', '09294805417', 'collegeundergraduate', '', '', '', '', 0, 'Student', '14199582_10202235298880459_8764049787278467576_n13.jpg', 1),
+(21, 'resident', 'manuel', '96917805fd060e3766a9a1b834639d35', 'thirdeeme34@gmail.com', 'Flores', 'Manuel', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0001-01-01', NULL, 'Male', NULL, 2016, NULL, NULL, '', '09294805417', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(25, 'resident', 'lcollamat', 'd37d24e1caa1d3da3cf87e67e5f8b1b0', 'leonardcollamat@gmail.com', 'Collamat', 'Leonard', 'L', 'Nard', 'J. Fortich Street', 'Cebu', NULL, 'iccompound', NULL, NULL, '1997-02-12', 'Cebu City', 'Male', 'Single', 20, 'Roman Catholic', 'Filipino', '', '09994573422', 'collegeundergraduate', '', '', '', '', 0, 'Student', 'Loan_Solutions_21.png', 1);
 
 --
 -- Indexes for dumped tables
@@ -595,7 +625,7 @@ ALTER TABLE `amicable_settlement`
 -- AUTO_INCREMENT for table `barangay_clearance`
 --
 ALTER TABLE `barangay_clearance`
-  MODIFY `brgy_clearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `brgy_clearance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `complaint_form`
 --
@@ -605,12 +635,12 @@ ALTER TABLE `complaint_form`
 -- AUTO_INCREMENT for table `erpat`
 --
 ALTER TABLE `erpat`
-  MODIFY `erpat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `erpat_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `family_composition`
 --
 ALTER TABLE `family_composition`
-  MODIFY `family_composition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `family_composition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `feedback`
 --
@@ -635,12 +665,12 @@ ALTER TABLE `kasambahay`
 -- AUTO_INCREMENT for table `pwd_financial`
 --
 ALTER TABLE `pwd_financial`
-  MODIFY `pwd_financial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pwd_financial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pwd_registry`
 --
 ALTER TABLE `pwd_registry`
-  MODIFY `pwd_registry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pwd_registry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `requests_forms`
 --
@@ -660,7 +690,7 @@ ALTER TABLE `solo_parent`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- Constraints for dumped tables
 --

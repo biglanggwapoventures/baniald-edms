@@ -40,12 +40,6 @@ class Seniorcitizencontroller extends CI_Controller {
 
  				$this->SeniorCitizenView();
 
-				// $data = $this->user->find($this->user_id);
-				// $this->load->view('resident/header', $header_data);
-				// $this->load->view('resident/nav', 	$data);
-				// $this->load->view('resident/brgyclearanceview', $data);
-				// $this->load->view('resident/footer');
-
  			}
 
  			else{
@@ -54,7 +48,7 @@ class Seniorcitizencontroller extends CI_Controller {
 							
 				$this->load->view('Header/resident_header', $header_data);
 				$this->load->view('Resident/nav_view', 	$data);
-				$this->load->view('resident/seniorcitizenform', $data);
+				$this->load->view('resident/seniorcitizenform', ['data' => $data]);
 				$this->load->view('Footer/resident_footer');
 			}
 	}

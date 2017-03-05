@@ -1,13 +1,5 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
-		<!-- Heading -->	
-		<!-- <div class="panel-heading">
-			<div class="text-center">
-				<h3>Financial Assistance For Person With Disability</h3>
-			</div>
-		</div>  -->
-		<!--Close Panel Heading -->	
-		<!-- Body -->
 		<div class="panel-body">
 				<img src="<?= base_url('assets/dist/img/seal.png');?>" style="padding-left:50px; padding-top: 50px;  height:150px;">
 				<img src="<?= base_url('assets/dist/img/dswd.png');?>" class="pull-right" style="padding-right:50px;  padding-top: 50px; height:130px;">  
@@ -64,7 +56,7 @@
     					<div class="form-group">
 							<label for="dob">DATE OF BIRTH:</label>
 							<div class="form-control-staic">
-								<?= $dateofbirth ?>
+								<?= date_create($dateofbirth)->format('F d, Y')?>
 							</div>
 						</div>
 					</div>
@@ -93,7 +85,7 @@
     					<div class="form-group">
 							<label for="sitio">SITIO:</label>
 							<div class="form-control-staic">
-								<?= $sitio ?>
+								<?= sitio_desc($sitio) ?>
 							</div>
 						</div>
 					</div>
@@ -101,7 +93,7 @@
     					<div class="form-group">
 							<label for="barangay">BARANGAY:</label>
 							<div class="form-control-staic">
-								<?= $barangay ?>
+								Banilad
 							</div>
 						</div>
 					</div>
@@ -134,7 +126,7 @@
 					<div class="col-md-12 padding-top-10">
 						<label>AFFILATED COMPANIES:</label>
 							<div class="form-control-static">
-								<?= $data['affiliated_org']; ?>
+								<?= ucfirst($data['affiliated_org']); ?>
 							</div>
 					</div>
 				</div>
@@ -149,25 +141,21 @@
 						<div class="form-group">
 							<label for="issued_at">ISSUED AT:</label>
 								<div class="form-control-static">
-								<?= $data['issued_at']; ?>
+								<!-- <?= $data['issued_at']; ?> -->
+								Barangay Banilad	
 								</div>
 						</div>
 						<div class="form-group">
 							<label for="issuedon">ISSUED ON:</label>
 							<div class="form-control-static">
-								<?= date_create($data['issued_on'])->format('M d, Y h:i A') ?>
+								<?= date_create($data['issued_on'])->format('F d, Y h:i A') ?>
 							</div>
 						</div>	
 					</div>
 					<div class="col-md-6 padding-top-10">
 						<div style="width:100px; border:1px solid #000; padding: 85px; margin-left:20%;"></div>
+						<label style="margin-left:90px;">LEFT OR RIGHT THUMB MARK</label>
 					</div>	
-				</div>
-				<div class="row ">
-					<div class="col-md-6"></div>
-					<div class="col-md-6">
-						<label style="margin-left:80px;">LEFT OR RIGHT THUMB MARK</label>
-					</div>
 				</div>
 				<div class="row padding-top-20">
 					<div class="col-md-5 padding-top-20">
@@ -204,31 +192,33 @@
 						<hr style="display: block; height: 2px;  border-top: 1px solid #000;padding: 0; ">
 					</div>
 				</div>
+				<br/><br/>
 				<div class="row padding-top-20">
-					<div class="col-md-5">
-						<label >VERIFIED BY:</label>
-						<hr style="display: block; height: 2px; margin-left: 90px;	 border-top: 1px solid #000;padding: 0; ">
-						<label style="margin-left:180px;">Social Worker</label>
+					<div class="col-md-2" >
+						<label>VERIFIED BY:</label>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-3" style="left:-60px;">
+						<hr style="display: block; height: 2px;	 border-top: 1px solid #000;  ">
+						<label style="margin-left:60px;"> Social Worker	</label>
+					</div>
+					<div class="col-md-2 col-md-offset-1 ">
 						<label>NOTED BY:</label>
-						<hr style="display: block; height: 2px; margin-left: 90px;	 border-top: 1px solid #000;padding: 0; ">
-						<label style="margin-left:160px;">ESTER G. CONCHA<br/> Dept. Head/DSWS</label>
 					</div>
-					<div class="col-md-6"></div>
+					<div class="col-md-3" style="left:-80px;">
+						<hr style="display: block; height: 2px;	 border-top: 1px solid #000;  ">
+						<label style="margin-left:50px;">ESTER G. CONCHA<br/> Dept. Head/DSWS</label>
+					</div>
 				</div>
 				<br/>
-				<div class="row padding-top-20 ">
-					<div class="col-md-2">
+				<div class="row padding-top-20">
+				
+					<div class="col-md-2" >
 						<label>APPROVED BY:</label>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" style="left:-60px;">
 						<hr style="display: block; height: 2px;	 border-top: 1px solid #000;  ">
-						<label style="margin-left:2	0px;">Hon. GERARDO CARILLO<br/> Social Servicing Committee	</label>
-					</div>	
-					
-					<div class="col-md-3"></div>
-						
+						<label style="margin-left:20px;">Hon. GERARDO CARILLO<br/> Social Servicing Committee	</label>
+					</div>
 				</div>
 														
 		</div> <!--Close Panel body -->

@@ -1,12 +1,16 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-body">
-	
+			 <div class="row">
+                <div class="col-md-4 col-md-offset-8">
+                      <div style="width:100px; border:1px solid #000; padding: 45px; margin-left:40%;"></div> 
+                      <p style="margin-left:35%;">Place 1x1 Photo Here</p>
+                </div>
+            </div> 
 			<center>
-				<h4><label>Kasambahay Registration Form</label></h4>	
+				<h4><label>KASAMBAHAY REGISTRATION FORM</label></h4>	
 			</center>
 			<br/><br/>
-
 			<div class="row">
 				<div class="col-md-4">
 					<h4><label>I. PERSONAL INFORMATION</label></h4>
@@ -55,12 +59,12 @@
 					<label>HOUSE NO AND STREET:</label> <?= $home_address ?>
 				</div>
 				<div class="col-md-6">
-					<label>SUBDIVISION/ BARANGAY: </label> <?= $barangay ?>
+					<label>SUBDIVISION/ BARANGAY: </label> Banilad
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<label>CITY OR MUNICPALITY: </label> <?= $municipality ?>
+					<label>CITY OR MUNICPALITY: </label> Cebu
 				</div>
 				<div class="col-md-6">
 					<label>PROVINCE: </label>  <?= $prov_address ?>
@@ -80,7 +84,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<label>DATE OF BIRTH:</label> <?= $data['dateofbirth']?>
+					<label>DATE OF BIRTH:</label> <?= date_create($data['dateofbirth'])->format('F d, Y')?>
 				</div>
 			</div>
 				<div class="row">
@@ -88,8 +92,13 @@
 					<label>CONTACT NO:</label>  <?= $data['cellphone_no']?>
 				</div>
 			</div>
+			<div class="row padding-top-10">
+				<div class="col-md-4">
+					<label>ID REFERENCE NO:</label>
+				</div>
+			</div>
 
-			<div class="row">
+			<div class="row padding-top-10">
 				<div class="col-md-4">
 					<label>SSS NO:</label> <?= $data['sss_no'] ?>
 				</div>
@@ -125,8 +134,8 @@
 		                            <td><?= ucfirst($row['relationship'])?></td>
 		                            <td><?= $row['family_age']?></td>
 		                            <td><?= ucfirst($row['family_occupation']) ?></td>
-		                            <td><?= $row['monthly_salary']?></td>
-		                            <td><?= ucfirst($row['family_educational_attainment']) ?></td>
+		                            <td><?= number_format($row['monthly_salary'],2)?></td>
+		                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 		                            
 		                        </tr>
 		                        
@@ -168,7 +177,7 @@
 			<br/>
 			<div class="row">
 				<div class="col-md-6">
-					<label>MONTHLY SALARY:</label> <?= $data['monthly_salary'] ?>
+					<label>MONTHLY SALARY:</label> <?= number_format($data['monthly_salary'], 2) ?>
 				</div>
 				<div class="col-md-6">
 					<label>NATURE OF WORK:</label> <?= ucfirst($data['nature_of_work'] )?>
@@ -177,7 +186,7 @@
 			<br/>
 			<div class="row">
 				<div class="col-md-6">
-					<label>EMPLOYMENT ARRANGEMENT:</label> <?= ucfirst($data['employment_arrangement']) ?>
+					<label>EMPLOYMENT ARRANGEMENT:</label> <?= employment_arrangement($data['employment_arrangement']) ?>
 				</div>
 				<div class="col-md-6">
 					<label>NAME OF EMPLOYER:</label> <?= ucfirst($data['name_of_employer']) ?>
@@ -217,5 +226,3 @@
     </div>
 </div>
 		
-	
-	

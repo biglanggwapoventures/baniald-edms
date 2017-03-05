@@ -1,8 +1,11 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Secretarymodel extends CI_Model{
 
+	protected $table_name = 'users';
+		
 	protected $tables = [
 		1	=> 'barangay_clearance', 
         2	=> 'senior_citizen ', 
@@ -20,7 +23,7 @@ class Secretarymodel extends CI_Model{
 	public function getForm($form_type_id, $requests_forms_id) {
 
 
-		return $this->db->select('form.*, u.*')
+		return $this->db->select('form.*, u.*, rq.amount AS amount, rq.or_number AS or_number')
 			->from('requests_forms as rq')
 			->join($this->tables[$form_type_id].' AS form', 'rq.requests_forms_id = form.requests_forms_id')
 			->join('users AS u', 'u.user_id =  rq.resident_id')
@@ -44,6 +47,31 @@ class Secretarymodel extends CI_Model{
 	    }
 
 	    	$this->db->where('request_status','pending');
+         	return $this->db->get()->result();    
+	}
+	// get lists request form where status is pending 
+	function get_all_request_forms($form_types_id = false, $date_start = false, $date_end = false){
+
+        $this->db->select('requests_forms.*, users.*, form_types.form_type');
+	    $this->db->from('requests_forms');
+	    $this->db->join('users','users.user_id = requests_forms.resident_id','left');
+	    $this->db->join('form_types','form_types.form_types_id = requests_forms.forms_id');
+
+	    if($form_types_id){
+
+	     	$this->db->where('form_types.form_types_id', $form_types_id);
+	    }
+
+	    if($date_start){
+
+	    	$this->db->where('DATE(requests_forms.requests_created) >= ', $date_start);
+	    }
+
+	    if($date_end){
+
+	    	$this->db->where('DATE(requests_forms.requests_created) <=', $date_end);
+	    }
+
          	return $this->db->get()->result();    
 	}
 
@@ -180,9 +208,15 @@ class Secretarymodel extends CI_Model{
 	// function for setting the status to reviewed
 	function review_requests($requests_forms_id){
 
-        $this->db->set('request_status', "reviewed");
+        $this->db->set([
+        	'request_status' => "reviewed", 
+        	'reviewed_by' => $this->session->userdata('logged_in')['user_id'],
+        	'date_reviewed' => date_create_immutable(null)->format('Y-m-d H:i:s')
+
+    	]);
+        $this->db->join('pwd_registry AS pr', 'pr.requests_forms_id = rq.requests_forms_id');
         $this->db->where('requests_forms_id', $requests_forms_id);
-        $this->db->update('requests_forms');    
+        $this->db->update('requests_forms AS rq');    
 	}
 	
 	// function for setting the status to approved request u
@@ -225,6 +259,12 @@ class Secretarymodel extends CI_Model{
 
 	public function sendFeedback($data) {
 		
+
+		$this->db->set('request_status', "cancelled");
+
+		$this->db->where('requests_forms_id', $data['requests_forms_id']);
+	 	$this->db->update('requests_forms');
+
 		return $this->db->insert('feedback', $data) ? $this->db->insert_id() : null;
 	}
 
@@ -282,5 +322,19 @@ class Secretarymodel extends CI_Model{
 	 {
 	 	return $this->db->update('requests_forms', ['sms_code' => $code], ['requests_forms_id' => $id]);
 	 }
+	 	public function updateAdmin($data){
+		
+			$user_id = $this->session->userdata('logged_in')['user_id'];
+
+			// $this->db->where('user_type !=', 'resident');
+			// $this->db->update($this->table_name, $data, ['user_id' => $user_id]);
+			$this->db->where('user_id', $user_id);
+			// $this->db->from($this->table_name);
+			$this->db->set($data);
+			$this->db->update($this->table_name);
+
+			// $this->db->update('users', $data, ['user_type' => 'captain']);
+	}
+	
 
 }

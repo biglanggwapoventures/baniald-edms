@@ -10,10 +10,9 @@ class Settlement extends My_FormsController
 
 
 	protected $rules = [
-		'complainant_name' => 'required|trim',
 		'respondent_name' => 'required|trim',
-		'settlement' => 'required|trim'
-			
+		'settlement' => 'required|trim',
+		'complaints_report' => 'required'
 		
 	];
 

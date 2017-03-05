@@ -1,29 +1,28 @@
-<nav class="navbar navbar-fixed-top" role="navigation" style="background-color:#2a313d;">
+<nav class="navbar navbar-fixed-top" role="navigation" style=" background-color: #22272b;">
     <div class="navbar-header">
         <ul class="nav navbar-nav" >
-            <a class="navbar-brand" style="padding-left:30px;">
+            <a class="navbar-brand">
                 <li style="color:#fff;">
-                    Barangay Banilad Electronic Document Management System
+                    <img src="<?= base_url('assets/dist/img/logo1.jpg')?>" height=32px> 
+                     &nbsp; ELECTRONIC DOCUMENT MANAGEMENT SYSTEM
                 </li>
             </a>
         </ul>
     </div>      
-</nav> 
-<br/><br/><br/> 
+</nav>
+<br/><br/><br/><br/> 
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="panel panel-transparent">
-            <div class="panel-heading">
-                <br/>
+            <div class="panel-heading padding-top-20">
                 <label style="color:#6dd9f9;">CREATE AN ACCOUNT (REGISTRATION FORM)</label>
             </div>
             <form action="<?= base_url('register/save')?>" method="POST">
                 <div class="panel-body"> 
-                    <!-- START OF ROW -->
-                    <div class="row padding-top-10  ">
+                    <div class="row">
                         <div class="col-md-4">
-                            <label  style="color:#ffffff;">FIRST NAME: *</label>
+                            <label style="color:#ffffff;">FIRST NAME: *</label>
                             <div class="form-group  <?= form_error('firstname') ? 'has-error' : ''?>">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">
@@ -39,7 +38,7 @@
                         </div>
                         <div class="col-md-4">
                             <label  style="color:#ffffff;">LAST NAME: *</label>
-                            <div class="form-group  <?= form_error('lastname') ? 'has-error' : ''?>">
+                            <div class="form-group <?= form_error('lastname') ? 'has-error' : ''?>">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">
                                         <span class="fa fa-user"></span>
@@ -52,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label  style="color:#ffffff;">MIDDLE NAME: (OPTIONAL)</label>
+                            <label style="color:#ffffff;">MIDDLE NAME: (OPTIONAL)</label>
                             <div class="form-group  <?= form_error('middlename') ? 'has-error' : ''?>">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">
@@ -66,9 +65,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END OF ROW  -->
-
-                    <!-- START OF ROW -->
                     <div class="row padding-top-10">
                         <div class="col-md-4">
                             <label style="color:#ffffff;">EMAIL ADDRESS: *</label>
@@ -113,9 +109,6 @@
                             </div>   
                          </div> 
                     </div>
-                    <!-- END OF ROW -->
-
-                    <!-- START OF ROW -->
                     <div class="row padding-top-10">
                         <div class="col-md-4">
                             <label style="color:#ffffff;">USERNAME: *</label>  
@@ -131,96 +124,95 @@
                                 <?= form_error('username', '<span class="help-block text-center">', '</span>') ?>  
                             </div>
                         </div>
-                            <div class="col-md-4">
-                                <label style="color:#ffffff;">PASSWORD: *</label>  
-                                <div class="form-group  <?= form_error('password') ? 'has-error' : ''?>">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">
-                                            <span class="fa fa-key"></span>
-                                        </span>
-                                        <div data-tip="Enter a Password">
-                                            <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo set_value('password');?>">
-                                        </div>
-                                    </div>   
-                                    <?= form_error('password', '<span class="help-block text-center">', '</span>') ?>  
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label style="color:#ffffff;">CONFIRM PASSWORD: *</label>
-                                <div class="form-group <?= form_error('confirm_password') ? 'has-error' : ''?>">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1"><span class="fa fa-key"></span></span>
-                                        <div data-tip="Confirm your Password">
-                                            <input class="form-control"  name="confirm_password" type="password" placeholder="Confirm Password" value="<?php echo set_value('confirm_password');?>">
-                                        </div>
+                        <div class="col-md-4">
+                            <label style="color:#ffffff;">PASSWORD: *</label>  
+                            <div class="form-group  <?= form_error('password') ? 'has-error' : ''?>">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="fa fa-key"></span>
+                                    </span>
+                                    <div data-tip="Enter a Password">
+                                        <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo set_value('password');?>">
                                     </div>
-                                    <?= form_error('confirm_password', '<span class="help-block text-center">', '</span>') ?>  
-                                </div>
+                                </div>   
+                                <?= form_error('password', '<span class="help-block text-center">', '</span>') ?>  
                             </div>
                         </div>
-                        <!-- END OF ROW -->
-                        <!-- START OF ROW -->
-                        <div class="row padding-top-10">
-                            <div class="col-md-4">
-                                <label style="color:#ffffff;">DATE OF BIRTH: *</label>
-                                <div class="form-group  <?= form_error('dateofbirth') ? 'has-error' : ''?>" style=>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">
-                                            <span class="fa fa-birthday-cake"></span>
-                                        </span>
-                                        <div data-tip="Select your Birthday">
-                                            <input type="date" class="form-control"  name="dateofbirth"  id="dateofbirth"placeholder="Enter your birthdate" value="<?php echo set_value('dateofbirth  ');?>">
-                                        </div>
+                        <div class="col-md-4">
+                            <label style="color:#ffffff;">CONFIRM PASSWORD: *</label>
+                            <div class="form-group <?= form_error('confirm_password') ? 'has-error' : ''?>">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="fa fa-key"></span></span>
+                                    <div data-tip="Confirm your Password">
+                                        <input class="form-control"  name="confirm_password" type="password" placeholder="Confirm Password" value="<?php echo set_value('confirm_password');?>">
                                     </div>
-                                    <?= form_error('dateofbirth', '<span class="help-block text-center">', '</span>') ?>  
                                 </div>
+                                <?= form_error('confirm_password', '<span class="help-block text-center">', '</span>') ?>  
                             </div>
-                            <div class="col-md-4">
-                                 <label style="color:#ffffff;">AGE:</label>
-                                <div class="form-group  <?= form_error('age') ? 'has-error' : ''?>">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">
-                                            <span class="fa fa-calendar"></span>
-                                        </span>
-                                        <input type="text" class="form-control" name="age"  id="age" placeholder="" 
-                                        value="<?php echo set_value('age');?>" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row padding-top-10">
+                        <div class="col-md-4">
+                            <label style="color:#ffffff;">DATE OF BIRTH: *</label>
+                            <div class="form-group  <?= form_error('dateofbirth') ? 'has-error' : ''?>" style=>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="fa fa-birthday-cake"></span>
+                                    </span>
+                                    <div data-tip="Select your Birthday">
+                                        <input type="date" class="form-control"  name="dateofbirth" id="dateofbirth" placeholder="Enter your birthdate" value="<?php echo set_value('dateofbirth');?>">
                                     </div>
-                                    <?= form_error('age', '<span class="help-block text-center">', '</span>') ?>  
                                 </div>
+                                <?= form_error('dateofbirth', '<span class="help-block text-center">', '</span>') ?>  
                             </div>
-                            <div class="col-md-4">
-                                <label style="color:#ffffff;">SEX: *</label>
-                                <div class="radio">
-                                    <div class="form-group  <?= form_error('sex') ? 'has-error' : ''?>">
-                                        <div class="input-group" style="color:#fff;">
-                                            <label><input type="radio" name="sex" value="Male"> Male </label> &nbsp;
-                                            <label><input type="radio" name="sex" value="Female"> Female </label>
-                                        </div>
+                        </div>
+                        <div class="col-md-4">
+                             <label style="color:#ffffff;">AGE:</label>
+                            <div class="form-group  <?= form_error('age') ? 'has-error' : ''?>">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="age"  id="age" placeholder="" 
+                                    value="<?php echo set_value('age');?>" readonly="readonly">
+                                </div>
+                                <?= form_error('age', '<span class="help-block text-center">', '</span>') ?>  
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="color:#ffffff;">SEX: *</label>
+                            <!-- <?php echo form_radio('Sex', 'Male', True) ?> -->
+
+                            <div class="radio">
+                                <div class="form-group  <?= form_error('sex') ? 'has-error' : ''?>">
+                                    <div class="input-group" style="color:#fff;">
+                                        <label><input type="radio" name="sex" value="Male" <?= set_value('sex') === 'Male' ? 'checked="checked"' : ''?> > Male </label> &nbsp;
+                                        <label><input type="radio" name="sex" value="Female" <?= set_value('sex') === 'Female' ? 'checked="checked"' : ''?>> Female </label>
                                     </div>
-                                </div>  
+                                </div>
                             </div>  
-                        </div>
+                        </div>  
+                    </div>
                 </div>
-                <!-- END OF PANEL BODY -->
-                <!-- START OF PANEL-FOOTER -->
                 <div class="panel panel-footer">
                     <div class="row">                
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-info btn-flat btn-lg pull pull-right">REGISTER NOW! &nbsp;<span class="glyphicon glyphicon-log-in"></span></button>
-                            <br/>
-                            <p class="pull-left" style="color:#6dd9f9;"><b>ALREADY A MEMBER?</b><a href="<?= base_url('login')?>" style="color:#d6d8db;"> <u>CLICK HERE TO SIGN IN</u> &nbsp;<i class="fa fa-hand-o-left" aria-hidden="true"></i></a></p>
+                            <button type="submit" class="btn btn-info btn-flat btn-lg pull pull-right">REGISTER NOW! &nbsp;
+                                <span class="glyphicon glyphicon-log-in"></span>
+                            </button><br/>
+                            <p class="pull-left" style="color:#6dd9f9;"><b>ALREADY A MEMBER?</b>
+                                <a href="<?= base_url('login')?>" style="color:#d6d8db; text-decoration: underline;">
+                                    CLICK HERE TO SIGN IN&nbsp;<i class="fa fa-hand-o-left" aria-hidden="true"></i>
+                                </a>
+                            </p>
                         </div>
                     </div>  
                 </div>
-                <!-- END OF PANEL FOOTER -->
             </form>
         </div>
     </div>
     <div class="col-md-2"></div>
 </div>
-
-
-
 
 <script type="text/javascript">
 

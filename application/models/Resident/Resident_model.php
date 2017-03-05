@@ -27,11 +27,11 @@ class Resident_model extends CI_Model{
 				
 		],
 		'kasambahay' => [
-			[
-				'table' => 'family_composition',
-				'alias' => 'fc',
-				'on' => 'fc.user_id = rq.resident_id'
-			],
+			// [
+			// 	'table' => 'family_composition',
+			// 	'alias' => 'fc',
+			// 	'on' => 'fc.user_id = rq.resident_id'
+			// ],
 			[
 				'table' => 'government',
 				'alias' => 'g',
@@ -145,10 +145,11 @@ class Resident_model extends CI_Model{
 
 		// die($table);
 
-		$this->db->select('form.*, u.*, rq.resident_id, rq.request_status')
+		$this->db->select('form.*, u.*, rq.resident_id, rq.request_status, rq.amount AS amount, rq.or_number AS or_number, rq.requests_created As requests_created, rq.date_paid AS date_paid, CONCAT(r.firstname , " " , r.lastname) as reviewed_by')
 			->from('requests_forms as rq')
 			->join("{$table} AS form", 'rq.requests_forms_id = form.requests_forms_id')
-			->join('users AS u', 'u.user_id =  rq.resident_id');
+			->join('users AS u', 'u.user_id =  rq.resident_id')
+			->join('users AS r', 'r.user_id = rq.reviewed_by' ,'left');
 
 		if(isset($this->joins[$table])){
 			foreach($this->joins[$table] As $t){
@@ -189,14 +190,14 @@ class Resident_model extends CI_Model{
          return true;
 		
 	}	
-
+	// added left
 	// get request form requests status
 	function get_my_request_forms($user_id) {
 
 		// $this->db->join('requests_forms as r', 'r.requests_forms_id = f.forms_id' )
 		return $this->db->select('rf.*, ft.form_type')
 			->from('requests_forms as rf')
-			->join('form_types as ft', 'ft.form_types_id = rf.forms_id')
+			->join('form_types as ft', 'ft.form_types_id = rf.forms_id', 'left')
 			->where('rf.resident_id', $user_id)
 			->where_in('rf.request_status', array("pending", 'reviewed', 'paid', 'cancelled'))
 			->get()
@@ -209,7 +210,7 @@ class Resident_model extends CI_Model{
 			->from('requests_forms as rf')
 			->join('form_types as ft', 'ft.form_types_id = rf.forms_id')
 			->where('rf.resident_id', $user_id)
-			->where_in('rf.request_status', 'approved')
+			->where_in('rf.request_status', array('approved', 'disapproved'))
 			->get()
 			->result();
 	}
@@ -232,9 +233,11 @@ class Resident_model extends CI_Model{
 	
 	public function getfeedback($data){
 		
-		return $this->db->select("CONCAT(u.firstname, ' ', u.lastname) AS sender, f.sent_from AS sender_id, f.message", false)
+		return $this->db->select("CONCAT(u.firstname, ' ', u.lastname) AS sender, f.sent_from AS sender_id, f.message, tf.form_type, f.seen_at, rf.requests_forms_id", false)
 			->from('feedback AS f')
 			->join('users AS u', 'u.user_id = f.sent_from')
+			->join('requests_forms as rf', 'rf.requests_forms_id = f.requests_forms_id ')
+			->join('form_types as tf', 'tf.form_types_id = rf.forms_id')
 			->where('f.sent_to', $this->session->userdata('logged_in')['user_id'])
 			->get()
 			->result_array();
@@ -246,6 +249,21 @@ class Resident_model extends CI_Model{
 		$this->db->where('user_id', $user);
 		$this->db->update('users');
 
+	}
+
+	public function getRequest($id)
+	{
+		return $this->db->get_where('requests_forms', ['requests_forms_id' => $id])->row_array();
+	}
+
+	public function get_approve_blotterform()
+	{
+		return $this->db->select('*')
+			->from('complaint_form AS cf')
+			->join('requests_forms AS rf', 'rf.requests_forms_id = cf.requests_forms_id')
+			->where('rf.request_status', 'approved')
+			->get()
+			->result_array();
 	}
 
 }

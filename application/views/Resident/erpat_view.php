@@ -11,7 +11,7 @@
 				<div class="row ">
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
-							<label for="lastname">LAST NAME: *</label>
+							<label for="lastname">LAST NAME:</label>
 					 		<!-- <input type="text" class="form-control" name= "lastname" id="lastname" value="<?php echo $lastname ?>" placeholder="" readonly="readonly"> -->
 					 		<div class="form-control-static"> <?= $lastname ?></div>
 
@@ -19,14 +19,14 @@
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
-							<label for="firstname">FIRST NAME: *</label>
+							<label for="firstname">FIRST NAME:</label>
 					  		<!-- <input type="text" class="form-control" name="firstname" id="firstname"  value="<?php echo $firstname ?>"  placeholder="" readonly="readonly"> -->
 					  		<div class="form-control-static"> <?= $firstname ?></div>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
-							<label for="middlename">MIDDLENAME: (OPTIONAL)</label>
+							<label for="middlename">MIDDLE NAME:</label>
 					  		<!-- <input type="text" class="form-control" name="middlename" id="middlename" placeholder=""> -->
 					  		<div class="form-control-static"> <?= $middlename ?></div>
 						</div>
@@ -35,7 +35,7 @@
 				<div class="row ">
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
-							<label for="age">AGE: *</label>
+							<label for="age">AGE: </label>
 					 		<!-- <input type="text" class="form-control" name= "age" id="age" value="<?php echo $age ?>"  placeholder="" readonly="readonly"> -->
 					 		<div class="form-control-static"> <?= $age ?></div>
 
@@ -43,25 +43,25 @@
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
-							<label for="dateofbirth">DATE OF BIRTH: *</label>
+							<label for="dateofbirth">DATE OF BIRTH: </label>
 					  		<!-- <input type="date" class="form-control" name="dateofbirth" id="dateofbirth"  value="<?php echo $dateofbirth	 ?>"  placeholder="" readonly="readonly"> -->
-					  		<div class="form-control-static"> <?= $dateofbirth ?></div>
+					  		<div class="form-control-static"> <?= date_create($dateofbirth)->format('F d, Y')?></div>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
-							<label for="dateofbirth">PLACE OF BIRTH: *</label>
+							<label for="dateofbirth">PLACE OF BIRTH: </label>
 					  		<!-- <input type="text" class="form-control" name="placeofbirth" id="placeofbirth"  value="<?php echo $placeofbirth	 ?>"  placeholder="" readonly="readonly"> -->
 					  		  <div class="form-control-static"> <?= $placeofbirth ?></div>
 						</div>
 					</div>	
 				</div>
-				<div class="row ">
-					<div class="col-md-8 padding-top-10">
+				<div class="row padding-top-10">
+					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
 							<label for="housenumandstreet">HOME ADDRESS:</label>
 					 		<!-- <input type="text" class="form-control" name= "home_address" id="home_address" value="<?php echo $home_address	 ?>"  placeholder=""> -->
-					 		 	<div class="form-control-static"> <?= $home_address ?></div>
+					 		 	<div class="form-control-static"> <?= $home_address .', '. sitio_desc($sitio) ?> Barangay Banilad</div>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
@@ -78,8 +78,8 @@
 						<label for="telno">CONTACT DETAILS</label>
 					</div>
 				</div>
-				<div class="row ">
-					<div class="col-md-6 ">
+				<div class="row padding-top-10">
+					<div class="col-md-4">
 						<div class="form-group">
 							<label for="telephone_no">TELEPHONE NO:</label>
 					 		<!-- <input type="text" class="form-control" name= "telephone_no" id="telephone_no" placeholder=""> -->
@@ -104,19 +104,19 @@
 					</div>
 					<div class="col-md-4"></div>
 				</div>
-				<div class="row">
+				<div class="row padding-top-20">
 					<div class="col-md-12 padding-top-10">
 						<label for="educational_attainment">Highest Educational Attainment</label>
 			  				<div class="form-control-static"> <?= edu_attainment_desc($educational_attainment) ?></div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row padding-top-20">
 					<div class="col-md-12 padding-top-10">
 						<label for="family_composition">FAMILY COMPOSITION</label>
 					</div>
 					<div class="col-md-12 padding-top-10">
 
-						<table class="table table-border not-datatable">
+						<table class="table table-border not-datatable" border="1">
 							<thead>
 	                			<th>NAME</th>
 		                        <th>RELATION</th>
@@ -124,6 +124,7 @@
 		                        <th>OCCUPATION</th>
 		                        <th>INCOME</th>
 		                        <th>EDUCATIONAL ATTAINMENT</th>
+		                        <th>DATE OF BIRTH</th>
 	          			  	</thead>
 	            			<tbody>
 		                        <?php foreach ($family_composition as $row) : ?> 
@@ -133,8 +134,9 @@
 		                            <td><?= ucfirst($row['relationship'])?></td>
 		                            <td><?= $row['family_age']?></td>
 		                            <td><?= ucfirst($row['family_occupation']) ?></td>
-		                            <td><?= $row['monthly_salary']?></td>
+		                            <td><?= number_format($row['monthly_salary'],2)?></td>
 		                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
+		                            <td><?= date_create($row['dateofbirth'])->format('F d, Y') ?></td>
 		                            
 		                        </tr>
 		                        
@@ -145,13 +147,13 @@
 					</div>
 				</div>
 					
-				<div class="row">
-					<div class="col-md-12 padding-top-20">
+				<div class="row padding-top-20">
+					<div class="col-md-12">
 						<label for="special_abilities">SPECIAL ABILITIES:</label>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-4 padding-top-20">
+					<div class="col-md-4 padding-top-10">
 						<label for="skills">SKILLS/TALENT:</label>
 						<!-- <input type='text' class="form-control" name="skills" id='skills' > -->
 							<div class="form-control-static"> <?= $skills ?></div>

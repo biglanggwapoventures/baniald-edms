@@ -11,8 +11,6 @@ class Seniorcitizen extends My_FormsController {
 	//VALIDATION 
 	protected $rules = [
 
-		'name_of_spouse' => 'required|trim',
-		'spouse_income'  => 'required|trim|integer',
 		'osca_id_no' 	 =>	'required|trim|integer'
 		
 	];

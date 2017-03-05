@@ -45,21 +45,35 @@ class Update extends CI_Controller {
 	public function save(){
 
 		$this->load->library('form_validation');
-		
+
+		$this->form_validation->set_rules('firstname', 'First Name', 'required|trim');
+		$this->form_validation->set_rules('lastname', 'Last Name', 'required|trim');
+		$this->form_validation->set_rules('placeofbirth', 'Place of Birth', 'required|trim');
+		$this->form_validation->set_rules('dateofbirth', 'Date of Birth', 'required|trim');
+		$this->form_validation->set_rules('citizenship', 'Citizenship', 'required|trim');
+		$this->form_validation->set_rules('cellphone_no', 'Mobile Number', 'required|trim|integer');
+		$this->form_validation->set_rules('email_address', 'Email Address', 'required|trim');
+		$this->form_validation->set_rules('home_address', 'Home And Street No:', 'required|trim');
+		$this->form_validation->set_rules('sitio', 'Sitio', 'required|trim');
+
+
+		if($this->form_validation->run()){
+
 		$data = [];
 
 		$user_id = $this->session->userdata('logged_in')['user_id'];
 
 		$data['government']= elements([
 
-			'id_ref_no',
 			'sss_no',
 			'gsis_no',
+			'tin_no',
 			'pag_ibig_no',
 			'philhealth_no',
 			'philhealth_status'
 
-		],$this->input->post());
+		],
+		$this->input->post());
 
 		$data['government']['resident_id'] = $user_id;
 
@@ -93,7 +107,8 @@ class Update extends CI_Controller {
 			'municipality',
 			'prov_address'
 
-			],$this->input->post());
+			],
+			$this->input->post());
 			
 			
 		$family_composition = [];
@@ -104,16 +119,25 @@ class Update extends CI_Controller {
 
 					$family_composition[] = [
 
-						'name' => $val,
-						'family_status' => $fam['family_status'][$i],
-						'family_age' => $fam['family_age'][$i],
-						'family_occupation' => $fam['family_occupation'][$i],
-						'monthly_salary' => $fam['monthly_salary'][$i],
-						'relationship' =>$fam['relationship'][$i],
-						'family_educational_attainment' => $fam['family_educational_attainment'][$i],
-						'contact_number' => $fam['contact_number'][$i],
-						'dateofbirth' => $fam['dateofbirth'][$i],
-						'user_id' => $user_id
+						'name' 							=> $val,
+						'family_status' 				=> isset($fam['family_status'][$i]) ? $fam['family_status'][$i] : '',
+						'family_age' 					=> isset($fam['family_age'][$i]) ? $fam['family_age'][$i] : '',
+						'family_occupation' 			=> isset($fam['family_occupation'][$i]) ? $fam['family_occupation'][$i] : '',
+						'monthly_salary' 				=> isset($fam['monthly_salary'][$i]) ? $fam['monthly_salary'][$i] : '',
+						'relationship' 					=> isset($fam['relationship'][$i]) ? $fam['relationship'][$i] : '',
+						'family_educational_attainment' => isset($fam['family_educational_attainment'][$i]) ? $fam['family_educational_attainment'][$i] : '',
+						'contact_number' 				=> isset($fam['contact_number'][$i]) ? $fam['contact_number'][$i] : '',
+						'dateofbirth' 					=> isset($fam['dateofbirth'][$i]) ? $fam['dateofbirth'][$i] : '',
+						// 'spouse_name'					=> $fam['spouse_name'][$i],
+						// 'spouse_age'					=> $fam['spouse_age'][$i],
+						// 'spouse_address'				=> $fam['spouse_address'][$i],
+						// 'spouse_dateofbirth'			=> $fam['spouse_dateofbirth'][$i],
+						// 'spouse_income'					=> $fam['spouse_income'][$i],
+						// 'spouse_occupation'				=> $fam['spouse_occupation'][$i],
+						// 'spouse_educational_attainment' => $fam['spouse_educational_attainment'][$i],
+						'no_of_children'				=> isset($fam['no_of_children'][$i]) ? $fam['no_of_children'][$i] : '',
+						'user_id' 						=> $user_id,
+
 					];
 				}
 
@@ -121,6 +145,12 @@ class Update extends CI_Controller {
 			}
 	
 			$success = $this->user->update($user_id, $data);
+
+			// $user = $this->session->userdata('logged_in');
+			
+			$data['profile']['user_id'] = $user_id;
+			$data['profile']['image_filename'] = $this->session->userdata('logged_in')['image_filename'];
+			$this->session->set_userdata('logged_in', $data['profile']);
 			
 			// $this->session->set_flashdata('success', true);	
 			// redirect('home/home_profile', 'refresh');	
@@ -131,8 +161,16 @@ class Update extends CI_Controller {
 			
 			else{
 				$this->session->set_flashdata('success',true);	
-			redirect('home/home_profile', 'refresh');
+
+				redirect('home/home_profile', 'refresh');
 			}
+		}
+		else{
+			$this->session->set_flashdata('errors', $this->form_validation->error_array());
+			redirect('update');
+
+		}
+	
 	}
 	
 	public function do_upload(){
@@ -156,13 +194,18 @@ class Update extends CI_Controller {
 	            $data = $this->upload->data();
 	            $filename = $data['file_name'];
 	            
-	            $user = $this->session->userdata('logged_in')['user_id'];
+	            $user = $this->session->userdata('logged_in');
 
-	            $this->Resident_model->set_image($user, $filename);
+	            $this->Resident_model->set_image($user['user_id'], $filename);
+
+	            // $userdata  = $this->session->userdata('logged_in');
+	            $user['image_filename'] = $filename;
+	            $this->session->set_userdata('logged_in', $user);
 
 	            $this->session->set_flashdata('success', true);	
 				redirect('home/home_profile', 'refresh');
 			}
     }
+
 
 }

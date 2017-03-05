@@ -19,22 +19,25 @@
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
 							<label for="firstname">FIRST NAME: </label>
-						 	<!-- <input type="text" class="form-control" name= "firstname" id="firstname"  value="<?php echo $firstname ?>" placeholder="" disabled> -->
-						 	<p class="form-control-static"> <?= $firstname ?></p>
+						 	<p class="form-control-static"> 
+						 		<?= $firstname ?>
+						 	</p>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
 							<label for="middlename">MIDDLE NAME:</label>
-						 <!-- 	<input type="text" class="form-control" name= "middlename" id="middlename" value="<?php echo $middlename ?>" placeholder=""> -->
-						 <p class="form-control-static"> <?= $middlename ?></p>
+						 		<p class="form-control-static"> 
+						 			<?= $middlename ?>
+						 		</p>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
 							<label for="lastname">LAST NAME: </label>
-						 	<!-- <input type="text" class="form-control" name= "lastname" id="lastname" value="<?php echo $lastname?>"  placeholder="" disabled> -->
-						 	 <p class="form-control-static"> <?= $lastname ?></p>
+						 		<p class="form-control-static"> 
+						 			<?= $lastname ?>
+						 		</p>
 						</div>
 					</div>
 				</div>
@@ -49,31 +52,31 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="employers_home_address">HOME ADDRESS:</label>
-						 	<input type="text" class="form-control" name= "employers_home_address" id="employers_home_address" placeholder="">
+						 	<input type="text" class="form-control" value="<?= element('employers_home_address', $data, null) ?>" name="employers_home_address" id="employers_home_address" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-4">
         				<div class="form-group">
 							<label for="employers_sitio">SITIO:</label>
-						  	<input type="text" class="form-control" name="employers_sitio" id="employers_sitio" placeholder="">
+						  	<input type="text" class="form-control"  value="<?= element('employers_sitio', $data, null) ?>" name="employers_sitio" id="employers_sitio" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-4 ">
         				<div class="form-group">
 							<label for="employers_barangay">BARANGAY:</label>
-						  	<input type="text" class="form-control" name="employers_barangay" id="employers_barangay" placeholder="">
+						  	<input type="text" class="form-control"  value="<?= element('employers_barangay', $data, null) ?>" name="employers_barangay" id="employers_barangay" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-4 ">
         				<div class="form-group">
-							<label for="employers_barangay">PROVINCE:</label>
-						  	<input type="text" class="form-control" name="employers_province" id="employers_province" placeholder="">
+							<label for="employers_province">PROVINCE:</label>
+						  	<input type="text" class="form-control"  value="<?= element('employers_province', $data, null) ?>" name="employers_province" id="employers_province" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-4 ">
         				<div class="form-group">
-							<label for="employers_barangay">MUNICIPALITY:</label>
-						  	<input type="text" class="form-control" name="employers_municipality" id="employers_municipality" placeholder="">
+							<label for="employers_municipality">MUNICIPALITY:</label>
+						  	<input type="text" class="form-control"  value="<?= element('employers_municipality', $data, null) ?>" name="employers_municipality" id="employers_municipality" placeholder="">
 						</div>
 					</div>
 				</div> 
@@ -86,107 +89,104 @@
 				</div>
 				<br/>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="form-group">
 							<label for="housenumandstreet">HOUSE NO AND STREET: </label>
 						 	<p class="form-control-static"> <?= $home_address ?></p>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
         				<div class="form-group">
 							<label for="sitio">SITIO: </label>
-						  	<p class="form-control-static"> <?= $sitio ?></p>
+						  	<p class="form-control-static"> <?= sitio_desc($sitio) ?></p>
 						</div>
 					</div>
-					<div class="col-md-6">
+				</div>
+				<div class="row">
+					<div class="col-md-4">
         				<div class="form-group">
 							<label for="barangay">BARANGAY: </label>
-						  	<p class="form-control-static"> <?= $barangay ?></p>
+						  	<p class="form-control-static">Banilad</p>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
         				<div class="form-group">
 							<label for="municipality">MUNICIPALITY: </label>
-						  	<p class="form-control-static"> <?= $municipality ?></p>
+						  	<p class="form-control-static">Cebu</p>
 						</div>
 					</div>
 
 				</div>
-				<!-- <div class="row">
+				<div class="row">
 					<div class="col-md-4 padding-top-10">
 						<div class="form-group">
-							<label for="gender">SEX</label>
-				  			<div class="radio">
-								<label><input type="radio" name="sex" value="Male">Male</label>&nbsp;
-								<label><input type="radio" name="sex" value="Female">Female</label>
-							</div>	
+							<label for="sex">SEX</label>
+				  			<p class="form-control-static"><?= $sex  ?></p>
+
 						</div>
 					</div>
 					<div class="col-md-8 padding-top-10">
 						<label for="civil_status">CIVIL STATUS</label>
-				  			<div class="radio">
-								<label><input type="radio" name="civil_status" value="Single">Single</label>&nbsp;
-								<label><input type="radio" name="civil_status" value="Married">Married</label>&nbsp;
-								<label><input type="radio" name="civil_status" value="Widower">Widower</label>&nbsp;
-								<label><input type="radio" name="civil_status" value="Separated">Separated</label>
-							</div>	
+				  			<p class="form-control-static"><?= $civil_status ?></p>	
+							
 					</div>
-				</div> -->
-			<!-- 	<div class="row">
-					<div class="col-md-3 padding-top-10">
+				</div>
+				<div class="row">
+					<div class="col-md-4 padding-top-10">
         				<div class="form-group">
 							<label for="age">AGE</label>
-						  	<input type="text" class="form-control" name="age" id="age" placeholder="">
+						  	<p class="form-control-static"><?= $age  ?></p>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
 							<label for="dateofbirth">DATE OF BIRTH:</label>
-					  		<input type="date" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="">
+					  		<p class="form-control-static"><?= date_create($dateofbirth)->format('F d, Y')  ?></p>
 						</div>
 					</div>
-					<div class="col-md-5 padding-top-10">
+					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
 							<label for="contactno">CONTACT NO.</label>
-					  		<input type="text" class="form-control" name="contactno" id="contactno" placeholder="">
+					  			<p class="form-control-static"><?= $cellphone_no  ?></p>
 						</div>
 					</div>
-				</div> -->
-					<hr style="border-top: 1px solid #000; padding: 0; ">
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label>ID REFERENCE NO'S</label>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-4 padding-top-10">
         				<div class="form-group">
-							<label for="sss_no">SSS NO: *</label>
-							<div class="form-control-static">
+							<label for="sss_no">SSS NO:</label>
+							<p class="form-control-static">
 								<?= $sss_no ?>
-							</div> 
-						  	<!-- <input type="text" class="form-control" name="sss_no" id="sss_no" placeholder=""> -->
+							</p> 
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
         				<div class="form-group">
-							<label for="barangay">PAG-IBIG NO: *</label>
-							<div class="form-control-static">
+							<label for="barangay">PAG-IBIG NO:</label>
+							<p class="form-control-static">
 								<?= $gsis_no?>
-						  <!-- 	<input type="text" class="form-control" name="pag-ibig_no" id="pag-ibig_no" placeholder="" -->
-							</div>
+							</p>
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
         				<div class="form-group">
-							<label for="barangay">PHILHEALTH NO: *</label>
-						  	<!-- <input type="text" class="form-control" name="philhealthno" id="philhealthno" placeholder=""> -->
-						  	<div class="form-control-static">
+							<label for="barangay">PHILHEALTH NO:</label>
+						  	<p class="form-control-static">
 						  		<?= $philhealth_no ?>
-						  	</div>
+						  	</p>
 						</div>
 					</div>
 				</div>
 				<hr style="border-top: 1px solid #000; padding: 0; ">
 				<div class="row">
-					<div class="col-md-4 padding-top-10">
+					<div class="col-md-4">
 						<div class="form-group">
-							<label for="familyinfo">FAMILY INFORMATION</label>
+							<h4><label for="familyinfo">2. FAMILY INFORMATION</label></h4>
 						</div>
 					</div>
 				</div>
@@ -210,8 +210,8 @@
 		                            <td><?= ucfirst($row['relationship'])?></td>
 		                            <td><?= $row['family_age']?></td>
 		                            <td><?= ucfirst($row['family_occupation']) ?></td>
-		                            <td><?= $row['monthly_salary']?></td>
-		                            <td><?= ucfirst($row['family_educational_attainment']) ?></td>
+		                            <td><?= number_format($row['monthly_salary'],2)?></td>
+		                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 		                            
 		                        </tr>
 		                        
@@ -225,27 +225,27 @@
 				<div class="row">
 					<div class="col-md-8 padding-top-10">
         				<div class="form-group">
-							<label for="emergency_contact_personamily">IN CASE OF EMERGENCY, CONTACT PERSON: *</label>
-					  		<input type="text" class="form-control" name="incase_of_emergency" id="incase_of_emergency" placeholder="">
+							<label for="incase_of_emergency">IN CASE OF EMERGENCY, CONTACT PERSON: *</label>
+					  		<input type="text" class="form-control" value="<?= element('incase_of_emergency', $data, null) ?>" name="incase_of_emergency" id="incase_of_emergency" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-4 padding-top-10">
     					<div class="form-group">
 							<label for="emergency_contact_no">CONTACT NO: *</label>
-					  		<input type="text" class="form-control" name="emergency_contact_no" id="emergency_contact_no" placeholder="">
+					  		<input type="text" class="form-control" value="<?= element('emergency_contact_no', $data, null) ?>" name="emergency_contact_no" id="emergency_contact_no" placeholder="">
 						</div>
 					</div>
 				</div>
 				<hr style="border-top: 1px solid #000; padding: 0; ">
 				<div class="row">
-					<div class="col-md-12 padding-top-10">
+					<div class="col-md-12">
 						<div class="form-group">
 							<label for="eduinfo">EDUCATIONAL INFORMATION</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12 padding-top-10">
+					<div class="col-md-12">
 						<label for="highesteduattainment">Highest Educational Attainment:</label>
 			  				<div class="form-control-static">
 			  					<?php echo edu_attainment_desc($educational_attainment) ?>
@@ -264,40 +264,49 @@
 					<div class="col-md-6 padding-top-10">
         				<div class="form-group">
 							<label for="monthly_salary">MONTHLY SALARY: *</label>
-						  	PHP<input type="text" class="form-control" name="monthly_salary" id="monthly_salary" placeholder="">
+						  	PHP<input type="text" class="form-control"  value="<?= element('monthly_salary', $data, null) ?>"  name="monthly_salary" id="monthly_salary" placeholder="">
 						</div>
 					</div>
 					<div class="col-md-6 padding-top-10">
 						<label for="natureofwork">EMPLOYMENT ARRANGEMENT: *</label>
 			  			<div class="radio">
 							<label>
-								<input type="radio" name="employment_arrangement" value="live_in">Live-In
+								<input type="radio" value="live_in" <?= element('employment_arrangement', $data, null) === 'live_in' ? 'checked="checked"' : ''?> name="employment_arrangement">Live-In
 							</label>
 							<label>
-								<input type="radio" name="employment_arrangement" value="live-out">Live-Out
+								<input type="radio" value="live_out" <?= element('employment_arrangement', $data, null) === 'live_out' ? 'checked="checked"' : ''?> name="employment_arrangement">Live-Out
 							</label>
 							</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 padding-top-10">
-						<label for="natureofwork">NATURE OF WORK</label>
+						<label for="nature_of_work">NATURE OF WORK</label>
 				  			<div class="radio">
-								<label><input type="radio" name="nature_of_work" value="general_househelp">General Househelp</label>
-								<label><input type="radio" name="nature_of_work" value="cook">Cook</label>
-								<label><input type="radio" name="nature_of_work" value="laundry_person">Laundry Person</label>
-								<label><input type="radio" name="nature_of_work" value="yaya">Yaya</label>
-								<label><input type="radio" name="nature_of_work" value="gardener">Gardener</label>
-								<label><input type="radio" name="nature_of_work" value="Separated">Others(Please Specify)</label>
+
+								<label><input type="radio" name="nature_of_work" value="general_househelp" <?php element('nature_of_work', $data, null) === 'general_househelp' ? 'checked="checked" ':'' ?>> General Househelp</label>
+								<label><input type="radio" name="nature_of_work" value="cook" <?php element('nature_of_work', $data, null) === 'cook' ? 'checked="checked" ':'' ?>>Cook</label>
+								<label><input type="radio" name="nature_of_work" value="laundry_person" <?php element('nature_of_work', $data, null) === 'laundry_person' ? 'checked="checked" ':'' ?>>Laundry Person</label>
+								<label><input type="radio" name="nature_of_work" value="yaya" <?php element('nature_of_work', $data, null) === 'yaya' ? 'checked="checked" ':'' ?>>Yaya</label>
+								<label><input type="radio" name="nature_of_work" value="gardener" <?php element('nature_of_work', $data, null) === 'gardener' ? 'checked="checked" ':'' ?>>Gardener</label>
+								<label><input type="radio" name="nature_of_work" value="others" <?php element('nature_of_work', $data, null) === 'others' ? 'checked="checked" ':'' ?>>Others(Please Specify)</label>
 								
 							</div>	
+					</div>
+				</div>
+				<div class="row" data-hide="others">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>OTHER:</label>
+							<input type="text"  value="<?= element('other', $data, null)  ?>" name="other" class="form-control">
+						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 padding-top-10">
         				<div class="form-group">
 							<label for="work">NAME OF EMPLOYER</label>
-						  	<input type="text" class="form-control" name="name_of_employer" id="name_of_employer" placeholder="">
+						  	<input type="text" class="form-control" value="<?= element('name_of_employer', $data, null)  ?>" name="name_of_employer" id="name_of_employer" placeholder="">
 						</div>
 					</div>
 				</div>

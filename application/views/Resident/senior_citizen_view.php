@@ -121,31 +121,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-						<div class="col-md-6 padding-top-10">
-        					<div class="form-group">
-								<label for="name_of_spouse">NAME OF SPOUSE: </label>
-						  		<!-- <input type="text" class="form-control" name="name_of_spouse" id="name_of_spouse" placeholder=""> -->
-						  		<div class="form-control-static"><?= ucfirst($data['name_of_spouse']) ?></div>
-							</div>
-						</div>
-						<div class="col-md-6 padding-top-10">
-        					<div class="form-group">
-								<label for="spouse_income">MONTHLY SALARY/INCOME:</label>
-						  		<!-- <input type="text" class="form-control" name="spouse_income" id="spouse_income" placeholder=""> -->
-						  		<div class="form-control-static"><?= $data['spouse_income'] ?></div>
-							</div>
-						</div>		
-				</div>
+				
 				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
 			
 				<div class="row padding-top-10">
 					<div class="text-center">
-						<label for="familyinfo"><u>FAMILY COMPOSITOON</u></label>
+						<label for="familyinfo" style="text-decoration: underline;">FAMILY COMPOSITION</label>
 					</div>
 					<div class="col-md-12 padding-top-10">
 
-						<table class="table table-border not-datatable">
+						<table class="table table-border not-datatable" border="1">
 							<thead>
 	                			<th>NAME</th>
 		                        <th>RELATION</th>
@@ -179,18 +164,16 @@
 				<div class="row">
 					<div class="row padding-top-20">
 						<div class="text-center">
-							<label for="familyinfo"><u>MEMBERSHIP IN ORGANIZATION</u></label>
+							<label for="familyinfo" style="text-decoration: underline;">MEMBERSHIP IN ORGANIZATION</label>
 						</div>
 					</div>
 					<div class="col-md-12">
-                        <table class="table table-border not-datatable">
+                        <table class="table table-striped not-datatable" border="1">
                             <thead>
                             	<th>#</th>
                                 <th>NAME OF ORGANIZATION</th>
                                 <th>POSTION</th>
                                 <th>YEAR OF SERVICE</th>
-                                
-                                <th></th>
                             </thead>
                             <tbody>
                             	<?php $org = json_decode($data['organizational_membership'], true);?>

@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 class Captain_listing extends My_CaptainFormsListController {
 	
@@ -36,6 +36,13 @@ class Captain_listing extends My_CaptainFormsListController {
 
 		$this->load->model('Captain/Captainmodel','cap');
 		$this->cap->approve_requests($id);
+	
+		redirect("captain_listing/?form_id={$formid}");
+	}
+	public function disapprove($id,$formid){
+
+		$this->load->model('Captain/Captainmodel','cap');
+		$this->cap->disapprove_requests($id);
 	
 		redirect("captain_listing/?form_id={$formid}");
 	}

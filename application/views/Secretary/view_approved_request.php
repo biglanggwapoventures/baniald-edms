@@ -36,13 +36,12 @@
            
             <td><a type="submit" class="btn btn-primary btn-flat btn-sm print-docu "  data-url="<?= base_url("secretary_listing/do_print/{$row->requests_forms_id}?form_id=1")?>" style="text-transform: uppercase;">PRINT &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i></a>
                
-
             </td>
           </tr> 
         
      
           <?php endforeach; ?>
-      
+        
       </tbody>
       </table> 
     </section>

@@ -7,51 +7,56 @@
 <div class="col-md-9">
     <div class="profile-content">
         <h4><label><i class="fa fa-user"></i> PERSONAL INFORMATION</label></h4>
-            <div class="row" style="padding-top:10px;">
-                <div class="col-md-4">
-                    <label>LAST NAME: </label> <?php echo $lastname ?>
-                </div>
-                <div class="col-md-4">
-                     <label> AGE:</label> <?php echo $age ?>
-                </div>
-                <div class="col-md-4">
-                    <label> DATE OF BIRTH:</label> <?php echo date_create($dateofbirth)->format('F d, Y')  ?>
-                </div>
-            </div> 
-            <div class="row" style="padding-top:10px;">
-                <div class="col-md-4">
-                    <label> FIRST NAME:</label> <?php echo $firstname ?>
-                </div>
-                <div class="col-md-4">
-                    <label> CIVIL STATUS:</label> <?php echo $civil_status ?>
-                </div>
-                <div class="col-md-4">
-                    <label>PLACE OF BIRTH:</label> <?php echo $placeofbirth ?>
-                </div>
-            </div> 
-            <div class="row" style="padding-top:10px;">
-                <div class="col-md-4">
-                  <label> MIDDLE NAME: </label> <?php echo $middlename ?>
-                </div>
-                <div class="col-md-4"> 
-                    <label> RELIGON</label>: <?php echo $religion ?>
-                </div>
-                <div class="col-md-4">
-                    <label> SEX:</label> <?php echo $sex ?> 
-                </div>
-            </div> 
-            <div class="row" style="padding-top:10px;">
-                <div class="col-md-4"> 
-                <label> CITIZENSHIP:</label> <?php echo $citizenship ?> 
-                </div>
-                <div class="col-md-4"> 
-                  <label> OCCUPATION: </label> <?php echo $occupation ?> 
-                </div>
-                <div class="col-md-4"> 
-                   <label>MONTHLY INCOME</label>: <?php echo $monthly_income ?> 
-                </div>
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-4">
+                <label>LAST NAME: </label> <?php echo $lastname ?>
             </div>
-            <hr style="border-top:1px solid #cccccc; padding: 0; "/> 
+            <div class="col-md-4">
+                 <label> AGE:</label> <?php echo $age ?>
+            </div>
+            <div class="col-md-4">
+                <label> DATE OF BIRTH:</label> <?php echo date_create($dateofbirth)->format('F d, Y')  ?>
+            </div>
+        </div> 
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-4">
+                <label> FIRST NAME:</label> <?php echo $firstname ?>
+            </div>
+            <div class="col-md-4">
+                <label> CIVIL STATUS:</label> <?php echo $civil_status ?>
+            </div>
+            <div class="col-md-4">
+                <label>PLACE OF BIRTH:</label> <?php echo $placeofbirth ?>
+            </div>
+        </div> 
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-4">
+              <label> MIDDLE NAME: </label> <?php echo $middlename ?>
+            </div>
+            <div class="col-md-4"> 
+                <label> RELIGION:</label> <?php echo $religion ?>
+            </div>
+            <div class="col-md-4">
+                <label> SEX:</label> <?php echo $sex ?> 
+            </div>
+        </div>
+        <div class="row padding-top-10">
+            <div class="col-md-4"> 
+               <label>NICK NAME:</label> <?php echo $nickname ?> 
+            </div>
+            <div class="col-md-4"> 
+                <label> CITIZENSHIP:</label> <?php echo $citizenship ?> 
+            </div>
+            <div class="col-md-4"> 
+              <label> OCCUPATION: </label> <?php echo $occupation ?> 
+            </div>
+        </div> 
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-4"> 
+               <label>MONTHLY INCOME</label>: <?php echo $monthly_income ?> 
+            </div>
+        </div>
+        <hr style="border-top:1px solid #cccccc; padding: 0; "/> 
 
         <h4><label><i class="fa fa-group"></i> FAMILY INFORMATION</label></h4>  
             <div class="row" style="padding-top:10px;">
@@ -75,11 +80,17 @@
                                 <td><?= ucfirst($row['relationship'])?></td>
                                 <td><?= $row['family_age']?></td>
                                 <td><?= $row['family_occupation']?></td>
-                                <td><?= $row['monthly_salary']?></td>
+                                <td><?= number_format($row['monthly_salary'],2)?></td>
                                 <td><?= edu_attainment_desc($row['family_educational_attainment'])?></td>
                                 <td><?= $row['contact_number']?></td>
+
+                                <?php if($row['dateofbirth'] == '') : ?>
+                                    <td></td>
+
+                                <?php else: ?>
                                 <td><?= date_create($row['dateofbirth'])->format('F d, Y')?></td>
                                 
+                                <?php endif; ?>
                             </tr>
                             
                             <?php endforeach; ?>
@@ -88,22 +99,22 @@
                    </table>
                 </div>
             </div>
-                   
+                    
         <hr style="border-top:1px solid #cccccc; padding: 0; "/>
             
         <h4><label><i class="fa fa-phone-square"></i> CONTACT INFORMATION</label></h4>
 
-            <div class="row" style="padding-top:10px;">
-                 <div class="col-md-4">
-                    <label>TELEPHONE NO:</label> <?php echo $telephone_no ?>
-                </div>
-                <div class="col-md-4">
-                    <label>MOBILE NO:</label> <?php echo $cellphone_no ?>
-                </div>
-                <div class="col-md-4">
-                    <label>EMAIL ADDRESS:</label> <?php echo $email_address ?>
-                </div>
-            </div> 
+        <div class="row" style="padding-top:10px;">
+            <div class="col-md-4">
+                <label>TELEPHONE NO:</label> <?php echo $telephone_no ?>
+            </div>
+            <div class="col-md-4">
+                <label>MOBILE NO:</label> <?php echo $cellphone_no ?>
+            </div>
+            <div class="col-md-4">
+                <label>EMAIL ADDRESS:</label> <?php echo $email_address ?>
+            </div>
+        </div> 
         <hr style="border-top:1px solid #cccccc; padding: 0; "/> 
 
         <h4><label><i class="fa fa-bullseye"></i> ABILITIES</label></h4>  
@@ -129,10 +140,10 @@
                  <label>HOUSE NO AND STREET:</label> <?php echo $home_address ?>
                 </div>
                 <div class="col-md-4">
-                     <label>BARANGAY: </label> <?php echo $barangay ?>
+                     <label>BARANGAY: </label> Banilad
                 </div>
                  <div class="col-md-4">
-                     <label>SITIO:</label> <?php echo $sitio ?>
+                     <label>SITIO:</label> <?= sitio_desc($sitio) ?>
                 </div>
             </div>
             <div class="row" style="padding-top:10px;">
@@ -140,10 +151,10 @@
                     <label>PROVINCE:</label> <?php echo $prov_address ?>
                 </div>
                 <div class="col-md-4"> 
-                     <label>REGION:</label> <?php echo $region ?>
+                     <label>REGION:</label> Region 7
                 </div>
                 <div class="col-md-4"> 
-                     <label>MUNICIPALITY:</label>: <?php echo $municipality ?>
+                     <label>MUNICIPALITY:</label> Cebu
                 </div>
             </div>
 
@@ -156,58 +167,23 @@
                     <label>EDUCATIONAL ATTAINMENT:</label> <?php echo edu_attainment_desc($educational_attainment) ?>
                 </div>
             </div>
-       <!-- <div class="row" style="padding-top:10px;">
-                <div class="col-md-4">Primary</div>
-                    <div class="col-md-5">Address</div>
-                    <div class="col-md-3">Year</div>
-                </div>
-                <div class="row" style="padding-top:10px;">
-                    <div class="col-md-4">Secondary </div>
-                    <div class="col-md-5">Address </div>
-                    <div class="col-md-3">Year</div>
-                </div>
-                <div class="row" style="padding-top:10px;">
-                    <div class="col-md-4">Tertiary </div>
-                    <div class="col-md-5">Address </div>
-                    <div class="col-md-3">Year</div>
-                </div>  -->
 
-     </div>
-</div>
-    
-    <!--Change Password -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="changePassword">
-        <div class="modal-dialog" role="document"> 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
-                    <h4 class="modal-title">Change Password</h4>
+         <hr style="border-top:1px solid #cccccc; padding: 0; "/> 
+
+        <h4><label><i class="fa fa-id-card"></i> ID REFERENCE NO'S:</label></h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>SSS NO:</label>  <?= $sss_no ?><br/>
+                    <label>GSIS NO:</label> <?= $gsis_no ?><br/>
+                    <label>TIN NO:</label> <?= $tin_no ?><br/>
+                    <label>GSIS NO:</label> <?= $gsis_no ?><br/>
                 </div>
-                <form action="" method="">
-                    <div class="modal-body">
-                        <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="username">Username: </label>
-                                        <input type="hidden" name="username" value="<?php echo $username ?>">
-                                        <?php echo $username ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="password">Change Password*</label>
-                                        <input type="text" name="password" class="form-control">
-                                     </div>
-                                </div>
-                            </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Change Password</button>
-                        </div>
-                    </div>
-                </form>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-<br>
+                <div class="col-md-6">
+                    <label>PHILHEALH NO:</label> <?= $philhealth_no ?><br/>
+                    <label>PHILHEALH STATUS:</label> <?= $philhealth_status ?><br/>
+                 
+                </div>
+            </div>            
+    </div>
+</div>
+        

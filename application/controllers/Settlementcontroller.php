@@ -44,10 +44,12 @@ class Settlementcontroller extends CI_Controller {
 		$header_data['page_name'] = 'Request for Amicable Settlement Form';
  		
  		$data = $this->user->find($this->user_id);
-							
+						
+		$data['complaints'] = $this->Resident_model->get_approve_blotterform();
+			
 				$this->load->view('Header/resident_header', $header_data);
 				$this->load->view('Resident/nav_view', 	$data);
-				$this->load->view('Resident/settlementform', $data);
+				$this->load->view('Resident/settlementform', ['data' => $data]);
 				$this->load->view('Footer/resident_footer');
  			
 		}

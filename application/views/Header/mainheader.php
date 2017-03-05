@@ -19,8 +19,9 @@
       
       <!--Datatables -->
       <link rel="stylesheet" href="<?= base_url('assets/datatables/dataTables.min.css')?>" rel="stylesheet">
- 
 
+      <link rel="stylesheet" type="text/css" href="<?= base_url('assets/datatables/buttons.dataTables.min.css') ?>">
+ 
       <!-- Font Awesome -->
       <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>">
      
@@ -33,11 +34,10 @@
       <!-- iCheck -->
       <link rel="stylesheet" href="<?= base_url('assets/plugins/iCheck/flat/blue.css')?>">
 
-
       <link rel="stylesheet" href="<?= base_url('assets/sweetalert/sweetalert.css')?>">
 
-    
 
+      <link rel="stylesheet" type="text/css" href="<?= base_url('assets/bootstrap/css/bootstrap-datetimepicker.css')?>">
 
     
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

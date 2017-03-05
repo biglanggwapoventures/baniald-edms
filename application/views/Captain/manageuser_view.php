@@ -10,13 +10,13 @@
           </h1>
           <br/><br/>
 
-          <a href="" class="btn btn-success btn-lg" data-toggle="modal" data-target="#adduser"><i class="fa fa-plus"></i> ADD USER</a><br/><br/><br/>
-
+          <a href="" class="btn btn-success btn-lg" data-toggle="modal" data-target="#adduser"><i class="fa fa-plus"></i> ADD USER</a><br/><br/>
           <table class="table table-hover">
               <thead>
                 <!-- <th>#</th> -->
-                <th>ADMIN TYPE</th>
                 <th>NAME</th>
+                <th>ADMIN TYPE</th>
+              
                 <!-- <th>REMOVE ADMIN</th> -->
               </thead>
               
@@ -25,8 +25,9 @@
 
                     <tr>
                       <!-- <td><?php echo $row->user_id; ?></td> -->
-                      <td><?php echo ucfirst($row->user_type) ?></td>
+                    
                       <td><?php echo ucfirst($row->lastname.', '. $row->firstname) ?></td>
+                        <td><?php echo ucfirst($row->user_type) ?></td>
                       <!-- <td><a href ="#"><img src="<?= base_url('assets/dist/img/cancel.png') ?>" height=30px></a></td> -->
                           
                     </tr> 
@@ -154,6 +155,6 @@
                </form>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div>
   </div>
 </body>

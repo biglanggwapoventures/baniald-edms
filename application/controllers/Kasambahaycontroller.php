@@ -39,7 +39,7 @@ class Kasambahaycontroller extends CI_Controller {
 
 	    $this->load->view('Header/resident_header', $header_data);
 	    $this->load->view('Resident/nav_view', $data);
-	    $this->load->view('resident/kasambahayform');
+	    $this->load->view('resident/kasambahayform', ['data' => $data]);
 	    $this->load->view('Footer/resident_footer');
 	}
 

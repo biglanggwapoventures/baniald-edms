@@ -10,41 +10,20 @@ class Person_with_disabilities extends My_FormsController
 
 	//validation
 	protected $rules = [
-		'pwd_number' => 'required|trim|integer',
+		'pwd_number' 		   => 'required|trim|integer',
 		'causes_of_disability' => 'required',
-		'type_disability' => 'required|trim',
-		'employment_status' => 'required|trim',
-		//government
-		'id_ref_no' => 'required|trim|integer',
-		// 'sss_no' => 'required|trim|integer',
-		// 'gsis_no' => 'required|trim|integer',
-		// 'pag_ibig_no' => 'required|trim|integer',
-		'philhealth_status' => 'required|trim',
-		// 'philhealth_no' => 'required|trim|integer',
-		//*****
-
-		'blood_type' => 'required|trim',
-		'affilated_org' => 'required|trim',
-		'contact_person' => 'required|trim',
-		'office_address' => 'required|trim',
-		'office_telephone_no' => 'required|trim',
-		// 'accomplished_by' => 'required|trim',
-		'name_of_reporting_unit' => 'required|trim',
-		'registration_no' => 'required|trim|integer'
-		//family composition
-		// 'guardians_name' => 'required|trim'
-
-		// 'telephone_no' => 'required|trim',
-		// 'cellphone_no' => 'required|trim|integer',
-		// 'dateofbirth' => 'required|trim',
-		// 'home_address' => 'required|trim',
-		// 'email_address' => 'required|trim',
-		// 'occupation' => 'required|trim',
-		
+		'type_disability' 	   => 'required',
+		'employment_status'    => 'required|trim',
+		'blood_type' 		   => 'required|trim',
+		'affilated_org'        => 'required|trim',
+		'contact_person' 	   => 'required|trim',
+		'office_address' 	   => 'required|trim',
+		'office_telephone_no'  => 'required|trim|integer'
 	];
 
 	protected $fillable = [
 
+		'philhealth_status',
 		'nature_of_employment',
 		'type_of_employment'
 
@@ -58,8 +37,7 @@ class Person_with_disabilities extends My_FormsController
 	public function store() {
 
 		if($this->run_rules()){
-			$governmentFields = ['id_ref_no', 'philhealth_status'];
-			// $familyFields = ['guardians_name'];
+			$governmentFields = ['philhealth_status'];
 			$rqData = [
 				'resident_id' => $this->user_id,
 				'forms_id' => $this->form_id,
@@ -80,7 +58,9 @@ class Person_with_disabilities extends My_FormsController
 			$this->json_response(['result' => true, 'data' => $id]);
 
 
-		}else{
+		}
+		else{
+
 			$this->json_error_array();
 		}
 	}

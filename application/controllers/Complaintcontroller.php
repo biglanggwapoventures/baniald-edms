@@ -39,7 +39,7 @@ class Complaintcontroller extends CI_Controller {
 
 	    $this->load->view('Header/resident_header', $header_data);
 	    $this->load->view('Resident/nav_view', $data);
-	    $this->load->view('Resident/complaintform');
+	    $this->load->view('Resident/complaintform', ['data' => $data]);
 	    $this->load->view('Footer/resident_footer');
 	}
 	

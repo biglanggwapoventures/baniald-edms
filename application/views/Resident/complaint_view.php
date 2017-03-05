@@ -48,7 +48,7 @@
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6 text-center"> 
-					<label>Made this <u> <?= date_create(null)->format('d \o\f F Y')?>.</u> </label>
+					Made this <label style="text-decoration: underline;"> <?= date_create(null)->format('d \o\f F Y')?>. </label>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -62,14 +62,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-10">Recieved and filed this______day of_____________________, 20___.</div>
+				<div class="col-md-10">Recieved and filed this <label style="text-decoration: underline;"><?= date_create(null)->format('d \o\f F Y')?>.</label></div>
 				<div class="col-md-2"></div>
 			</div>
 			<br/><br/>
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-6"></div>
-				<div class="col-md-4">____________________________<br><label>Punong Barangay/Lupon Chairman</label></div>
+				<div class="col-md-4">______________________________<br><label>Punong Barangay/Lupon Chairman</label></div>
 			</div>
 		</div>
 	</div>

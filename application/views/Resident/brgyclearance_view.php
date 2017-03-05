@@ -1,7 +1,7 @@
 <div class="col-md-9">
     <div class="profile-content">
         <div class="panel-heading">
-            <strong>REVIEW BARANGAY CLEARANCE</strong>
+            <strong>REVIEW BUSINESS CLEARANCE</strong>
         </div>
         <div class="panel-body">
             <center>
@@ -14,7 +14,7 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    Application No: 
+                    Application No: <?= str_pad($data['brgy_clearance_id'], 4, 0, STR_PAD_LEFT) ?>
                     <?php print_r( $this->session->userdata('user_id')); ?>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    Date: <?php echo date("M, d Y"); ?>
+                  <p class="form-control-static">Date: <?= date_create(null)->format('F d, Y ') ?></p>
                 </div>
             </div>
             <label>THE PUNONG BARANGAY</label>
@@ -33,13 +33,13 @@
             <br><br>
             <p style="text-indent: 50px;">I, <u><?= "{$data['firstname']} {$data['lastname']}"; ?></u>, <u><?php echo $age; ?></u> years old and a citizen of the Philippines, do hereby apply for a Barangay Clearance to engage in business activity and for this purpose, the following information are submitted:</p>
 
-            <label>
+            <label style="padding-left: 50px;">
                 Business Name or Style: <u><?= $data['businessname']; ?> </u><br>
                 Business Address: <u><?= $data['businessaddress']; ?></u><br>
                 Capital Invested: <u>P<?php echo number_format($data['capitalinvested'], 2); ?></u>
             </label>
             <br><br>
-            <label>
+            <label style="padding-left: 50px;">
                 Description of lines of business to be handled:
                 <br>
                 <?php foreach(json_decode($data['business_line'], true) AS $i => $desc):?>
@@ -47,7 +47,7 @@
                 <?php endforeach;?>
             </label>
             <br><br>
-            <label>The above declerations are subject to verificatioin by proper barangay authorities upon demand without objections, I promise to operate only in the lines of business as applied above after a Mayor's Permit has been dully granted.</label>
+            <label>The above declerations are subject to verification by proper Barangay authorities upon demand without objections, I promise to operate only in the lines of business as applied above after a Mayor's Permit has been dully granted.</label>
             
             <br><br><br><br>
 
@@ -56,7 +56,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                     ___________________<br>
-                     Signature of Applicant
+                     <label>Signature of Applicant</label>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
      </div>
         <div class="panel-footer">            
             <a href="<?= base_url('home/MyRequestedForms') ?>" class="btn btn-success btn-lg"><i class="fa fa-arrow-right"> PROCEED </i></a>
-            <!--  <form action="<?= base_url('Brgyclearancecontroller/insert_brgyClearance') ?>" method="POST"> -->    
+             <!-- <form action="<?= base_url('Brgyclearancecontroller/insert_brgyClearance') ?>" method="POST">     -->
             <!-- 
                 <button type = "submit" class="btn btn-primary btn-lg btn-flat"> Send Request!</button>
                  <a href="<?= base_url('Brgyclearancecontroller/BrgyClearanceForm') ?>" class="btn btn-warning pull pull-right btn-lg btn-flat"><span class="glyphicon glyphicon-triangle-left"></span> Go back </a> -->

@@ -20,20 +20,23 @@
 					<div class="row">
 						<div class="col-md-6 padding-top-10">
 							<div class="form-group">
-								<label for="complainant_name">COMPLAINT'S NAME: *</label>
-								<input type="text" class ="form-control" name="complainant_name" id="complainant_name" placeholder="">
+								<label for="complainant_name">COMPLAINANT'S NAME: </label>
+							<!-- 	<input type="text" class ="form-control" name="complainant_name" id="complainant_name" placeholder=""> -->
+								<p class="form-control-static">
+									<?= $lastname .', '. $firstname .' '. $middlename   ?>
+								</p>
 							</div>
 						</div>
 						<div class="col-md-6 padding-top-10">
 							<div class="form-group">
 								<label for="respondent_name">RESPONDENT'S NAME :*</label>
-								<input type="text" class="form-control" name="respondent_name" id="respondent_name" placeholder="">
+								<input type="text" class="form-control" value="<?= element('respondent_name', $data, null) ?>"name="respondent_name" id="respondent_name" placeholder="">
 							</div>
 						</div>
 						<div class="col-md-12 padding-top-10">
 							<div class="form-group">
 								<label for="complaint_desc">COMPLAINT *</label>
-								<textarea class="form-control" rows="5" name="complaint_desc" id="complaint_desc"> </textarea>
+								<textarea class="form-control" rows="5" name="complaint_desc" id="complaint_desc"> <?= element('complaint_desc', $data, null) ?></textarea>
 							</div>
 						</div>								
 					</div>

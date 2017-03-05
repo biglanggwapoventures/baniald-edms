@@ -162,7 +162,16 @@ class Captainmodel extends CI_Model{
          
 	}
 
+	function disapprove_requests($requests_forms_id){
 
+	      $this->db->set('request_status', "disapproved");
+	      $this->db->set('date_cleared', date_create_immutable(null)->format('Y-m-d H:i:s'));
+	      $this->db->where('requests_forms_id', $requests_forms_id);
+	      $this->db->update('requests_forms');
+
+         
+	 }
+	 
 	function get_brgy_form_by_id($brgy_form_id){
 
 		$this->db->select('*');
@@ -233,6 +242,17 @@ class Captainmodel extends CI_Model{
 			$this->db->select("*");
 			$this->db->from("users");
 			$this->db->where('user_type != ', 'resident' );
+			
+
+			return $this->db->get()->result();
+			
+	}
+
+	public function get_userslist(){
+
+			$this->db->select("*");
+			$this->db->from("users");
+			$this->db->where('user_type', 'resident' );
 			
 
 			return $this->db->get()->result();

@@ -12,17 +12,13 @@ class Kalipi extends My_FormsController
 	protected $rules = [
 		'name_of_company' => 'required|trim',
 		'company_address' => 'required|trim',
-		'telephone_no_res' => 'required|trim|integer',
-		'telephone_no_off' => 'required|trim|integer',
-		'name_of_spouse' => 'required|trim',
-		'spouse_age' => 'required|trim',
-		'address_of_spouse' => 'required|trim',
-		'dateofbirth_of_spouse' => 'required|trim',
-		'highest_educational_attainment' => 'required|trim',
-		'occupation_of_spouse' => 'required|trim',
-		'num_of_children' => 'required|trim|integer'
+		'telephone_no_res' => 'required|trim|min_length[7]|max_length[8]',
+		'telephone_no_off' => 'required|trim|min_length[7]|max_length[8]',
+		
+	
 		
 	];
+
 
 	public function __construct()
 	{

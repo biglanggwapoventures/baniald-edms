@@ -21,10 +21,20 @@
 
 	<script src="<?= base_url('assets/dist/js/app.min.js')?>"></script>
 
-	 <script src="<?= base_url('assets/sweetalert/sweetalert.min.js')?>"></script>
+	<script src="<?= base_url('assets/sweetalert/sweetalert.min.js')?>"></script>
+
+	<script type="text/javascript" src="<?= base_url('assets/bootstrap/js/moment.min.js')?>"></script>
+
+	<script type="text/javascript" src="<?= base_url('assets/bootstrap/js/bootstrap-datetimepicker.min.js')?>"></script>
+
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+
+			$('#addpayment').on('show.bs.modal', function(e){
+				var requestsFormId = $(e.relatedTarget).data('pk');
+				$(this).find('input[name=requests_forms_id]').val(requestsFormId);
+			})
 
 			$('form.ajax').submit(function(e){
 				e.preventDefault();
@@ -42,10 +52,11 @@
 					.done(function(res){
 						if(res.result){
 							
-							swal('success','success','success');
+							swal('Successfully Added','Update Success','success');
+
 							setTimeout(function(){
 								window.location.reload();	
-							},1000);
+							},2000);
 								
 						}else{
 							warning.removeClass('hidden')

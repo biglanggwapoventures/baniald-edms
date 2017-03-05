@@ -12,9 +12,8 @@ class Register extends My_Controller{
 	
 	public function index(){
 		
-		//$this->load->view('header');
 		$this->load_view('Register/register');
-		//$this->load->view('footer');
+
 	}
 
 	function save(){
@@ -23,11 +22,9 @@ class Register extends My_Controller{
 
 		$this->form_validation->set_rules('firstname', 'First Name', 'required|trim');
 		$this->form_validation->set_rules('lastname', 'Last Name', 'required|trim');
-		// $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim');
 		$this->form_validation->set_rules('email_address', 'Email Address', 'required|trim');
 		$this->form_validation->set_rules('cellphone_no', 'Mobile', 'required|trim|integer|min_length[11]|max_length[11]');
-		// $this->form_validation->set_rules('telephone_no', 'Telephone', 'required|trim');
-		$this->form_validation->set_rules('username','Username', 'required|min_length[4]|is_unique[users.username]', array( 'is_unique' => 'The %s is already in use!','required' => 'Please Fill up the %s.'));
+		$this->form_validation->set_rules('username','Username', 'required|min_length[4]|max_length[12]|is_unique[users.username]', array( 'is_unique' => 'The %s is already in use!','required' => 'Please Fill up the %s.'));
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
 		$this->form_validation->set_rules('dateofbirth', 'Date of Birth', 'required|trim');

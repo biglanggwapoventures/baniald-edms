@@ -55,7 +55,7 @@ class Brgyclearancecontroller extends CI_Controller {
 							
 				$this->load->view('Header/resident_header', $header_data);
 				$this->load->view('Resident/nav_view', 	$data);
-				$this->load->view('Resident/brgyclearanceform', $data);
+				$this->load->view('Resident/brgyclearanceform', ['data' => $data]);
 				$this->load->view('Footer/resident_footer');
 			}
 	}
@@ -134,6 +134,16 @@ class Brgyclearancecontroller extends CI_Controller {
 		redirect('Homecontroller/MyRequestedForms');
 
 
+	}
+
+	public function update($id)
+	{
+		$data = $this->user->find($this->user_id);
+							
+		$this->load->view('Header/resident_header', $header_data);
+		$this->load->view('Resident/nav_view', 	$data);
+		$this->load->view('Resident/brgyclearanceform', $data);
+		$this->load->view('Footer/resident_footer');
 	}
 	
 }

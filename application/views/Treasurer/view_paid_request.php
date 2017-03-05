@@ -20,6 +20,7 @@
           <th>FORM TYPE</th>
           <th>STATUS</th>
           <th>DATE REQUESTED</th>
+          <th>DATE PAID</th>
           <th>ACTION</th>
           
       </thead>
@@ -36,6 +37,7 @@
         <?php else: ?>
           <td><button type="button" class="btn btn-success btn-flat btn-sm" style="text-transform: uppercase;"><?php echo $row->request_status; ?>&nbsp;&nbsp;<i class="fa fa-check-square"></i></button></label></td>
         <?php endif; ?>
+          <td><?php echo date("F d, Y h:i A", strtotime($row->requests_created)); ?></td>
           <td><?php echo date("F d, Y h:i A", strtotime($row->requests_created)); ?></td>
                 <?php if($row->request_status == 'paid'): ?>
                   <td></td>

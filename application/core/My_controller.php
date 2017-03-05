@@ -10,6 +10,7 @@ class My_Controller extends CI_Controller{
 	public function __construct(){
 
 		parent::__construct();
+		
 		$this->load->library('form_validation');
 		$this->load->helper(['array', 'inflector']);
 	}
@@ -55,7 +56,7 @@ class My_Controller extends CI_Controller{
  	
 }
 
-// CREATE A CLASS MY_CONTROLLER WCICH EXTENDS MY_CONTROLLER
+// CREATE A CLASS MY_CONTROLLER WHICH EXTENDS MY_CONTROLLER
 class My_FormsController extends My_Controller {
 
 	protected $view_file = '';
@@ -94,8 +95,7 @@ class My_FormsController extends My_Controller {
 
 	public function store()
 	{
-		// var_dump($this->run_rules());
-
+		
 		if(empty($this->rules) || $this->run_rules()){
 			$rqData = [
 				'resident_id' => $this->user_id,
@@ -107,6 +107,7 @@ class My_FormsController extends My_Controller {
 				'result' => true,
 				'data' => $id 
 			]);
+			
 		}else{
 			$this->json_error_array();
 		}
@@ -126,6 +127,23 @@ class My_FormsController extends My_Controller {
 		]);
 
 		$this->load->view('Footer/resident_footer');
+	}
+
+	public function edit($id)
+	{
+		$request = $this->resident->getRequest($id);
+		$data = $this->resident->getForm($request['forms_id'], $id);
+
+		$header_data['page_name'] = form_description($request['forms_id']);
+			
+
+	  	$user = $this->user->find($this->user_id);
+	    $this->load->view('Header/resident_header', $header_data);
+	    $this->load->view('Resident/nav_view', $user);
+	    $this->load->view('Resident/'.request_form($request['forms_id']), compact('data'));
+	    $this->load->view('Footer/resident_footer');
+
+
 	}
 
 }
@@ -183,7 +201,7 @@ class My_SecretaryFormsListController extends My_Controller
 	public function index(){
 
 	  	$data['items'] 	= $this->sec->get_pending_request_forms($this->form_id);
-	  	$data['title'] = 'PENDING';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PENDING';
 
 	    $this->load->view('Header/mainheader', [
 	    	'page_name' => $this->header
@@ -197,8 +215,8 @@ class My_SecretaryFormsListController extends My_Controller
 	public function view_paid(){
 
 	  	$data['items'] 	= $this->sec->get_paid_form($this->form_id);
-	  	$data['title'] = 'PAID';
-
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PAID';
+	 
 	   	$header_data['page_name'] = 'List of Paid Request';
 
 	  	$this->load->view('Header/mainheader', $header_data);
@@ -210,7 +228,8 @@ class My_SecretaryFormsListController extends My_Controller
 	public function view_reviewed(){
 
 	  	$data['items'] 	= $this->sec->get_reviewed_form($this->form_id);
-	  	$data['title'] = 'REVIEWED';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' REVIEWED';
+	 
 
 	  	$header_data['page_name'] = 'List of Reviewed Request';
 
@@ -223,7 +242,7 @@ class My_SecretaryFormsListController extends My_Controller
 	public function view_approve(){
 
 	  	$data['items'] 	= $this->sec->get_approved_forms($this->form_id);
-	  	$data['title'] = 'APPROVE';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' APPROVED';
 
 	  	$header_data['page_name'] = 'List of Approved Request';
 
@@ -235,14 +254,21 @@ class My_SecretaryFormsListController extends My_Controller
 
 	public function do_print($id,$form_id){	
 
+		$header_data['page_name'] = 'PRINT PREVIEW';
+		
+		$this->load->view('Header/mainheader', $header_data);
+
 		$data['items'] = $this->res->getForm($form_id, $id);
 		$this->load->view("Secretary/{$this->view_print[$form_id]}", $data);
+		$this->load->view('Footer/mainfooter');
 	}
 
 	public function view_form($id, $form_id){
-
-		$this->load->view('Header/mainheader');
-
+		
+		$header_data['page_name'] = 'View Form';
+		
+		$this->load->view('Header/mainheader', $header_data);
+		
 		$data['formdata'] = $this->res->getForm($form_id, $id);
 
 		$this->load->view("secretary/{$this->view_files[$form_id]}", $data);
@@ -288,7 +314,7 @@ class My_TreasurerFormsListController extends My_Controller {
 	public function index(){
 
 	  	$data['items'] 	= $this->tre->get_reviewed_forms($this->form_id);
-	  	$data['title'] = 'REVIEWED';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' REVIEWED';
 
 	   	$header_data['page_name'] = 'List of Reviewed Request';
 
@@ -301,7 +327,7 @@ class My_TreasurerFormsListController extends My_Controller {
 	public function view_paid(){
 
 	  	$data['items'] 	= $this->tre->get_paid_form($this->form_id);
-	  	$data['title'] = 'PAID';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PAID';
 
 	   	$header_data['page_name'] = 'List of Paid Request';
 
@@ -363,7 +389,7 @@ class My_CaptainFormsListController extends My_Controller{
 	public function index(){
 
 	  	$data['items'] 	= $this->cap->get_paid_form($this->form_id);
-	  	$data['title'] = 'PAID';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PAID';
 	    
 	    $header_data['page_name'] = 'List of Paid Request';
 
@@ -376,7 +402,7 @@ class My_CaptainFormsListController extends My_Controller{
 	public function view_paid(){
 
 	  	$data['items'] 	= $this->cap->get_paid_form($this->form_id);
-	  	$data['title'] = 'PAID';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PAID';
 	  
 	   	$header_data['page_name'] = 'List of Paid Request';
 
@@ -389,8 +415,8 @@ class My_CaptainFormsListController extends My_Controller{
 	public function view_pending(){
 				
 	  	$data['items'] 	= $this->cap->get_pending_request_forms($this->form_id);
-	  	$data['title'] = 'PENDING';
-	  
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' PENDING';
+	 
 	   	$header_data['page_name'] = 'List of Pending Request';
 
 	  	$this->load->view('Header/mainheader', $header_data);
@@ -402,8 +428,8 @@ class My_CaptainFormsListController extends My_Controller{
 	public function view_approve()
 	{			
 	  	$data['items'] 	= $this->cap->get_approved_forms($this->form_id);
-	  	$data['title'] = 'APPROVED';
-	   
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' APPROVED';
+	  
 	   	$header_data['page_name'] = 'List of Approved Request';
 
 	  	$this->load->view('Header/mainheader', $header_data);
@@ -415,7 +441,7 @@ class My_CaptainFormsListController extends My_Controller{
 	public function view_reviewed(){
 
 	  	$data['items'] 	= $this->cap->get_reviewed_form($this->form_id);
-	  	$data['title'] = 'REVIEWED';
+	  	$data['title'] = strtoupper(form_description($this->form_id)) . ' REVIEWED';
 
 	  	$header_data['page_name'] = 'List of Reviewed Request';
 
@@ -426,9 +452,11 @@ class My_CaptainFormsListController extends My_Controller{
 	}	
 	
 	public function view_form($id, $form_id)
-	{
-	
-		$this->load->view('Header/mainheader');
+	{	
+				
+		$header_data['page_name'] = 'View Form';
+
+		$this->load->view('Header/mainheader', $header_data);
 		
 		$data['formdata'] = $this->res->getForm($form_id, $id);
 		$this->load->view("Captain/{$this->view_files[$form_id]}", $data);

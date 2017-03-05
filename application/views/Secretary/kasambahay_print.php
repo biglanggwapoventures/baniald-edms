@@ -3,7 +3,7 @@
 	    <div class="col-md-12">
 	        <div class="box-footer">
 				<center>
-					<h3><label>Kasambahay Registration Form</label></h3>	
+					<h3><label>KASAMBAHAY REGISTRATION FORM</label></h3>	
 				</center>
 				<div class="row">
 					<div class="col-md-4">
@@ -11,154 +11,97 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-4">
-						<label>FIRST NAME:</label>
-						<div class="form-control-static">
-							<?= $items['firstname'] ?>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label>MIDDLE NAME:</label>
-						<div class="form-control-static">
-							 <?= $items['middlename'] ?>
-						</div>
-					</div>
-					<div class="col-md-4"> 
-						<label>LAST NAME:</label> 
-						<div class="form-control-static">
-							<?= $items['lastname'] ?>
-						</div>
+					<div class="col-md-12">
+						<label>FIRST NAME: </label> <?= $items['firstname'] ?>
+						<label style="padding-left: 150px">MIDDLE NAME: </label> <?= $items['middlename'] ?>
+						<label style="padding-left: 150px">LAST NAME:	</label> <?= $items['lastname'] ?>
 					</div>
 				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
+
+				<hr style="border-top:1px solid #cccccc; padding: 0; "/>
+
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-12">
 						<h4><label>EMPLOYER'S ADDRESS:</label></h4>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<label>HOUSE NO AND STREET:</label>    
-						<div class="form-control-static">
-							<?= $items['employers_home_address'] ?>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label>SUBDIVISION/ BARANGAY: </label> 
-						<div class="form-control-static"> 
-							<?= $items['employers_barangay'] ?>
-						</div>
+						<label>HOUSE NO AND STREET:</label> <?= $items['employers_home_address'] ?>   
+					
+						<label  style="padding-left:50px">SUBDIVISION/ BARANGAY: </label> <?= $items['employers_barangay'] ?>
 					</div>
 				</div>
-				<div class="row padding-top-10">
-					<div class="col-md-4">
-						<label>CITY OR MUNICPALITY: </label> 
-							<div class="form-control-static">  
-								<?= $items['employers_municipality'] ?>
-							</div>
-					</div>
-					<div class="col-md-4">
-						<label>PROVINCE: </label> 
-						<div class="form-control-static">  
-							<?= $items['employers_province'] ?>
-						</div>
-					</div>	
-				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
-				<div class="row">
-					<div class="col-md-4">
+				<div class="row" style="padding-left:15px;">
+						<label>CITY OR MUNICPALITY: </label> Cebu
+					
+						<label style="padding-left:150px">PROVINCE: </label> <?= $items['employers_province'] ?>
+				</div>	
+
+				<hr style="border-top:1px solid #cccccc; padding: 0; "/>
+
+				<div class="row"">
+					<div class="col-md-12">
 						<h4><label>HOME ADDRESS:</label></h4>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-4">
-						<label>HOUSE NO AND STREET:</label> 
-						<div class="form-control-static">  
-							<?= $items['home_address'] ?>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label>SUBDIVISION/ BARANGAY: </label> 
-						<div class="form-control-static">  
-							<?= $items['barangay'] ?>
-						</div>
+					<div class="col-md-12">
+						<label>HOUSE NO AND STREET:</label> <?= ucfirst($items['home_address'] )?>
+					
+						<label style="padding-left:75px">SUBDIVISION/ BARANGAY: </label>  Banilad
 					</div>
 				</div>
-				<div class="row padding-top-10">
-					<div class="col-md-4">
-						<label>CITY OR MUNICPALITY: </label> 
-						<div class="form-control-static">  
-							<?= $items['municipality'] ?>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label>PROVINCE: </label>
-						<div class="form-control-static">  
-							 <?= $items['prov_address'] ?>
-						</div>
+				<div class="row"> 
+					<div class="col-md-12">
+						<label>CITY OR MUNICPALITY: </label> Cebu
+						<label style="padding-left:150px">PROVINCE: </label><?= $items['prov_address'] ?>
 					</div>
 				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
-				<div class="row padding-top 20">
-					<div class="col-md-4">
-						<label>SEX:</label>  
-						<div class="form-control-static">  
-							<?= $items['sex']?>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label>CIVIL STATUS:</label> 
-						<div class="form-control-static">  
-							<?= $items['civil_status']?>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label>AGE:</label> 
-						<div class="form-control-static">  
-							<?= $items['age']?>
-						</div>
+
+				<hr style="border-top:1px solid #cccccc; padding: 0; "/>
+
+				<div class="row">
+					<div class="col-md-12">
+						<label>SEX:</label>  <?= $items['sex']?>
+					
+						<label style="padding-left: 215px">CIVIL STATUS:</label> <?= $items['civil_status']?>
+			
+						<label style="padding-left: 170px">AGE:</label> <?= $items['age']?>
 					</div>
 				</div>
-				<div class="row padding-top-10">
-					<div class="col-md-4">
-						<label>DATE OF BIRTH:</label>
-						<div class="form-control-static">  
-							<?= date_create("{$items['dateofbirth']}")->format('F d, Y')?>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label>CONTACT NO:</label>  
-						<div class="form-control-static">  
-							<?= $items['cellphone_no']?>
-						</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label>DATE OF BIRTH:</label> <?= date_create($items['dateofbirth'])->format('F d, Y')?>
+				
+						<label style="padding-left:64px">CONTACT NO:</label> <?= $items['cellphone_no']?>
 					</div>
 				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
-				<div class="row padding-top-20">
-					<div class="col-md-4">
-						<label>SSS NO:</label> <?= $items['sss_no'] ?>
-					</div>
-					<div class="col-md-4">
-						<label>PAG-IBIG NO:</label>  <?= $items['pag_ibig_no'] ?>
-					</div>
-					<div class="col-md-4">
-						<label>PHILHEALTH NO:</label> <?= $items['philhealth_no'] ?>
-					</div>
-				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>	
+
+				<hr style="border-top:1px solid #cccccc; padding: 0; "/>
 				<div class="row">
 					<div class="col-md-4">
+						<label>SSS NO:</label> <?= $items['sss_no'] ?>
+					
+						<label style="padding-left:225px">PAG-IBIG NO:</label>  <?= $items['pag_ibig_no'] ?>
+				
+						<label style="padding-left:130px">PHILHEALTH NO:</label> <?= $items['philhealth_no'] ?>
+					</div>
+				</div>
+
+				<hr style="border-top:1px solid #cccccc; padding: 0; "/>
+
+				<div class="row">
+					<div class="col-md-12">
 						<h4><label>II. FAMILY INFORMATION</label></h4>
 					</div>
 				</div>
-				<br>
-
 				<div class="row">
 					<div class="text-center">
-						<label for="familyinfo"><u>FAMILY COMPOSITION</u></label>
+						<label style="text-decoration: underline; padding-left:10px;"">FAMILY COMPOSITION</label>
 					</div>
 					<div class="col-md-12 padding-top-10">
-						<table class="table table-border not-datatable">
+						<table class="table table-border not-datatable" border="1">
 							<thead>
 	                			<th>NAME</th>
 		                        <th>RELATION</th>
@@ -175,7 +118,7 @@
 		                            <td><?= ucfirst($row['relationship'])?></td>
 		                            <td><?= $row['family_age']?></td>
 		                            <td><?= ucfirst($row['family_occupation']) ?></td>
-		                            <td><?= $row['monthly_salary']?></td>
+		                            <td><?= number_format($row['monthly_salary'],2)?></td>
 		                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 		                            
 		                        </tr>
@@ -186,25 +129,23 @@
 						</table>
 					</div>
 				</div>
+
 				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
+
 				<div class="row padding-top-20">
 					<div class="col-md-6">
-						<label>IN CASE OF EMERGENCY, CONTACT PERSON:</label>
-						<div class="form-control-static">
-							 <?= $items['incase_of_emergency'] ?>
-						</div>
+						<label>IN CASE OF EMERGENCY, CONTACT PERSON:</label>  <?= $items['incase_of_emergency'] ?>
 					</div>
 					<div class="col-md-6">
-						<label>CONTACT NO:</label>  
-						<div class="form-control-static">
-							<?= $items['emergency_contact_no'] ?>
-						</div>
+						<label>CONTACT NO:</label>  <?= $items['emergency_contact_no'] ?>
 					</div>
 				</div>
+
 				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
+
 				<div class="row">
 					<div class="col-md-6">
-						<h4><label>III. Educational Attainment</label></h4>
+						<h4><label>III. EDUCATIONAL ATTAINMENT</label></h4>
 					</div>
 				</div>
 				<div class="row">
@@ -213,56 +154,40 @@
 						 <?= edu_attainment_desc($items['educational_attainment']) ?>
 					</div>
 				</div>
-				<br><br/>
 				<div class="row">
 					<div class="col-md-6">
 						<h4><label>IV. WORK INFORMATION</label></h4>
 					</div>
 				</div>
-				<br/>
 				<div class="row">
-					<div class="col-md-6">
-						<label>MONTHLY SALARY:</label><?= $items['monthly_salary'] ?>
+					<div class="col-md-12">
+						<label>MONTHLY SALARY:</label> <?= number_format($items['monthly_salary'],2) ?>
+
+						<label style="padding-left:225px">NATURE OF WORK: </label> <?= ucfirst($items['nature_of_work']) ?>
 					</div>
-					<div class="col-md-6">
-						<label>NATURE OF WORK:</label> <?= $items['nature_of_work'] ?>
-					</div>
-				</div>
-				<br/>
-				<div class="row">
-					<div class="col-md-6">
-						<label>EMPLOYMENT ARRANGEMENT:</label> <?= $items['employment_arrangement'] ?>
-					</div>
-					<div class="col-md-6">
-						<label>NAME OF EMPLOYER:</label> <?= $items['name_of_employer'] ?>
-					</div>
-				</div>
-				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
-				<hr>
-				<div class="row">
-					<div class="col-md-8"></div>
-					<div class="col-md-4">
-						<label> ________________________</label>
-						<br/>
-						<label>SIGNATURE OF KASAMBAHAY</label>
-					</div>
-					
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<label>RECEIVED BY: _______________________</label>
-						<br/>
-						<label style="padding-left:80px;">KASAMBAHAY DESK OFFICER</label>
+						<label>EMPLOYMENT ARRANGEMENT:</label> <?= employment_arrangement($items['employment_arrangement']) ?>
+				
+						<label style="padding-left:170px">NAME OF EMPLOYER:</label> <?= $items['name_of_employer'] ?>
 					</div>
-					
 				</div>
-				<br><br>
+
+				<hr style="border-top:2px solid #cccccc; padding: 0; "/>
+				<div class="row padding-top-20">
+					<div class="col-md-8"></div>
+					<div class="col-md-4">
+						<label> ___________________________</label>
+						<label style="padding-left:30%;">RECEIVED BY: ___________________________</label><br/>
+						<label>SIGNATURE OF KASAMBAHAY</label> 
+						<label style="padding-left:43%;">KASAMBAHAY DESK OFFICER</label>
+					</div>	
+				</div>
+				<br/><br/>
 				<div class="row">
 					<div class="col-md-6">
-						<label>DATE:</label>
-							<div class="form-control-static">
-								<?= date('F d, Y') ?>
-							</div>
+						<label>DATE:</label> <?= date_create(null)->format('F d, Y') ?>
 					</div>
 				</div>	
 			</div>

@@ -8,12 +8,18 @@
         		<div class="row">
                     <div class="col-md-12">
                         <div class="box-footer">
-	                        	<center class="padding-top-20">
-									<h3><label>KALIPI FEDERATION</label></h3>
-									<P>CEBU CITY </P>
-									<h4><label>MEMBERSHIP FORM</label></h4>
-									<br/>
-								</center>
+	                       	<div class="row">
+				                <div class="col-md-4 col-md-offset-8">
+				                    <div style="width:100px; border:1px solid #000; padding:80px; margin-left:120px;"></div> 
+				                    <p style="margin-left:42%; font-weight: bold;">PLACE 2x2 PHOTO HERE</p>
+				                </div>
+				            </div>
+                        	<center class="padding-top-20">
+								<h3><label>KALIPI FEDERATION</label></h3>
+								<P>CEBU CITY </P>
+								<h4><label>MEMBERSHIP FORM</label></h4>
+								<br/>
+							</center>
 							<div class="row">
 								<div class="col-md-10 padding-top-10"></div>
 							
@@ -21,7 +27,7 @@
 									<div class="form-group">
 										<label for="date">DATE:</label>
 										<div class="form-control-static">
-											<?php echo date("M, d Y"); ?>
+											<?php echo date_create(null)->format("F d, Y"); ?>
 										</div>
 									</div>
 								</div>
@@ -194,64 +200,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-12 padding-top-10">
-									<div class="form-group">
-										<label for="name_of_spouse">NAME OF SPOUSE:</label>
-										<div class="form-control-static">
-											<?= $formdata['name_of_spouse'] ?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 padding-top-10">
-									<div class="form-group">
-										<label for="address_of_spouse">ADDRESS:</label>
-										<div class="form-control-static">
-											<?= $formdata['address_of_spouse'] ?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 padding-top-10">
-				        			<div class="form-group">
-										<label for="dateofbirth_of_spouse">DATE OF BIRTH:</label>
-								  		<div class="form-control-static">
-											<?= date_create($formdata['dateofbirth_of_spouse'] )->format('F m, Y')?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 padding-top-10">
-				   					<div class="form-group">
-										<label for="spouse_age	">AGE:</label>
-								  		<div class="form-control-static">
-											<?= $formdata['spouse_age'] ?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 padding-top-10">
-									<div class="form-group">
-										<label for="highest_educational_attainment">HIGHEST EDUCATIONAL ATTAINMENT:</label>
-										<div class="form-control-static">
-											<?= $formdata['highest_educational_attainment'] ?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 padding-top-10">
-									<div class="form-group">
-										<label for="occupation_of_spouse">OCCUPATION:</label>
-										<div class="form-control-static">
-											<?= $formdata['occupation_of_spouse'] ?>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 padding-top-10">
-									<div class="form-group">
-										<label for="num_of_children">NO OF CHILDREN:</label>
-										<div class="form-control-static">
-											<?= $formdata['num_of_children'] ?>	
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							<div class="row">
 								<div class="col-md-4 padding-top-10">
 									<label for="familycomp">II.FAMILY COMPOSITION</label>
@@ -259,7 +208,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-border not-datatable">
+									<table class="table table-border not-datatable" border="1">
 										<thead>
 											
 				                			<th>NAME</th>
@@ -277,7 +226,7 @@
 					                            <td><?= ucfirst($row['relationship'])?></td>
 					                            <td><?= $row['family_age']?></td>
 					                            <td><?= ucfirst($row['family_occupation']) ?></td>
-					                            <td><?= $row['monthly_salary']?></td>
+					                            <td><?= number_format($row['monthly_salary'],2)?></td>
 					                            <td><?= edu_attainment_desc($row['family_educational_attainment']) ?></td>
 					                            
 					                        </tr>
@@ -295,12 +244,12 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-				                    <table class="table table-border not-datatable">
+				                    <table class="table table-border not-datatable" border="1">
 				                        <thead>
 				                        	<th>#</th>
 					                    	<th>TITLE OF SEMINAR & TRAINING</th>
 					                    	<th>DATE</th>
-				                            <th></th>
+				                           
 				                        </thead>
 				                        <tbody>
 
@@ -325,51 +274,31 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			        <?php if($formdata['request_status'] != 'approved' ): ?>
+		
+			   		<?php if($formdata['request_status'] != 'approved' ): ?> 
 
-			        <div class="row padding-top-20">
-				        <div class="col-md-12">
-				            
-				                      <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
-				                     <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
-				                     
-				                      <a href="#" class="btn btn-danger btn-flat btn-lg "> SEND FEEDBACK </a>
-				                       <a href="<?= base_url('captain_listing/view_pending?form_id=3')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
-				                </form>   
-				        </div>
-			        </div>
-			       	<?php endif;?> 
+		                <div class="col-md-12">
+		                    
+		                    <form action="<?= base_url("captain_listing/approve/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
+
+		                    <?php if($formdata['request_status'] != 'pending' && $formdata['request_status'] != 'approved'): ?>
+		                            
+		                            <?php if($formdata['request_status'] != 'reviewed'): ?>
+		                                <button type = "submit" class="btn btn-success btn-flat btn-lg"> APPROVE REQUEST</button>
+		                            <?php endif; ?>
+		                            <?php if($formdata['request_status'] != 'paid'): ?>
+		                                <a href="<?= base_url("captain_listing/disapprove/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" class="btn btn-danger btn-flat btn-lg " onclick="return confirm('ARE YOU SURE? PLEASE CONFIRM.')"> DISAPPROVED REQUEST</a>
+		                            <?php endif; ?>
+		                        <?php endif; ?>	
+		                        <br>
+	                                <a href="<?= base_url('captain_listing/view_pending?form_id=3')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="glyphicon glyphicon-triangle-left"></i> Go back </a>
+		                    </form>   
+		                </div>
+           			<?php endif;?> 
+        		</div> 
 			</section>
 		</div>
 	</div>
 </body>
-<!-- Modal -->
-    <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class="ajax" action="<?= base_url('secretarycontroller/sendFeedback')?>" method="POST">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel" style="color:red;"><i class="fa fa-feed"></i> SEND FEEDBACK</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger hidden warning"></div>
-                            <div class="form-group">
-                                <label> ENTER YOUR MESSAGE HERE: *</label>
-                                <textarea class="form-control" name="message"></textarea>
-                                <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 

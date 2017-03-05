@@ -55,7 +55,7 @@ class Kalipicontroller extends CI_Controller {
 
 	    $this->load->view('Header/resident_header', $header_data);
 	    $this->load->view('Resident/nav_view', $data);
-	    $this->load->view('Resident/Kalipiform');
+	    $this->load->view('Resident/Kalipiform',['data' => $data]);
 	    $this->load->view('Footer/resident_footer');
 	}
 

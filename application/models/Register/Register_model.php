@@ -38,7 +38,7 @@ class Register_model extends CI_Model {
 			->where('u.user_id', $id)
 			->get()->row_array();
 
-		$data['family_composition'] = $this->db->get_where('family_composition', ['user_id' => $id])->result_array();
+		$data['family_composition'] = array_column($this->db->get_where('family_composition', ['user_id' => $id])->result_array(), null, 'relationship');
 
 		return $data;
 

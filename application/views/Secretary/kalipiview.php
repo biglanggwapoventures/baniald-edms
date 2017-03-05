@@ -8,12 +8,18 @@
         		<div class="row">
                     <div class="col-md-12">
                         <div class="box-footer">
-	                        	<center class="padding-top-20">
-									<h3><label>KALIPI FEDERATION</label></h3>
-									<P>CEBU CITY </P>
-									<h4><label>MEMBERSHIP FORM</label></h4>
-									<br/>
-								</center>
+                    		<div class="row">
+				                <div class="col-md-4 col-md-offset-8">
+				                      <div style="width:100px; border:1px solid #000; padding:80px; margin-left:120px;"></div> 
+				                      <p style="margin-left:42%; font-weight: bold;">PLACE 2x2 PHOTO HERE</p>
+				                </div>
+				            </div>
+                        	<center class="padding-top-20">
+								<h3><label>KALIPI FEDERATION</label></h3>
+								<P>CEBU CITY </P>
+								<h4><label>MEMBERSHIP FORM</label></h4>
+								<br/>
+							</center>
 							<div class="row">
 								<div class="col-md-10 padding-top-10"></div>
 							
@@ -21,7 +27,7 @@
 									<div class="form-group">
 										<label for="date">DATE:</label>
 										<div class="form-control-static">
-											<?php echo date("M, d Y"); ?>
+											<?php echo date_create(null)->format("F d, Y"); ?>
 										</div>
 									</div>
 								</div>
@@ -161,7 +167,6 @@
 								<div class="col-md-6 padding-top-10">
 									<div class="form-group">
 										<label for="company_address">COMPANY ADDRESS:</label>
-										<!-- <input type="text" class="form-control" name="company_address" id="company_address" placeholder=""> -->
 										<div class="form-control-static">
 											<?= $formdata['company_address'] ?>	
 										</div>
@@ -194,12 +199,12 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-md-12 padding-top-10">
 									<div class="form-group">
 										<label for="name_of_spouse">NAME OF SPOUSE:</label>
 										<div class="form-control-static">
-											<?= $formdata['name_of_spouse'] ?>	
+											
 										</div>
 									</div>
 								</div>
@@ -207,7 +212,7 @@
 									<div class="form-group">
 										<label for="address_of_spouse">ADDRESS:</label>
 										<div class="form-control-static">
-											<?= $formdata['address_of_spouse'] ?>	
+											
 										</div>
 									</div>
 								</div>
@@ -251,7 +256,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="row">
 								<div class="col-md-4 padding-top-10">
 									<label for="familycomp">II.FAMILY COMPOSITION</label>
@@ -259,7 +264,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-border not-datatable">
+									<table class="table table-border not-datatable" border="1">
 										<thead>
 											
 				                			<th>NAME</th>
@@ -295,12 +300,12 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-				                    <table class="table table-border not-datatable">
+				                    <table class="table table-border not-datatable" border="1">
 				                        <thead>
 				                        	<th>#</th>
 					                    	<th>TITLE OF SEMINAR & TRAINING</th>
 					                    	<th>DATE</th>
-				                            <th></th>
+				               
 				                        </thead>
 				                        <tbody>
 
@@ -328,7 +333,7 @@
 				</div>
 				<div class="row padding-top-20">
                     <div class="col-md-12">
-                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFRIM.')">
+                        <form action="<?= base_url("secretary_listing/reviewed/{$this->uri->segment(3)}/{$this->uri->segment(4)}")?>" method="POST" onsubmit="return confirm('ARE YOU SURE? PLEASE CONFIRM.')">
                             <button type="submit" class="btn btn-success btn-flat btn-lg"><label>REVIEWED</label></button>
                             <a data-toggle="modal"  data-target="#feedback" class="btn btn-danger  btn-flat btn-lg"> <label>SEND FEEDBACK</label></a>
                             <a href="<?= base_url('secretary_listing/view_reviewed?form_id=3')  ?>" class="btn btn-primary btn-flat btn-lg pull-right"><i class="fa fa-arrow-circle-o-left fa-arrow-circle-o-left fa-lg"></i> <label>BACK</label></a>
@@ -356,6 +361,7 @@
                                 <label> ENTER YOUR MESSAGE HERE: *</label>
                                 <textarea class="form-control" name="message"></textarea>
                                 <input type="hidden" name="sent_to" value="<?= $formdata['resident_id']?>">
+                                <input type="hidden" name="requests_forms_id" value="<?= $formdata['requests_forms_id']?>">
                             </div>
                     </div>
                     <div class="modal-footer">

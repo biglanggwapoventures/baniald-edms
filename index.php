@@ -1,5 +1,6 @@
 <?php
-
+//Don't Hilabot para di maboang ang date
+date_default_timezone_set ('Asia/Manila' );
 /**
  * CodeIgniter
  *

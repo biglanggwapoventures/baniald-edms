@@ -13,44 +13,25 @@ class Secretary_listing extends My_SecretaryFormsListController {
 		$this->load->model('Secretary/Secretarymodel', 'sec');
 		// $this->form_id = $this->input->get('form_id');
 	}
+	public function listofallRequests()
+	{
 
-	// public function view_specific_form($id,$formid){
+		$data['form_types_id'] = $this->input->get('form_types_id');
+		$data['date_start'] = $this->input->get('date_start');
+		$data['date_end'] = $this->input->get('date_end');
 
 
-	// 	$this->load->model('Secretary/Secretarymodel');
+		$data['items'] 	= $this->sec->get_all_request_forms($data['form_types_id'], $data['date_start'], $data['date_end']);
+	  	$data['title'] = 'ALL';
 
-		
-	// 	$this->load->view('Header/mainheader');
+		$header_data['page_name'] = 'List of All Requests as of' .' '. date_create(null)->format('F d, Y');
 
-	// 	if($formid == 10){
-	// 	$data['formdata'] = $this->Secretarymodel->getSpecificDataForFormBRGY($id,$formid);
-	// 	$this->load->view('secretary/blotterview', $data);	
-	// 	}
-	// 	if($formid == 9){
-	// 	$data['formdata'] = $this->Secretarymodel->getSpecificDataForFormBRGY($id,$formid);
-	// 	$this->load->view('secretary/financialassistanceview', $data);	
+		$this->load->view('Header/mainheader', $header_data);
+		$this->load->view('secretary/listofallrequest', $data);
+		$this->load->view('Footer/secretary_footer');
+	}
 
-	// 	}
-	// 	if($formid == 8)
-	// 	{
-	// 	$data['formdata'] = $this->Secretarymodel->getSpecificDataForFormPWD($id,$formid);
-	// 	$this->load->view('secretary/pwdregistrationview', $data);
-	// 	}
-	// 	//Senior Citizen
-	// 	if($formid == 2)
-	// 	{
-	// 	$data['formdata'] = $this->Secretarymodel->getSpecificDataForFormPWD($id,$formid);
-	// 	$this->load->view('secretary/pwdregistrationview', $data);
-	// 	}
-	// 	//Brgy Clearance
-	// 	if($formid == 1){
-	// 	$data['formdata'] = $this->Secretarymodel->getSpecificDataForFormBRGY($id,$formid);
-	// 	$this->load->view('secretary/brgyclearanceview', $data);	
-	// 	}
 
-	// 	$this->load->view('Footer/secretary_footer');
-
-	// }
 	public function reviewed($id, $formid){
 
 		$this->sec->review_requests($id);
@@ -58,7 +39,13 @@ class Secretary_listing extends My_SecretaryFormsListController {
 
 	}
 
-public function send_sms()
+	public function cancel($id, $formid){
+
+		$this->sec->cancel_request($id);
+		redirect("secretary_listing?form_id={$formid}");
+
+	}
+	public function send_sms()
 	{
 		$this->load->helper(['string', 'sms']);
 
